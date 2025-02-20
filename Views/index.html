@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            border: none;
+        }
+
+        .box {
+            background-color: #f0f0f0;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+            margin: 20px;
+            font-size: 16px;
+            color: #333;
+            border-radius: 8px;
+        }
+
+        .nad.dash {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            grid-template-rows: auto;
+            height: 100vh;
+            gap: 10px;
+            padding: 10px;
+            border: none;
+        }
+
+        .nad.dash.nav {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            border: 1px solid blue;
+            height: 100%;
+            margin: 10px;
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        /* Styling each navigation item */
+        .nad.dash.nav div {
+            background-color: beige;
+            text-align: center;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding-left: 15px;
+            position: relative;
+            border-radius: 5px;
+        }
+
+        .nad.dash.nav div:hover {
+            background-color: lightblue;
+            padding-left: 25px;
+        }
+
+        .nad.dash.nav a {
+            text-decoration: none;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            color: black;
+            font-size: 16px;
+        }
+
+        .nad.dash.nav a:hover {
+            color: darkblue;
+        }
+
+        .nad.dash.nav a::before {
+            content: "";
+            position: absolute;
+            left: 5px;
+            top: 2px;
+            height: 100%;
+        }
+
+        /* Change ::before on hover */
+        .nad.dash.nav div:hover a::before {
+            background-color: darkblue;
+            transition: all 0.9s ease;
+            width: 10px;
+        }
+
+        .naddashlogout {
+            margin-top: auto;
+            text-align: center;
+            padding: 10px;
+            border: none;
+        }
+
+        .naddashlogout a {
+            display: block;
+            padding: 10px;
+            color: white;
+            border-radius: 5px;
+        }
+
+        /* Main content */
+        .nad.maincontent * {
+            padding: 10px;
+            border: 2px solid;
+            margin: 10px;
+            border: none;
+ 
+        }
+
+        .nad.container * {
+            height: 200px;
+        }
+
+        .nad.container {
+            height: 500px;
+            background-color: black;
+        }
+
+        #canvas_admi_revenue {
+            background-color: #e9ecef;
+        }
+
+        /* Users */
+        .users-container {
+            display: flex;
+            justify-content: space-evenly;
+            padding: 10px;
+            height: 400px;
+            align-items: center;
+        }
+
+        .user-box {
+            text-align: center;
+            height: 150px;
+            height: 200px;
+        }
+
+        .user-count {
+            background-color: black;
+            color: white;
+            padding: 5px;
+            font-weight: bold;
+            text-align: center;
+            height: 100px;
+        }
+
+        /* Restaurants list */
+        .nad.restaurents_list div {
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            justify-content: center;
+        }
+
+        .nad.restaurents_list div div {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+
+        /* Restaurant list */
+        .nadrestlist {
+            width: 500px;
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+            font-family: Arial, sans-serif;
+            border: none;
+        }
+
+        .nadrestlist h1 {
+            text-align: center;
+            background-color: blue;
+            color: white;
+            padding: 10px;
+            margin: 0;
+            border-radius: 5px 5px 0 0;
+            border: none;
+        }
+
+        .nadrestlist div {
+            padding: 8px;
+            border: none;
+        }
+
+        .nadrestlist .innerdiv {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 0 0 5px 5px;
+        }
+
+        .nadrestlist .innerdiv div {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            border: none;
+        }
+
+        #naddashbtn{
+            border-radius: 3px;
+            width: 50px;
+
+        }
+
+        #naddashbtn:hover{
+         background-color: aqua;
+        }
+
+        #naddashbtn:active{
+         background-color: red;
+        }
+
+
+        
+
+    </style>
+</head>
+<body>
+
+<div class="nad dash">
+
+    <div>
+        <div class="nad dash nav" style="position: sticky; top: 5px; height: 700px; width: 200px;">
+            <div>
+                <a href="">revenue</a>
+            </div>
+            <div>
+                <a href="">users statistic</a>
+            </div>
+            <div>
+                <a href="">restaurents</a>
+            </div>
+            <div>
+                <a href="">profile</a>
+            </div>
+            <div class="naddashlogout">
+                <a href="">logout</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="nad maincontent">
+        <!-- Main content start -->
+        <div class="nad container" id="revenue">
+            <canvas id="canvas_admi_revenue"></canvas>
+        </div>
+
+        <div class="users-container" id="users-count">
+            <div class="user-box">
+                <h6>Active Users Count</h6>
+                <div class="user-count"><h1>23</h1></div>
+            </div>
+            <div class="user-box">
+                <h6>Total Users Count</h6>
+                <div class="user-count"><h1>123</h1></div>
+            </div>
+        </div>
+
+        <div class="nad restaurents_list" style="overflow: auto; height: 300px;">
+            <button style="display:block;" id="naddashbtn">add</button>
+        </div>
+
+        <div class="nadmin profile"></div>
+        <!-- Main content end -->
+    </div>
+</div>
+
+<script>
+let admin_dash_data = {
+  "revenue": {
+      "dates": Array.from({ length: 30 }, (_, i) => i + 1), // Dates from 1 to 30
+      "income": [
+          45, 78, 23, 45, 78, 12, 98, 34, 65, 89, 
+          120, 56, 76, 34, 88, 99, 45, 67, 23, 56, 
+          78, 123, 98, 45, 67, 88, 34, 76, 99, 150,100
+      ]
+  }
+};
+
+let btn = document.querySelector("#naddashbtn");
+
+let creatediv = () => {
+  
+    let rev = document.createElement("div");
+    rev.classList.add("nadrestlist");
+
+    let h1 = document.createElement('h1');
+    h1.style.backgroundColor = "blue";
+    h1.innerHTML="this is restaurent";
+    rev.appendChild(h1);
+  
+    let innerdiv = document.createElement('div');
+  
+    let date = document.createElement('div');
+    date.innerHTML = 48;
+    let con = document.createElement('con');
+    con.innerHTML = 48;
+  
+    innerdiv.appendChild(date);
+    innerdiv.appendChild(con);
+  
+    rev.appendChild(innerdiv);
+    return rev;
+}
+
+btn.addEventListener('click', () => {
+    let di = document.querySelector(".nad.restaurents_list");
+    di.appendChild(creatediv());
+});
+
+let canvas = document.querySelector("#canvas_admi_revenue");
+
+let dates = admin_dash_data.revenue.dates;
+let values = admin_dash_data.revenue.income;
+
+var ctx = canvas.getContext("2d");
+
+ctx.moveTo(0,300);
+ctx.lineTo(0,10);
+ctx.stroke();
+
+ctx.moveTo(0,150);
+ctx.lineTo(300,150);
+
+ctx.moveTo(3,10);
+let len = dates.length;
+
+let date_red = dates.reduce((acc, num) => acc + num, 0);
+let values_red = values.reduce((acc, num) => acc + num, 0);
+
+let x = 0;
+let y = 0;
+for (let i = 0; i < len; i++) {
+    x += (dates[i] / date_red) * canvas.width;
+    y += (values[i] / values_red) * canvas.height;
+    ctx.lineTo(y, x);
+}
+ctx.stroke();
+</script>
+
+</body>
+</html>
