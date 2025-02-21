@@ -1,101 +1,78 @@
+/* General Styling */
 * {
     padding: 0;
     margin: 0;
-
     box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
 }
 
-
+/* Box Styling */
 .box {
-    background-color: #f0f0f0;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+    box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.15);
     margin: 20px;
     font-size: 16px;
     color: #333;
-    border-radius: 8px;
+    border-radius: 10px;
+    padding: 15px;
 }
 
-
-
+/* Dashboard Layout */
 .nad.dash {
     display: grid;
-    grid-template-columns: 200px 1fr; 
-    grid-template-rows: auto; 
+    grid-template-columns: 250px 1fr; /* Sidebar width adjusted */
+    grid-template-rows: auto;
     height: 100vh;
-    gap: 10px;
-    padding: 10px;
+    gap: 15px;
+    padding: 15px;
 }
 
+/* Sidebar */
 .nad.dash.nav {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    border: 1px solid blue;
+    gap: 12px;
+    border: 1px solid #007bff;
     height: 100%;
-    margin: 10px;
-    background-color: #f4f4f4;
-    padding: 10px;
-
+    background-color: #f8f9fa;
+    padding: 15px;
     border-radius: 10px;
 }
 
-/* Styling each navigation item */
+/* Sidebar Items */
 .nad.dash.nav div {
-    background-color: beige;
-    text-align: center;
-    height: 40px;
-
+    background-color: #e9ecef;
+    text-align: left;
+    height: 45px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-
-    padding-left: 15px;
+    padding-left: 20px;
     position: relative;
-
-    border-radius: 5px;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.3s ease;
 }
 
-
 .nad.dash.nav div:hover {
-    background-color: lightblue;
+    background-color: #007bff;
+    color: white;
     padding-left: 25px;
 }
 
-
+/* Sidebar Links */
 .nad.dash.nav a {
     text-decoration: none;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    color: black;
+    color: #333;
     font-size: 16px;
-   
+    transition: color 0.3s ease;
 }
-
 
 .nad.dash.nav a:hover {
-    color: darkblue;
+    color: white;
 }
 
-
-.nad.dash.nav a::before {
-    
-
-    
-    content: "";
-    position: absolute;
-    left: 5px;
-    top: 2px;
-    height: 100%;
-}
-
-/* Change ::before on hover */
-.nad.dash.nav div:hover a::before {
-    background-color: darkblue;
-    transition: all 0.9s ease;
-    width: 10px;
-    
-}
-
-
+/* Logout Button */
 .naddashlogout {
     margin-top: auto;
     text-align: center;
@@ -104,107 +81,111 @@
 
 .naddashlogout a {
     display: block;
-    padding: 10px;
-    
+    padding: 12px;
+    background-color: #dc3545;
     color: white;
-    border-radius: 5px;
-    
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
 }
 
-
-
-
-
-/*main content*/
-
-.nad.maincontent *{
-padding: 10px;
-border: 2px solid ;
-margin: 10px;
+.naddashlogout a:hover {
+    background-color: #c82333;
 }
 
-.nad.container *{
-height: 300px;
+/* Main Content */
+.nad.maincontent * {
+    padding: 12px;
+    border: 1px solid #dee2e6;
+    margin: 12px;
+    border-radius: 8px;
 }
 
-
-/* users*/
+/* User Count Section */
 .users-container {
     display: flex;
     justify-content: space-evenly;
-    padding: 10px;
-    height: 200px;
+    padding: 20px;
+    flex-wrap: wrap;
     align-items: center;
+    gap: 20px;
 }
 
 .user-box {
     text-align: center;
-    height: 150px;
+    height: 180px;
+    width: 200px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
+.user-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .user-count {
-    background-color: black;
+    background-color: #007bff;
     color: white;
-    padding: 5px;
+    padding: 15px;
+    font-size: 24px;
     font-weight: bold;
     text-align: center;
     height: 100px;
-}
-
-
-
-
-/*restaurents list*/
-
-
-.nad.restaurents_list div{
-
+    border-radius: 8px;
     display: flex;
-    flex-direction: column;
-    padding: 10px;
+    align-items: center;
     justify-content: center;
 }
 
-
-
-.nad.restaurents_list div div{
-
-display: flex;
-flex-direction: row;
-justify-content: space-around;
+/* Restaurants List */
+.nad.restaurents_list div {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    justify-content: center;
 }
 
+.nad.restaurents_list div div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
 
+/* Restaurant List Styling */
 .nadrestlist {
     width: 500px;
-    border: 2px solid #333;
-    border-radius: 8px;
-    padding: 15px;
-    background-color: #f8f9fa;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
+    border: 1px solid #343a40;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.15);
 }
 
 .nadrestlist h1 {
     text-align: center;
-    background-color: blue;
+    background-color: #007bff;
     color: white;
-    padding: 10px;
+    padding: 12px;
     margin: 0;
-    border-radius: 5px 5px 0 0;
+    border-radius: 6px 6px 0 0;
+    font-size: 20px;
 }
 
 .nadrestlist div {
-    padding: 8px;
+    padding: 10px;
 }
 
 .nadrestlist .innerdiv {
     display: flex;
     justify-content: space-between;
-    padding: 10px;
+    padding: 12px;
     background-color: #e9ecef;
-    border-radius: 0 0 5px 5px;
+    border-radius: 0 0 6px 6px;
 }
 
 .nadrestlist .innerdiv div {
