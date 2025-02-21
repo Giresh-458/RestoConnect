@@ -8,6 +8,13 @@
 }
 
 
+.none{
+
+
+    display: none;
+}
+
+
 .nadcuscontainer1{
 
 
@@ -61,4 +68,24 @@ grid-template-rows: auto;
 
 
 
+}
+
+
+
+/* change password form*/
+
+
+.ncusdasheditform{
+
+
+position: absolute;
+height: 200px;
+width: 250px;
+
+top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);  
 }
