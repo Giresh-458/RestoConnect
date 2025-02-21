@@ -1,102 +1,6 @@
 
           
-let admin_dash_data = {
-  "revenue": {
-      "dates": Array.from({ length: 30 }, (_, i) => i + 1), // Dates from 1 to 30
-      "income": [
-          45, 78, 23, 45, 78, 12, 98, 34, 65, 89, 
-          120, 56, 76, 34, 88, 99, 45, 67, 23, 56, 
-          78, 123, 98, 45, 67, 88, 34, 76, 99, 150,100
-      ]
-  }
-};
 
-
-
-
-let a = function(){
-
-let btn = document.querySelector("#naddashbtn");
-
-
-
-let creatediv = () => {
-  
-    let rev = document.createElement("div");
-    
-  rev.classList.add("nadrestlist");
-
-    let h1 = document.createElement('h1');
-    h1.style.backgroundColor = "blue";
-
-    h1.innerHTML="this is restaurent";
-  rev.appendChild(h1);
-  
-  let innerdiv = document.createElement('div');
-  
-  let date = document.createElement('div');
-  date.innerHTML = 48;
-  let con = document.createElement('con');
-  con.innerHTML = 48;
-  
-  innerdiv.appendChild(date);
-  innerdiv.appendChild(con);
-  
-  
-  rev.appendChild(innerdiv);
-  return rev;
-}
-
-btn.addEventListener('click',()=>{
-  
-  let di = document.querySelector(".nad.restaurents_list");
-  di.appendChild(creatediv());
-  
-});
-
-
-let canvas = document.querySelector("#canvas_admi_revenue");
-
-let dates = admin_dash_data.revenue.dates;
-let values = admin_dash_data.revenue.income;
-
-var ctx = canvas.getContext("2d");
-
-ctx.moveTo(0,300);
-ctx.lineTo(0,10);
-ctx.stroke();
-
-
-ctx.moveTo(0,150);
-ctx.lineTo(300,150);
-
-
-ctx.moveTo(3,10);
-let len = dates.length;
-
-let date_red = dates.reduce((acc,num)=>acc+num,0);
-let values_red = values.reduce((acc,num)=>acc+num,0);
-
-let x=0;
-let y =0;
-for(let i=0;i<len;i++){
-
-
-x+=(dates[i]/date_red)*canvas.width;
- y += (values[i]/values_red)*canvas.height;
-ctx.lineTo(y,x);
-//ctx.fillText(dates[i],dates[i]+100*i,values[i]+30);
-
-}
-ctx.stroke();
-
-
-
-
-};
-
-
-/*customer dash board */
 
 
 
@@ -144,3 +48,28 @@ let div_order = function(name, items) {
 }
 
 
+function drawPieChart(canvasId, data, colors) {
+  const canvas = document.getElementById(canvasId);
+  const ctx = canvas.getContext("2d");
+  const total = data.reduce((sum, value) => sum + value, 0);
+  let startAngle = 0;
+  
+  data.forEach((value, index) => {
+      const sliceAngle = (value / total) * 2 * Math.PI;
+      ctx.beginPath();
+      ctx.moveTo(100, 100);
+      ctx.arc(100, 100, 100, startAngle, startAngle + sliceAngle);
+      ctx.closePath();
+      ctx.fillStyle = colors[index];
+      ctx.fill();
+      startAngle += sliceAngle;
+  });
+}
+
+const data1 = [10, 20, 30, 40];
+const colors1 = ["red", "blue", "green", "yellow"];
+drawPieChart("pichart1", data1, colors1);
+
+const data2 = [3, 7, 2, 4];
+const colors2 = ["purple", "orange", "cyan", "pink"];
+drawPieChart("pichart2", data2, colors2);
