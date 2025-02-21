@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<link rel="stylesheet" href="/css/style2.css">
+</head>
+<body>
+
+<div class="nad dash">
+
+    <div>
+        <div class="nad dash nav" style="position: sticky; top: 5px; height: 700px; width: 200px;">
+            <div>
+                <a href="">revenue</a>
+            </div>
+            <div>
+                <a href="">users statistic</a>
+            </div>
+            <div>
+                <a href="">restaurents</a>
+            </div>
+            <div>
+                <a href="">profile</a>
+            </div>
+            <div class="naddashlogout">
+                <a href="">logout</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="nad maincontent">
+        <!-- Main content start -->
+        <div class="nad container" id="revenue" style="height: 700px;">
+            <canvas id="canvas_admi_revenue"></canvas>
+        </div>
+
+        <div class="users-container" id="users-count">
+            <div class="user-box">
+                <h6>Active Users Count</h6>
+                <div class="user-count"><h1>23</h1></div>
+            </div>
+            <div class="user-box">
+                <h6>Total Users Count</h6>
+                <div class="user-count"><h1>123</h1></div>
+            </div>
+        </div>
+
+        <div class="nad restaurents_list" style="overflow: auto; height: 300px;">
+            <button style="display:block;" id="naddashbtn">add</button>
+        </div>
+
+        <div class="nadmin profile"></div>
+
+        <!-- Main content end -->
+    </div>
+</div>
+
+<script src="/js/admin_dash_script.js"></script>
+
+</body>
+</html>

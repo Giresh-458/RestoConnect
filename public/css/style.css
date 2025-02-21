@@ -1,0 +1,91 @@
+
+*{
+
+
+
+
+
+}
+
+
+.none{
+
+
+    display: none;
+}
+
+
+.nadcuscontainer1{
+
+
+display: grid;
+grid-template-columns: 0.4fr 0.6fr;
+grid-template-rows: auto;
+}
+
+
+.nadcuscontainer2{
+    display: grid;
+    grid-template-columns: 0.4fr 0.6fr;
+    grid-template-rows: auto;
+    
+}
+
+
+.ncusdasheditform{
+
+    padding: 10px;
+    background-color: orange;
+}
+
+
+
+
+.navbar {
+    background-color: #333;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 14px 20px;
+}
+.navbar a:hover {
+    background-color: #575757;
+}
+.nav-links {
+    display: flex;
+    gap: 10px;
+}
+
+.nadcusdashboards.box{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+
+
+}
+
+
+
+/* change password form*/
+
+
+.ncusdasheditform{
+
+
+position: absolute;
+height: 200px;
+width: 250px;
+
+top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);  
+}
