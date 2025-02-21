@@ -16,6 +16,7 @@
         <div class="nav-links">
             <a href="#">Home</a>   
             <a href="#">Orders</a>
+            <a href="#" id="chg_pass">change password</a>
         </div>
         <a href="#" style="margin-left: auto;">Logout</a>
     </div>
@@ -50,6 +51,7 @@
                 <% restaurent_list.forEach(product =>{%>
                     <li><%=product%></li>
                 <%})%>
+
             </ul>
         </div>
     </div>
@@ -64,8 +66,15 @@
        
        
        
-        <div class="ncusdasheditform box">
+        <div class="ncusdasheditform box none">
+
+            <div id="cross_symbol">
+                <a href="#" class="close-btn">&#10006;</a>  
+            </div>
             <h1>Change Password</h1>
+            <div></div>
+
+
             <form action="" method="post">
                 <label for="ncusformoldpass">Old Password</label>
                 <input type="text" id="ncusformoldpass">

@@ -73,3 +73,30 @@ drawPieChart("pichart1", data1, colors1);
 const data2 = [3, 7, 2, 4];
 const colors2 = ["purple", "orange", "cyan", "pink"];
 drawPieChart("pichart2", data2, colors2);
+
+
+
+
+
+
+
+let chg_pass = document.querySelector("#chg_pass");
+
+
+chg_pass.addEventListener('click',function(){
+
+
+    document.querySelector(".ncusdasheditform").classList.remove("none");
+
+
+});
+
+let close_btn = document.querySelector(".close-btn");
+
+
+close_btn.addEventListener('click',function(){
+
+  document.querySelector(".ncusdasheditform").classList.add("none");
+
+
+});
