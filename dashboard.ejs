@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RestoConnect - Dashboard</title>
+    <link rel="stylesheet" href="/homepage.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>Manager Dashboard - <%= restaurant %></h1>
+    </header>
+    <main>
+      <div class="dashboard-container">
+        <div class="card">
+          <h3>Total Orders</h3>
+          <p id="totalOrders">0</p>
+        </div>
+        <div class="card">
+          <h3>Total Customers</h3>
+          <p id="totalCustomers">0</p>
+        </div>
+        <div class="card">
+          <h3>Total Revenue</h3>
+          <p id="totalRevenue">$0</p>
+        </div>
+      </div>
+
+      <div class="charts-container">
+        <div class="chart-box">
+          <h3>Overall Revenue</h3>
+          <canvas id="overallRevenueChart"></canvas>
+        </div>
+        <div class="chart-box">
+          <h3>Monthly Revenue</h3>
+          <canvas id="monthlyRevenueChart"></canvas>
+        </div>
+      </div>
+    </main>
+    <script src="/dashboard.js"></script>
+  </body>
+</html>
