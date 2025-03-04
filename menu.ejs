@@ -15,76 +15,77 @@
     </div>
 
     <div id="menu">
-        <div class="items">
-            <div class="text-content">
-                <h2 class="dish_name"><%= dish.name %></h2>
-                <h4 class="dish_price">Rs <%= dish.price %></h4>
-                <div class="dish_description"><%= dish.description %></div>
-            </div>
-            <div class="right-side">
-                <div class="dish_img">
-                    <!-- Assuming the image is stored in /public/images/ -->
-                    <img src="/images/<%= dish.image %>" alt="<%= dish.name %>" class="dish_img">
+        <!-- Loop through dishes array to display each dish -->
+        <% dishes.forEach(function(dish) { %>
+            <div class="items">
+                <div class="text-content">
+                    <h2 class="dish_name"><%= dish.name %></h2>
+                    <h4 class="dish_price">Rs <%= dish.price %></h4>
+                    <div class="dish_description"><%= dish.description %></div>
                 </div>
+                <div class="right-side">
+                    <div class="dish_img">
+                        <!-- Assuming the image is stored in /public/images/ -->
+                        <img src="/images/<%= dish.image %>" alt="<%= dish.name %>" class="dish_img">
+                    </div>
 
-                <!-- Cart Button -->
-                <div class="cart_button" id="cart_button">Add to Cart</div>
+                    <!-- Cart Button -->
+                    <div class="cart_button" id="cart_button_<%= dish.name %>">Add to Cart</div>
 
-                <!-- Quantity Counter -->
-                <div class="counter" id="counter">
-                    <button id="decrease">-</button>
-                    <span id="item_count">0</span>
-                    <button id="increase">+</button>
+                    <!-- Quantity Counter -->
+                    <div class="counter" id="counter_<%= dish.name %>">
+                        <button class="decrease" data-dish="<%= dish.name %>">-</button>
+                        <span id="item_count_<%= dish.name %>">0</span>
+                        <button class="increase" data-dish="<%= dish.name %>">+</button>
+                    </div>
                 </div>
             </div>
-        </div>
+        <% }); %>
     </div>
 
     <!-- JavaScript to handle the cart and quantity -->
     <script>
-        // Define variables for elements
-        const cartButton = document.getElementById('cart_button');
-        const counter = document.getElementById('counter');
-        const itemCount = document.getElementById('item_count');
-        const increaseButton = document.getElementById('increase');
-        const decreaseButton = document.getElementById('decrease');
+        document.querySelectorAll('.cart_button').forEach(function(cartButton) {
+            cartButton.addEventListener('click', function() {
+                const dishName = cartButton.id.split('_')[2];
+                const counter = document.getElementById('counter_' + dishName);
+                const itemCount = document.getElementById('item_count_' + dishName);
 
-        // Initialize the item count
-        let count = 0;
-
-        // Function to handle cart button click
-        cartButton.addEventListener('click', function() {
-            // Hide the "Add to Cart" button and show the counter
-            cartButton.style.display = 'none';
-            counter.style.display = 'flex'; // Show the counter when "Add to Cart" is clicked
-
-            // Update the item count to 1
-            itemCount.textContent = count = 1;
-
-            // Add the 'active' class to trigger the background color change and move-up transition
-            counter.classList.add('active');
+                cartButton.style.display = 'none';
+                counter.style.display = 'flex';
+                itemCount.textContent = 1;
+                counter.classList.add('active');
+            });
         });
 
-        // Function to increase the count
-        increaseButton.addEventListener('click', function() {
-            count++;
-            itemCount.textContent = count;
-        });
-
-        // Function to decrease the count
-        decreaseButton.addEventListener('click', function() {
-            if (count > 0) {
-                count--;
+        document.querySelectorAll('.increase').forEach(function(increaseButton) {
+            increaseButton.addEventListener('click', function() {
+                const dishName = increaseButton.dataset.dish;
+                const itemCount = document.getElementById('item_count_' + dishName);
+                let count = parseInt(itemCount.textContent);
+                count++;
                 itemCount.textContent = count;
-            }
+            });
+        });
 
-            // If count reaches 0, show the "Add to Cart" button and hide the counter
-            if (count === 0) {
-                cartButton.style.display = 'inline-block'; // Show "Add to Cart" button
-                counter.style.display = 'none'; // Hide the counter
-            }
+        document.querySelectorAll('.decrease').forEach(function(decreaseButton) {
+            decreaseButton.addEventListener('click', function() {
+                const dishName = decreaseButton.dataset.dish;
+                const itemCount = document.getElementById('item_count_' + dishName);
+                let count = parseInt(itemCount.textContent);
+                if (count > 0) {
+                    count--;
+                    itemCount.textContent = count;
+                }
+
+                if (count === 0) {
+                    document.getElementById('cart_button_' + dishName).style.display = 'inline-block';
+                    document.getElementById('counter_' + dishName).style.display = 'none';
+                }
+            });
         });
     </script>
 
 </body>
 </html>
+
