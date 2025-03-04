@@ -18,25 +18,40 @@ app.get('/', (req, res) => {
 });
 
 // Define a route for the menu page
+// Define a route for the menu page
 app.get('/menu', (req, res) => {
-    // Restaurant and dish data that we will pass to the EJS file
+    // Restaurant data
     const restaurant = {
         name: 'Spicy Biryani House',
         location: 'Bangalore, India',
     };
 
-    const dish = {
-        name: 'Biryani',
-        price: 300,
-        description: 'Delicious biryani made with spices and tender chicken.',
-        image: 'biryani.jpg',
+    // Array of dishes
+    const dishes = [
+        {
+            name: 'Biryani',
+            price: 300,
+            description: 'Delicious biryani made with spices and tender chicken.',
+            image: 'biryani.jpg',
+        },
+        {
+            name: 'Paneer Tikka',
+            price: 250,
+            description: 'Grilled paneer marinated in a spicy yogurt sauce.',
+            image: 'paneer_tikka.jpg',
+        },
+        {
+            name: 'Chicken Curry',
+            price: 350,
+            description: 'Rich and flavorful chicken curry with spices.',
+            image: 'chicken_curry.jpeg',
+        },
+    ];
 
-    };
- 
-
-    // Render the menu.ejs file and pass the restaurant and dish data to it
-    res.render('menu', { restaurant: restaurant, dish: dish });
+    // Render the menu.ejs file and pass the restaurant and dishes data
+    res.render('menu', { restaurant: restaurant, dishes: dishes });
 });
+
 
 // app.get('/login', (req, res) => {
 
@@ -47,5 +62,5 @@ app.get('/menu', (req, res) => {
 
 // Start the server
 app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+    console.log( `Server is running on http://localhost:${port}`);
 });
