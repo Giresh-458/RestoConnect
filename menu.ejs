@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Page</title>
+    <link rel="stylesheet" href="/project1.css">
+</head>
+<body>
+
+    <div class="item_list items" id="restaurant_info">
+        <!-- Restaurant details will be displayed here -->
+        <h2 id="restaurant_name"><%= restaurant.name %></h2>
+        <h4 id="restaurant_location"><%= restaurant.location %></h4>
+    </div>
+
+    <div id="menu">
+        <div class="items">
+            <div class="text-content">
+                <h2 class="dish_name"><%= dish.name %></h2>
+                <h4 class="dish_price">Rs <%= dish.price %></h4>
+                <div class="dish_description"><%= dish.description %></div>
+            </div>
+            <div class="right-side">
+                <div class="dish_img">
+                    <!-- Assuming the image is stored in /public/images/ -->
+                    <img src="/images/<%= dish.image %>" alt="<%= dish.name %>" class="dish_img">
+                </div>
+
+                <!-- Cart Button -->
+                <div class="cart_button" id="cart_button">Add to Cart</div>
+
+                <!-- Quantity Counter -->
+                <div class="counter" id="counter">
+                    <button id="decrease">-</button>
+                    <span id="item_count">0</span>
+                    <button id="increase">+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript to handle the cart and quantity -->
+    <script>
+        // Define variables for elements
+        const cartButton = document.getElementById('cart_button');
+        const counter = document.getElementById('counter');
+        const itemCount = document.getElementById('item_count');
+        const increaseButton = document.getElementById('increase');
+        const decreaseButton = document.getElementById('decrease');
+
+        // Initialize the item count
+        let count = 0;
+
+        // Function to handle cart button click
+        cartButton.addEventListener('click', function() {
+            // Hide the "Add to Cart" button and show the counter
+            cartButton.style.display = 'none';
+            counter.style.display = 'flex'; // Show the counter when "Add to Cart" is clicked
+
+            // Update the item count to 1
+            itemCount.textContent = count = 1;
+
+            // Add the 'active' class to trigger the background color change and move-up transition
+            counter.classList.add('active');
+        });
+
+        // Function to increase the count
+        increaseButton.addEventListener('click', function() {
+            count++;
+            itemCount.textContent = count;
+        });
+
+        // Function to decrease the count
+        decreaseButton.addEventListener('click', function() {
+            if (count > 0) {
+                count--;
+                itemCount.textContent = count;
+            }
+
+            // If count reaches 0, show the "Add to Cart" button and hide the counter
+            if (count === 0) {
+                cartButton.style.display = 'inline-block'; // Show "Add to Cart" button
+                counter.style.display = 'none'; // Hide the counter
+            }
+        });
+    </script>
+
+</body>
+</html>
