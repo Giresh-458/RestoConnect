@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resto Connect</title>
+    <link rel="stylesheet" href="/css/home_page_styles.css">
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="logo">Resto <span>Connect</span></div>
+        <ul class="nav-links">
+            <li><a href="#">Login/Register</a></li>
+            <li><a href="#">Cart</a></li>
+        </ul>
+        <div class="menu-toggle">&#9776;</div>
+    </nav>
+    
+    <section class="hero">
+        <h1>Resto <span>Connect</span></h1>
+        <p>Discover the best food & dining experiences</p>
+        <div class="search-bar">
+            <select class="location-dropdown">
+                <option>Tirupati</option>
+                <option>Chennai</option>
+                <option>Hyderabad</option>
+            </select>
+            <input type="text" placeholder="Search for restaurant, cuisine, or dish">
+            <button>Search</button>
+        </div>
+    </section>
+    
+    <section class="restaurants">
+        <div class="restaurant">
+            <img src="restaurant-a.jpg" alt="Restaurant A">
+            <p>Restaurant A</p>
+        </div>
+        <div class="restaurant">
+            <img src="restaurant-b.jpg" alt="Restaurant B">
+            <p>Restaurant B</p>
+        </div>
+        <div class="restaurant">
+            <img src="restaurant-c.jpg" alt="Restaurant C">
+            <p>Restaurant C</p>
+        </div>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 Resto Connect. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        document.querySelector(".menu-toggle").addEventListener("click", function() {
+            document.querySelector(".nav-links").classList.toggle("active");
+        });
+    </script>
+</body>
+</html>
