@@ -33,20 +33,12 @@
         <div class="nadcusdashboards box" style="background-color: black;" id="prev_order">
             <canvas id="pichart1" width="200" height="200" style="float: left;"></canvas>
             <ul style="color: antiquewhite; position: relative; left: 0px;">
-                <!--<li>fried rice</li>
-                <li>fried rice</li>
-                <li>fried rice</li>
-                <li>fried rice</li> -->
                 <% item_list.forEach(product =>{%>
                     <li><%=product%></li>
                 <%})%>
             </ul>
             <canvas id="pichart2" width="200" height="200" style="float: left; clear: both;"></canvas>
             <ul style="color: antiquewhite; position: relative; left: 0px; ">
-               <!-- <li>fried rice</li>
-                <li>fried rice</li>
-                <li>fried rice</li>
-                <li>fried rice</li>-->
 
                 <% restaurent_list.forEach(product =>{%>
                     <li><%=product%></li>
@@ -59,8 +51,19 @@
     
         
         <div class="ncuspastorder box" style="height: 400px; overflow: auto;">
-            <button id="add_past_order">Add</button>
-            <div class="ncusprevdiv" style="overflow: auto;"></div>
+            <div class="ncusprevdiv" style="overflow: auto;">
+
+                <% prev_order.forEach(rest => { %>
+                    <div style="overflow: auto; height: 150px; border: 1px solid black; padding: 10px;">
+                        <h1><%= rest.name %></h1>
+                        <ul>
+                            <% rest.items.forEach(item => { %>
+                                <li><%= item %></li>
+                            <% }) %>
+                        </ul>
+                    </div>
+                <% }) %>
+            </div>
         </div>
     
        
@@ -98,9 +101,7 @@
 
 
 
-    <script>
-        b(<%- JSON.stringify(prev_order) %>);  
-    </script>
+    
     
 </body>
 </html>

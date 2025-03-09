@@ -4,50 +4,6 @@
 
 
 
-let b = function(prev_order){
-
-/* function that creates a div which has overflow auto and has a button on click it adds */
-
-let div_order = function(name, items) {
-  let temp_div = document.createElement('div');
-  temp_div.style.overflow = "auto";
-  temp_div.style.height = "150px";
-  temp_div.style.border = "1px solid black";
-  temp_div.style.padding = "10px";
-
-  let title = document.createElement('h1');
-  title.innerText = name;
-  temp_div.appendChild(title);
-
-  let ulEl = document.createElement('ul');
-  temp_div.appendChild(ulEl);
-
-  
-  items.forEach(item => {
-    let lli = document.createElement('li');
-    lli.innerText = item;
-    ulEl.appendChild(lli);
-  });
-  
-  return temp_div;
-};
-
-
-       
-
-  let prevorder = document.querySelector('.ncusprevdiv'); // Fixed selector
-    
-    prev_order.forEach((rest)=>{ 
-    prevorder.appendChild(div_order(rest.name,rest.items));
-  
-    })
-
-
-
-
-}
-
-
 function drawPieChart(canvasId, data, colors) {
   const canvas = document.getElementById(canvasId);
   const ctx = canvas.getContext("2d");
