@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Page</title>
+    <link rel="stylesheet" href="/project1.css">
+</head>
+<body>
+
+    <div class="item_list items" id="restaurant_info">
+        <h2 id="restaurant_name"><%= restaurant.name %></h2>
+        <h4 id="restaurant_location"><%= restaurant.location %></h4>
+    </div>
+
+    <div id="menu">
+        <% dishes.forEach(function(dish) { %>
+            <div class="items">
+                <div class="text-content">
+                    <h2 class="dish_name"><%= dish.name %></h2>
+                    <h4 class="dish_price">Rs <%= dish.price %></h4>
+                    <div class="dish_description"><%= dish.description %></div>
+                </div>
+                <div class="right-side">
+                    <div class="dish_img">
+                        <img src="/images/<%= dish.image %>" alt="<%= dish.name %>" class="dish_img">
+                    </div>
+
+                    <div class="cart_button" id="cart_button_<%= dish.name %>">Add to Cart</div>
+
+                    <div class="counter" id="counter_<%= dish.name %>">
+                        <button class="decrease" data-dish="<%= dish.name %>">-</button>
+                        <span id="item_count_<%= dish.name %>">0</span>
+                        <button class="increase" data-dish="<%= dish.name %>">+</button>
+                    </div>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+
+    <script>
+        document.querySelectorAll('.cart_button').forEach(function(cartButton) {
+            cartButton.addEventListener('click', function() {
+                const dishName = cartButton.id.split('_')[2];
+                const counter = document.getElementById('counter_' + dishName);
+                const itemCount = document.getElementById('item_count_' + dishName);
+
+                cartButton.style.display = 'none';
+                counter.style.display = 'flex';
+                itemCount.textContent = 1;
+                counter.classList.add('active');
+            });
+        });
+
+        document.querySelectorAll('.increase').forEach(function(increaseButton) {
+            increaseButton.addEventListener('click', function() {
+                const dishName = increaseButton.dataset.dish;
+                const itemCount = document.getElementById('item_count_' + dishName);
+                let count = parseInt(itemCount.textContent);
+                count++;
+                itemCount.textContent = count;
+            });
+        });
+
+        document.querySelectorAll('.decrease').forEach(function(decreaseButton) {
+            decreaseButton.addEventListener('click', function() {
+                const dishName = decreaseButton.dataset.dish;
+                const itemCount = document.getElementById('item_count_' + dishName);
+                let count = parseInt(itemCount.textContent);
+                if (count > 0) {
+                    count--;
+                    itemCount.textContent = count;
+                }
+
+                if (count === 0) {
+                    document.getElementById('cart_button_' + dishName).style.display = 'inline-block';
+                    document.getElementById('counter_' + dishName).style.display = 'none';
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
