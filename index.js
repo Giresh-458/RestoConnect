@@ -6,7 +6,11 @@ const bodyparser = require('body-parser');
 
 const app = express();
 app.use(bodyparser.urlencoded({extended:false}));
+<<<<<<< HEAD
 app.use(bodyparser.json());
+=======
+app.use(bodyParser.json());
+>>>>>>> a119f15cde30005982c2b3c9f25dbe6769dc9b37
 app.set('view engine','ejs')
 app.set('Views','views');
 app.use(express.static(path.join(__dirname,'public')));
@@ -19,8 +23,13 @@ const admin = require(path.join(__dirname,'routes','adminroutes.js'));
 const loginPage = require(path.join(__dirname,'routes','loginPage.js'));
 const menuController = require(path.join(__dirname,'Controller','menuController.js'))
 const homepageController = require(path.join(__dirname,'Controller','homePageController.js'));
+<<<<<<< HEAD
 const feedbackRoutes = require('./routes/feedbackRoute');
 const menumanagement_router = require('./routes/menuManagementRoute');
+=======
+const feedbackRoutes = require('./routes/feedback');
+const menumanagement_router = require('./routes/menuManagement');
+>>>>>>> a119f15cde30005982c2b3c9f25dbe6769dc9b37
 const order_reservation = require('./routes/orderReservationRoute');
 const ownerDashboard = require('./routes/ownerDashboardRoute');
 const ownerhomepage = require('./routes/ownerHomepageRoute');
@@ -39,6 +48,7 @@ app.get('/menu/:restnmae',menuController.getMenu)
 app.use('/customer',customer);
 app.use('/admin',admin);
 app.use('/loginPage',loginPage);
+<<<<<<< HEAD
 app.use('/',feedbackRoutes);
 app.use('/menu_man',menumanagement_router)
 app.use('/order_reservation',order_reservation);
@@ -46,6 +56,15 @@ app.use('/ownerDashboard',ownerDashboard);
 app.use('/ownerhomepage',ownerhomepage);
 app.use('/staffDashboard',staffDashboard);
 app.use('/staffHomepage',staffHomepageRoute);
+=======
+app.use('/feed_back',feedbackRoutes);
+app.use('/menu_man',menumanagement_router)
+app.use('order_reservation',order_reservation);
+app.use('ownerDasboard',ownerDashboard);
+app.use('/ownerhomepage',ownerhomepage);
+app.use('staffDashboard',staffDashboard);
+app.use('staffHomepage',staffHomepageRoute);
+>>>>>>> a119f15cde30005982c2b3c9f25dbe6769dc9b37
 
 
 
