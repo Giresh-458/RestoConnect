@@ -39,13 +39,17 @@
     
     <section class="restaurants">
       
+        
         <% arr.forEach(function(restaurant) { %>
+            <a href="/menu/<%= restaurant.name %>">
             <div class="restaurant">
               <img src="<%=restaurant.image %>" alt="<%= restaurant.name %>">
               <p><%= restaurant.name %></p>
               <p>Rating: <%= restaurant.rating %> ⭐</p>
             </div>
+        </a>
           <% }); %>
+
           
     
         

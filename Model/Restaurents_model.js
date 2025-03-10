@@ -35,18 +35,29 @@ class Dish {
 
 // Given restaurant data
 const restaurantsData = [
-    { name: "The Gourmet Spot", image: "/images/gourmet.jpeg", rating: 4.5, location: "Chennai", amount: 2500, date: "2025-03-01" },
-    { name: "Spicy Delights", image: "/images/spicy.jpeg", rating: 4.7, location: "Chennai", amount: 1800, date: "2025-02-28" },
-    { name: "Urban Bites", image: "/images/urban.jpeg", rating: 4.3, location: "Chennai", amount: 1300, date: "2025-02-26" },
-    { name: "Ocean Feast", image: "/images/ocean.jpeg", rating: 4.8, location: "Tada", amount: 2200, date: "2025-02-22" },
-    { name: "Grill House", image: "/images/grill.jpeg", rating: 4.6, location: "Hyderabad", amount: 2000, date: "2025-02-19" },
-    { name: "Spicy Biryani House", image: "/images/biryani.jpeg", rating: 4.6, location: "Bangalore", amount: 1700, date: "2025-02-18" },
-    { name: "Spice Delight", image: "/images/spice.jpeg", rating: 4.2, location: "New York, NY", amount: 1200, date: "2025-02-20" },
-    { name: "The Food Hub", image: "/images/foodhub.jpeg", rating: 4.0, location: "Los Angeles, CA", amount: 850, date: "2025-02-18" },
-    { name: "Tasty Treats", image: "/images/tasty.jpeg", rating: 3.9, location: "Chicago, IL", amount: 950, date: "2025-02-15" },
-    { name: "Gourmet Bites", image: "/images/gourmet_bites.jpeg", rating: 4.5, location: "Houston, TX", amount: 1500, date: "2025-02-10" },
-    { name: "Savor Street", image: "/images/savor.jpeg", rating: 4.1, location: "San Francisco, CA", amount: 700, date: "2025-02-05" }
+    { name: "The Gourmet Spot", image: "/images/h1.jpeg", rating: 4.5, location: "Chennai", amount: 2500, date: "2025-03-01" },
+    { name: "Spicy Delights", image: "/images/h1.jpeg", rating: 4.7, location: "Chennai", amount: 1800, date: "2025-02-28" },
+    { name: "Urban Bites", image: "/images/h1.jpeg", rating: 4.3, location: "Chennai", amount: 1300, date: "2025-02-26" },
+    { name: "Ocean Feast", image: "/images/h1.jpeg", rating: 4.8, location: "Tada", amount: 2200, date: "2025-02-22" },
+    { name: "Grill House", image: "/images/h1.jpeg", rating: 4.6, location: "Hyderabad", amount: 2000, date: "2025-02-19" },
+    { name: "Spicy Biryani House", image: "/images/h1.jpeg", rating: 4.6, location: "Bangalore", amount: 1700, date: "2025-02-18" },
+    { name: "Spice Delight", image: "/images/h1.jpeg", rating: 4.2, location: "New York, NY", amount: 1200, date: "2025-02-20" },
+    { name: "The Food Hub", image: "/images/h1.jpeg", rating: 4.0, location: "Los Angeles, CA", amount: 850, date: "2025-02-18" },
+    { name: "Tasty Treats", image: "/images/h1.jpeg", rating: 3.9, location: "Chicago, IL", amount: 950, date: "2025-02-15" },
+    { name: "Gourmet Bites", image: "/images/h1.jpeg", rating: 4.5, location: "Houston, TX", amount: 1500, date: "2025-02-10" },
+    { name: "Savor Street", image: "/images/h1.jpeg", rating: 4.1, location: "San Francisco, CA", amount: 700, date: "2025-02-05" }
 ];
+
+
+
+
+
+//array creations
+const restaurants = restaurantsData.map(data => new Restaurant(data.name, data.image, data.rating, data.location));
+
+
+
+
 // Given dishes data
 const dishesData = [
     { name: "Biryani", price: 300, description: "Delicious biryani with spices and tender chicken.", image: "biryani.jpg" },
@@ -54,16 +65,48 @@ const dishesData = [
     { name: "Chicken Curry", price: 350, description: "Rich and flavorful chicken curry with spices.", image: "chicken_curry.jpeg" }
 ];
 
-// Convert restaurant data into class instances
-const restaurants = restaurantsData.map(data => new Restaurant(data.name, data.image, data.rating, data.location));
-
-
 const SpicyBiryaniHouse = restaurants.find(r => r.name === "Spicy Biryani House");
 
 
 if (SpicyBiryaniHouse) {
     dishesData.forEach(dish => SpicyBiryaniHouse.addDish(new Dish(dish.name, dish.price, dish.description, dish.image)));
 }
+
+
+const TheGourmetSpot = restaurants.find(r => r.name === "The Gourmet Spot");
+
+
+if (TheGourmetSpot) {
+    dishesData.forEach(dish => TheGourmetSpot.addDish(new Dish(dish.name, dish.price, dish.description, dish.image)));
+}
+
+
+const spicyDelights = restaurants.find(r => r.name === "Spicy Delights");
+
+if (spicyDelights) {
+    spicyDelights.addDish(new Dish("Andhra Chilli Chicken", 320, "Spicy and tangy Andhra-style chicken fry.", "chilli_chicken.jpg"));
+    spicyDelights.addDish(new Dish("Hyderabadi Mutton Curry", 400, "Rich and spicy mutton curry cooked with traditional spices.", "mutton_curry.jpg"));
+    spicyDelights.addDish(new Dish("Masala Dosa", 180, "Crispy dosa filled with spicy potato stuffing.", "masala_dosa.jpg"));
+}
+
+const urbanBites = restaurants.find(r => r.name === "Urban Bites");
+
+if (urbanBites) {
+    urbanBites.addDish(new Dish("Cheese Burger", 250, "Juicy beef patty with melted cheese and fresh veggies.", "cheese_burger.jpg"));
+    urbanBites.addDish(new Dish("BBQ Chicken Pizza", 450, "Wood-fired pizza topped with BBQ chicken and mozzarella.", "bbq_pizza.jpg"));
+    urbanBites.addDish(new Dish("Caesar Salad", 220, "Classic salad with lettuce, croutons, and Caesar dressing.", "caesar_salad.jpg"));
+}
+
+
+const oceanFeast = restaurants.find(r => r.name === "Ocean Feast");
+
+if (oceanFeast) {
+    oceanFeast.addDish(new Dish("Grilled Lobster", 800, "Fresh lobster grilled with garlic butter and herbs.", "grilled_lobster.jpg"));
+    oceanFeast.addDish(new Dish("Prawn Curry", 550, "Rich coconut-based prawn curry with South Indian spices.", "prawn_curry.jpg"));
+    oceanFeast.addDish(new Dish("Fish Tikka", 480, "Chargrilled fish fillets marinated in Indian spices.", "fish_tikka.jpg"));
+}
+
+
 
 
 exports.restaurants = restaurants;

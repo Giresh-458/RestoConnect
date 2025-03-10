@@ -10,5 +10,5 @@ let data =  customer_model.get_user_function('alex');
 
 exports.getCustomerDashboard = (req,res)=>{
    
-    res.render(path.join(__dirname,'..','Views','dashboards'),data);
-    };
+    res.render(path.join(__dirname,'..','Views','customerDashboards'),data);
+};
