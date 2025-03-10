@@ -7,7 +7,7 @@ let reservations = [];
 router.get('/', (req, res) => {
     const restaurantName = "Awesome Restaurant"; 
     const cart = []; 
-    res.render('order_reservation', { restaurantName, cart });
+    res.render('orderReservation', { restaurantName, cart });
 });
 
 router.post('/order', (req, res) => {

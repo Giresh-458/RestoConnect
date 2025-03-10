@@ -30,7 +30,7 @@ let inventoryData = {
 };
 
 router.get('/', (req, res) => {
-    res.render('staff_dashboard', { orders, tables, inventory, ordersData, inventoryData });
+    res.render('staffDashboard', { orders, tables, inventory, ordersData, inventoryData });
 });
 
 router.post('/update-order', (req, res) => {

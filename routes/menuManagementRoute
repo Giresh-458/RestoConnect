@@ -4,7 +4,7 @@ const router = express.Router();
 let products = []; 
 
 router.get('/', (req, res) => {
-    res.render('menu_management', { products });
+    res.render('menuManagement', { products });
 });
 
 router.post('/add', (req, res) => {

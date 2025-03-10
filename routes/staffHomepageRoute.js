@@ -6,7 +6,7 @@ let tasks = [
     { id: 2, name: "Serve Drinks" }
 ];
 
-router.get('/staff-home', (req, res) => {
+router.get('/', (req, res) => {
     res.render('staffHomepage', { tasks });
 });
 
