@@ -18,9 +18,11 @@
         </h2>
         <p>Select your restaurant to access the dashboard</p>
         <select id="restaurantSelect">
-          <option value="restaurant1">Restaurant 1</option>
-          <option value="restaurant2">Restaurant 2</option>
-          <option value="restaurant3">Restaurant 3</option>
+          <% restaurantsData.forEach(restaurant => { %>
+          <option value="<%= restaurant.name %>">
+            <%= restaurant.name %> - <%= restaurant.location %>
+          </option>
+          <% }); %>
         </select>
         <button onclick="goToDashboard()">Go to Dashboard</button>
       </div>
