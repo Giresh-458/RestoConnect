@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RestoConnect - Staff Home</title>
+    <link rel="stylesheet" href="/css/staffHomepage.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Staff Home</h1>
+        <div class="task-box">
+            <h2>Today's Tasks</h2>
+            <ul id="task-list">
+                <% tasks.forEach(task => { %>
+                    <li id="task-<%= task.id %>">
+                        <%= task.name %>
+                        <button class="delete-btn" onclick="deleteTask('<%= task.id %>')">❌</button>
+                    </li>
+                <% }); %>
+            </ul>
+            <button class="add-btn" id="add-task-btn">+ Add Task</button>
+        </div>
+    </div>
+    
+
+    <script src="/js/staffHomepage.js"></script>
+</body>
+</html>

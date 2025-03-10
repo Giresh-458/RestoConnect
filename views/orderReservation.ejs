@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order & Reservation</title>
+  <link rel="stylesheet" href="/css/orderReservation.css">
+</head>
+<body>
+  <header>
+    <h1>Order & Table Reservation</h1>
+  </header>
+
+  <main>
+    <h2>Restaurant: <%= restaurantName %></h2>
+
+  
+    <section class="cart-section">
+      <h3>Your Order</h3>
+      <ul>
+        <% if (cart.length === 0) { %>
+          <p>Your cart is empty</p>
+        <% } else { %>
+          <% cart.forEach(item => { %>
+            <li><%= item.quantity %> x <%= item.item %></li>
+          <% }); %>
+        <% } %>
+      </ul>
+    </section>
+
+ 
+    <section class="order-section">
+      <h3>Confirm Your Order</h3>
+      <form action="/order" method="POST">
+        <input type="hidden" name="restaurant" value="<%= restaurantName %>">
+        <label for="specialRequests">Special Requests:</label>
+        <textarea name="specialRequests" id="specialRequests" placeholder="Any custom request..."></textarea>
+        <button type="submit">Place Order</button>
+      </form>
+    </section>
+
+   
+    <section class="reservation-section">
+      <h3>Reserve a Table</h3>
+      <form action="/reservation" method="POST">
+        <input type="hidden" name="restaurant" value="<%= restaurantName %>">
+        <label for="date">Date:</label>
+        <input type="date" name="date" id="date" required>
+        <label for="time">Time:</label>
+        <input type="time" name="time" id="time" required>
+        <label for="guests">Number of Guests:</label>
+        <input type="number" name="guests" id="guests" min="1" required>
+        <button type="submit">Reserve Table</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="/js/orderReservation.js"></script>
+</body>
+</html>

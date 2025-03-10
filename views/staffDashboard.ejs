@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Dashboard</title>
+    <link rel="stylesheet" href="/css/staffDashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Staff Dashboard</h1>
+    </header>
+    
+    <main>
+        <section class="orders">
+            <h2>Orders</h2>
+            <ul>
+                <% orders.forEach(order => { %>
+                    <li>
+                        <strong>Table <%= order.table %></strong> - <%= order.item %> - <%= order.status %>
+                        <form action="/dashboard/update-order" method="POST">
+                            <input type="hidden" name="orderId" value="<%= order.id %>">
+                            <select name="status">
+                                <option value="Pending" <%= order.status === 'Pending' ? 'selected' : '' %>>Pending</option>
+                                <option value="In Progress" <%= order.status === 'In Progress' ? 'selected' : '' %>>In Progress</option>
+                                <option value="Served" <%= order.status === 'Served' ? 'selected' : '' %>>Served</option>
+                            </select>
+                            <button type="submit">Update</button>
+                        </form>
+                    </li>
+                <% }) %>
+            </ul>
+        </section>
+        
+        <section class="tables">
+            <h2>Table Assignments</h2>
+            <ul>
+                <% tables.forEach(table => { %>
+                    <li>Table <%= table.number %> - <%= table.status %></li>
+                <% }) %>
+            </ul>
+        </section>
+        
+        <section class="inventory">
+            <h2>Low Stock Alerts</h2>
+            <ul>
+                <% inventory.forEach(item => { %>
+                    <li><%= item.name %> - <strong><%= item.quantity %> left</strong></li>
+                <% }) %>
+            </ul>
+        </section>
+        
+        <section class="charts">
+            <h2>Performance Analytics</h2>
+            <canvas id="ordersChart" data-chart='<%= JSON.stringify(ordersData) %>'></canvas>
+            <canvas id="inventoryChart" data-chart='<%= JSON.stringify(inventoryData) %>'></canvas>
+        </section>
+    </main>
+
+    <script src="/js/staffDashboard.js"></script>
+</body>
+</html>

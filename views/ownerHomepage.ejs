@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RestoConnect - Manager Home</title>
+    <link rel="stylesheet" href="/css/owner_Homepage_dashboard.css" />
+  </head>
+  <body>
+    <header>
+      <h1>RestoConnect - Manager Home</h1>
+    </header>
+    <main>
+      <div class="container">
+        <h2>
+          Welcome to Your <br />
+          <span class="highlight">Management Portal</span>
+        </h2>
+        <p>Select your restaurant to access the dashboard</p>
+        <select id="restaurantSelect">
+          <option value="restaurant1">Restaurant 1</option>
+          <option value="restaurant2">Restaurant 2</option>
+          <option value="restaurant3">Restaurant 3</option>
+        </select>
+        <button onclick="goToDashboard()">Go to Dashboard</button>
+      </div>
+    </main>
+    <script src="/js/ownerHomepage.js"></script>
+  </body>
+</html>
