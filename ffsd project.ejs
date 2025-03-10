@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RestoConnect - Staff Home</title>
+    <link rel="stylesheet" href="/styles/naag.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #474545;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            margin-top: 0px;
+        }
+        h1 {
+            background: #444;
+            padding: 15px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .task-box {
+            background: #111;
+            padding: 20px;
+            margin: 20px auto;
+            width: 300px;
+            border-radius: 10px;
+        }
+        h2 {
+            margin: 0 0 15px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: #333;
+            padding: 10px;
+            margin: 5px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 5px;
+        }
+        button {
+            background: green;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .delete-btn {
+            background: red;
+            padding: 5px;
+            font-size: 14px;
+        }
+        .clock {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            font-size: 18px;
+            background: black;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Staff Home - Page</h1>
+        <div class="task-box">
+            <h2>Today's Tasks</h2>
+            <ul id="task-list">
+                    <li id="task-<%= task.id %>">
+                        table 5
+                        <button class="delete-btn" onclick="deleteTask('<%= task.id %>')">❌</button>
+                    </li>
+            </ul>
+            <button id="add-task-btn">Add new task</button>
+        </div>
+    </div>
+    <div class="clock" id="clock"></div>
+
+    <script>
+        function updateClock() {
+            const clockElement = document.getElementById('clock');
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            clockElement.textContent = ${hours}:${minutes}:${seconds};
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock(); 
+
+        function deleteTask(taskId) {
+            fetch(/tasks/${taskId}, {
+                method: 'DELETE',
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    const taskElement = document.getElementById(task-${taskId});
+                    if (taskElement) {
+                        taskElement.remove();
+                    }
+                } else {
+                    alert('Failed to delete task.');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        document.getElementById('add-task-btn').addEventListener('click', () => {
+            const taskName = prompt('Enter the name of the new task:');
+            if (taskName) {
+                fetch('/tasks', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ name: taskName }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const taskList = document.getElementById('task-list');
+                        const newTask = document.createElement('li');
+                        newTask.id = task-${data.task.id};
+                        newTask.innerHTML = `
+                            ${data.task.name}
+                            <button class="delete-btn" onclick="deleteTask('${data.task.id}')">❌</button>
+                        `;
+                        taskList.appendChild(newTask);
+                    } else {
+                        alert('Failed to add task.');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            }
+        });
+    </script>
+</body>
+</html>
