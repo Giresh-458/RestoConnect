@@ -31,7 +31,7 @@
  
     <section class="order-section">
       <h3>Confirm Your Order</h3>
-      <form action="/order" method="POST">
+      <form action="/customer/order_reservation/order" method="POST">
         <input type="hidden" name="restaurant" value="<%= restaurantName %>">
         <label for="specialRequests">Special Requests:</label>
         <textarea name="specialRequests" id="specialRequests" placeholder="Any custom request..."></textarea>
@@ -42,7 +42,7 @@
    
     <section class="reservation-section">
       <h3>Reserve a Table</h3>
-      <form action="/reservation" method="POST">
+      <form action="/customer/order_reservation/reservation" method="POST">
         <input type="hidden" name="restaurant" value="<%= restaurantName %>">
         <label for="date">Date:</label>
         <input type="date" name="date" id="date" required>

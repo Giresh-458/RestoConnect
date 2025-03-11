@@ -11,7 +11,7 @@ setInterval(updateClock, 1000);
 updateClock();
 
 function deleteTask(taskId) {
-    fetch(`/tasks/${taskId}`, {
+    fetch(`/staff/HomePage/tasks/${taskId}`, {
         method: 'DELETE',
     })
     .then(response => response.json())
@@ -31,7 +31,7 @@ function deleteTask(taskId) {
 document.getElementById('add-task-btn').addEventListener('click', () => {
     const taskName = prompt('Enter the name of the new task:');
     if (taskName) {
-        fetch('/tasks', {
+        fetch('/staff/HomePage/tasks', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

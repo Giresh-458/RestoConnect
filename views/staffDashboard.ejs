@@ -19,7 +19,7 @@
                 <% orders.forEach(order => { %>
                     <li>
                         <strong>Table <%= order.table %></strong> - <%= order.item %> - <%= order.status %>
-                        <form action="/dashboard/update-order" method="POST">
+                        <form action="/staff/Dashboard/update-order" method="POST">
                             <input type="hidden" name="orderId" value="<%= order.id %>">
                             <select name="status">
                                 <option value="Pending" <%= order.status === 'Pending' ? 'selected' : '' %>>Pending</option>

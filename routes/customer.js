@@ -1,23 +1,23 @@
 const express = require('express');
-
-const app = express.Router();
+const router = express.Router();
 const path  =require('path');
 
 
 
-const customerdashboard = require('../Controller/customerController');
 
-<<<<<<< HEAD
-app.get('/customerDashboard',customerdashboard.getCustomerDashboard);
-=======
+const customerController = require('../Controller/customerController');
 
-app.get('/dashboard',customerdashboard.getCustomerDashboard);
+router.get('/customerDashboard',customerController.getCustomerDashboard);
 
-
+router.get('/feedback', customerController.getFeedBack);
+router.post('/submit-feedback', customerController.postSubmitFeedBack);
 
 
-//ojoj
 
->>>>>>> a119f15cde30005982c2b3c9f25dbe6769dc9b37
+router.get('/order_reservation',customerController.getOrderAndReservation );
+router.post('/order_reservation/order', customerController.order);
+router.post('/order_reservation/reservation',customerController.reservation);
 
-module.exports = app;
+
+
+module.exports = router;
