@@ -28,12 +28,7 @@ const admin = require(path.join(__dirname,'routes','adminroutes.js'));
 const loginPage = require(path.join(__dirname,'routes','loginPage.js'));
 const menuController = require(path.join(__dirname,'Controller','menuController.js'))
 const homepageController = require(path.join(__dirname,'Controller','homePageController.js'));
-
-
-const menumanagement_router = require('./routes/menuManagementRoute');
-const ownerDashboard = require('./routes/ownerDashboardRoute');
-const ownerhomepage = require('./routes/ownerHomepageRoute');
-
+const ownerRouter = require('./routes/ownerRoutes');
 const staffRouter = require('./routes/staffRouter');
 
 
@@ -42,18 +37,10 @@ const staffRouter = require('./routes/staffRouter');
 app.get('/',homepageController.getHomePage);
 app.post('/',homepageController.putHomePage);
 app.get('/menu/:restnmae',menuController.getMenu)
-
 app.use('/customer',customer);
 app.use('/admin',admin);
 app.use('/loginPage',loginPage);
-
-
-
-app.use('/menu_man',menumanagement_router)
-app.use('/ownerDashboard',ownerDashboard);
-app.use('/ownerhomepage',ownerhomepage);
-
-
+app.use('/owner',ownerRouter);
 app.use('/staff',staffRouter);
 
 
