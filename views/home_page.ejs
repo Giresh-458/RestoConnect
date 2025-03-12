@@ -6,12 +6,26 @@
     <title>Resto Connect</title>
     <link rel="stylesheet" href="/css/home_page_styles.css">
 
+
+    <style>
+        .none{
+            display: none;
+        }
+
+    </style>
+
 </head>
 <body>
     <nav class="nav-bar">
         <div class="logo">Resto <span>Connect</span></div>
         <ul class="nav-links">
-            <li><a href="#">Login/Register</a></li>
+            <% if(login) {%>
+            <li ><a href="/customer/customerDashboard">DashBoard</a></li>
+            <% } else {%>
+
+            <li><a href="/LoginPage">Login/Register</a></li>
+            <% } %>
+            
             <li><a href="#">Cart</a></li>
         </ul>
         <div class="menu-toggle">&#9776;</div>

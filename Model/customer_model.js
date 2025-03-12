@@ -11,6 +11,7 @@ this.img_url=img_url;
 this.prev_orders = [];
 this.top_dishes = new Map();
 this.top_restaurent=new Map();
+this.cart = [];
 }
 
 add_order(order){
@@ -52,7 +53,6 @@ getTopItems(map) {
 
     return { top3, top3Count, total };
 }
-
 
 
 

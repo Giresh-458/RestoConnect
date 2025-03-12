@@ -8,6 +8,7 @@ const cookieParser = require('cookie-parser');
 const app = express();
 app.use(bodyparser.urlencoded({extended:false}));
 app.use(bodyparser.json());
+app.use(express.json());
 app.use(cookieParser());
 app.set('view engine','ejs');
 app.set('Views','views');
@@ -16,10 +17,6 @@ app.use(express.static(path.join(__dirname,'public')));
 
 
 
-app.use((req,res,next)=>{
-    console.log(req.cookies);
-    next();
-})
 
 
 
@@ -32,6 +29,11 @@ const ownerRouter = require('./routes/ownerRoutes');
 const staffRouter = require('./routes/staffRouter');
 
 
+
+app.get('/logout',(req,res)=>{
+    req.cookies.username = null;
+    res.redirect('/');
+})
 
 
 app.get('/',homepageController.getHomePage);

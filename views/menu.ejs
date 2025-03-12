@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Menu Page</title>
-    <link rel="stylesheet" href="/css/menu_page_styles.css">
+    <link rel="stylesheet" href="/css/menu_page_styles.css" />
 </head>
 <body>
 
@@ -14,7 +14,7 @@
     </div>
 
     <div id="menu">
-        <% dishes.forEach(function(dish) { %>
+        <% dishes.forEach(function(dish, index) { %>
             <div class="items">
                 <div class="text-content">
                     <h2 class="dish_name"><%= dish.name %></h2>
@@ -23,60 +23,103 @@
                 </div>
                 <div class="right-side">
                     <div class="dish_img">
-                        <img src="/images/<%= dish.image %>" alt="<%= dish.name %>" class="dish_img">
+                        <img src="/images/<%= dish.image %>" alt="<%= dish.name %>" class="dish_img" />
                     </div>
 
-                    <div class="cart_button" id="cart_button_<%= dish.name %>">Add to Cart</div>
+                    <!-- Add to Cart Button -->
+                    <div class="cart_button" id="cart_button_<%= index %>" data-index="<%= index %>" data-dish="<%= dish.name %>">
+                        Add to Cart
+                    </div>
 
-                    <div class="counter" id="counter_<%= dish.name %>">
-                        <button class="decrease" data-dish="<%= dish.name %>">-</button>
-                        <span id="item_count_<%= dish.name %>">0</span>
-                        <button class="increase" data-dish="<%= dish.name %>">+</button>
+                    <!-- Counter -->
+                    <div class="counter" id="counter_<%= index %>" data-index="<%= index %>" data-dish="<%= dish.name %>" style="display: none;">
+                        <button class="decrease" data-index="<%= index %>">-</button>
+                        <span id="item_count_<%= index %>">0</span>
+                        <button class="increase" data-index="<%= index %>">+</button>
                     </div>
                 </div>
             </div>
         <% }); %>
     </div>
 
+    <!-- Form to Submit Order -->
+    <form id="orderForm" action="/customer/order_reservation" method="post" style="display: none;">
+        <input type="hidden" name="restaurant" id="restaurantInput" />
+        <input type="hidden" name="order" id="orderInput" />
+    </form>
+
+    <button class="btn2">Order</button>
+
     <script>
-        document.querySelectorAll('.cart_button').forEach(function(cartButton) {
-            cartButton.addEventListener('click', function() {
-                const dishName = cartButton.id.split('_')[2];
-                const counter = document.getElementById('counter_' + dishName);
-                const itemCount = document.getElementById('item_count_' + dishName);
+        // Handle Add to Cart Button Click
+        document.querySelectorAll('.cart_button').forEach(cartButton => {
+            cartButton.addEventListener('click', () => {
+                const index = cartButton.getAttribute('data-index');
+                const counter = document.getElementById(`counter_${index}`);
+                const itemCount = document.getElementById(`item_count_${index}`);
 
                 cartButton.style.display = 'none';
                 counter.style.display = 'flex';
                 itemCount.textContent = 1;
-                counter.classList.add('active');
             });
         });
 
-        document.querySelectorAll('.increase').forEach(function(increaseButton) {
-            increaseButton.addEventListener('click', function() {
-                const dishName = increaseButton.dataset.dish;
-                const itemCount = document.getElementById('item_count_' + dishName);
+        // Handle Increase Button Click
+        document.querySelectorAll('.increase').forEach(increaseButton => {
+            increaseButton.addEventListener('click', () => {
+                const index = increaseButton.getAttribute('data-index');
+                const itemCount = document.getElementById(`item_count_${index}`);
                 let count = parseInt(itemCount.textContent);
-                count++;
-                itemCount.textContent = count;
+                itemCount.textContent = ++count;
             });
         });
 
-        document.querySelectorAll('.decrease').forEach(function(decreaseButton) {
-            decreaseButton.addEventListener('click', function() {
-                const dishName = decreaseButton.dataset.dish;
-                const itemCount = document.getElementById('item_count_' + dishName);
+        // Handle Decrease Button Click
+        document.querySelectorAll('.decrease').forEach(decreaseButton => {
+            decreaseButton.addEventListener('click', () => {
+                const index = decreaseButton.getAttribute('data-index');
+                const itemCount = document.getElementById(`item_count_${index}`);
                 let count = parseInt(itemCount.textContent);
+
                 if (count > 0) {
                     count--;
                     itemCount.textContent = count;
                 }
 
+                // If count is 0, reset the view
                 if (count === 0) {
-                    document.getElementById('cart_button_' + dishName).style.display = 'inline-block';
-                    document.getElementById('counter_' + dishName).style.display = 'none';
+                    document.getElementById(`cart_button_${index}`).style.display = 'inline-block';
+                    document.getElementById(`counter_${index}`).style.display = 'none';
                 }
             });
+        });
+
+        // Handle Order Button Click (Form Submission)
+        document.querySelector('.btn2').addEventListener('click', () => {
+            const restaurantName = document.getElementById('restaurant_name').innerText;
+            const order = [];
+
+            document.querySelectorAll('.counter').forEach(counter => {
+                const index = counter.getAttribute('data-index');
+                const dishName = counter.getAttribute('data-dish');
+                const quantity = parseInt(document.getElementById(`item_count_${index}`).textContent);
+
+                if (quantity > 0) {
+                    order.push({ dish: dishName, quantity: quantity });
+                }
+            });
+
+            if (order.length === 0) {
+                alert('No items selected!');
+                return;
+            }
+
+            // Set form data
+            document.getElementById('restaurantInput').value = restaurantName;
+            document.getElementById('orderInput').value = JSON.stringify(order);
+
+            console.log("Order Data:", JSON.stringify(order));
+            document.getElementById('orderForm').submit(); // Submit form
         });
     </script>
 

@@ -8,6 +8,10 @@ class Restaurant {
         this.amount=amount;
         this.date = date || new Date();
         this.dishes = []; // Empty array to store dishes
+        
+        //added now can be deleted
+        this.orders = [];
+        this.reservations = [];
     }
 
     // Add a dish to the restaurant

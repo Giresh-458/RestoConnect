@@ -56,9 +56,10 @@ exports.postSubmitFeedBack = (req, res) => {
 
 
 //order_and_reservation
-exports.getOrderAndReservation = (req, res) => {
-    const restaurantName = "Awesome Restaurant"; 
-    const cart = []; 
+exports.postOrderAndReservation = (req, res) => {
+    const restaurantName = req.body.restaurant; 
+    const cart = JSON.parse(req.body.order); 
+    console.log(cart);
     res.render('orderReservation', { restaurantName, cart });
 };
 

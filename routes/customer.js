@@ -14,7 +14,8 @@ router.post('/submit-feedback', customerController.postSubmitFeedBack);
 
 
 
-router.get('/order_reservation',customerController.getOrderAndReservation );
+router.post('/order_reservation',customerController.postOrderAndReservation );
+router.get('/order_reservation',customerController.postOrderAndReservation );
 router.post('/order_reservation/order', customerController.order);
 router.post('/order_reservation/reservation',customerController.reservation);
 
