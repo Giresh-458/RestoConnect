@@ -36,12 +36,14 @@ app.get('/logout',(req,res)=>{
 })
 
 
+app.use('/loginPage',loginPage);
+
+
 app.get('/',homepageController.getHomePage);
 app.post('/',homepageController.putHomePage);
 app.get('/menu/:restnmae',menuController.getMenu)
 app.use('/customer',customer);
 app.use('/admin',admin);
-app.use('/loginPage',loginPage);
 app.use('/owner',ownerRouter);
 app.use('/staff',staffRouter);
 

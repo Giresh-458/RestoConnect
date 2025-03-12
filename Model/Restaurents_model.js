@@ -12,6 +12,17 @@ class Restaurant {
         //added now can be deleted
         this.orders = [];
         this.reservations = [];
+        this.tables=[];
+        this.inventory = [];
+        this.orderData = {
+            labels:[],
+            values:[]
+        };
+        this.inventoryData={
+            labels:[],
+            values:[]
+        };
+        this.tasks = [];
     }
 
     // Add a dish to the restaurant
@@ -110,6 +121,49 @@ if (oceanFeast) {
     oceanFeast.addDish(new Dish("Fish Tikka", 480, "Chargrilled fish fillets marinated in Indian spices.", "fish_tikka.jpg"));
 }
 
+const selectedRestaurant = restaurants.find(r => r.name === "The Gourmet Spot");
+if (selectedRestaurant) {
+    // Feed orders data
+    selectedRestaurant.orders = [
+        { id: 1, table: 5, item: "Pasta", status: "Pending" },
+        { id: 2, table: 3, item: "Pizza", status: "In Progress" },
+        { id: 3, table: 8, item: "Burger", status: "Served" }
+    ];
+
+    // Feed tables data
+    selectedRestaurant.tables = [
+        { number: 1, status: "Occupied" },
+        { number: 2, status: "Available" },
+        { number: 3, status: "Occupied" }
+    ];
+
+    // Feed inventory data
+    selectedRestaurant.inventory = [
+        { name: "Tomatoes", quantity: 5 },
+        { name: "Cheese", quantity: 2 },
+        { name: "Bread", quantity: 10 }
+    ];
+
+    // Feed ordersData for charting
+    selectedRestaurant.orderData = {
+        labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        values: [20, 35, 40, 50, 60]
+    };
+
+    // Feed inventoryData for charting
+    selectedRestaurant.inventoryData = {
+        labels: ["Tomatoes", "Cheese", "Bread"],
+        values: [5, 2, 10]
+    };
+
+    // Feed tasks data
+    selectedRestaurant.tasks = [
+        { id: 1, name: "Table 5" },
+        { id: 2, name: "Serve Drinks" }
+    ];
+}
+
+console.log(selectedRestaurant);
 
 
 

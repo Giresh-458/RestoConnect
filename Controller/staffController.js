@@ -1,47 +1,16 @@
 
 
-//Dashboard data
-
-let orders = [
-    { id: 1, table: 5, item: "Pasta", status: "Pending" },
-    { id: 2, table: 3, item: "Pizza", status: "In Progress" },
-    { id: 3, table: 8, item: "Burger", status: "Served" }
-];
-
-let tables = [
-    { number: 1, status: "Occupied" },
-    { number: 2, status: "Available" },
-    { number: 3, status: "Occupied" }
-];
-
-let inventory = [
-    { name: "Tomatoes", quantity: 5 },
-    { name: "Cheese", quantity: 2 },
-    { name: "Bread", quantity: 10 }
-];
-
-let ordersData = {
-    labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-    values: [20, 35, 40, 50, 60]
-};
-
-let inventoryData = {
-    labels: ["Tomatoes", "Cheese", "Bread"],
-    values: [5, 2, 10]
-};
 
 
-//HomePage Data
-let tasks = [
-    { id: 1, name: "Table 5" },
-    { id: 2, name: "Serve Drinks" }
-];
+const restaurents = require('../Model/Restaurents_model').restaurants;
+const rest = restaurents.find(r => r.name === "The Gourmet Spot");
+
 
 
 //Dashboard Methods
 
 exports.getDashBoard  = (req, res) => {
-    res.render('staffDashboard', { orders, tables, inventory, ordersData, inventoryData });
+    res.render('staffDashboard', {orders: rest.orders, tables:rest.tables, inventory:rest.inventory, ordersData:rest.ordersData, inventoryData:rest.inventoryData });
 }
 
 exports.postUpdateOrder = (req, res) => {
@@ -54,7 +23,7 @@ exports.postUpdateOrder = (req, res) => {
 //HomePage Methods
 
 exports.getHomePage = (req, res) => {
-    res.render('staffHomepage', { tasks });
+    res.render('staffHomepage', { tasks:rest.tasks });
 };
 
 exports.postHomePageTask = (req, res) => {

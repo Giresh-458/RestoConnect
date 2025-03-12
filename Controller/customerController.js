@@ -72,6 +72,7 @@ exports.order = (req, res) => {
         specialRequests,
         status: "Pending"
     };
+    console.log(newOrder);
     orders.push(newOrder);
     res.redirect('/');
 };
