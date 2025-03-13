@@ -84,6 +84,7 @@ john.add_order({ name: "5 Star Dine", items: ["Steak", "Truffle Pasta"] });
 john.add_order({ name: "Green Leaf Café", items: ["Veggie Wrap", "Quinoa Salad"] });
 
 
+let customers = [alex,john];
 
 exports.get_user_function = function(name) {
     let user;
@@ -107,3 +108,5 @@ exports.get_user_function = function(name) {
         top_restaurants_count: topRestaurantsData.top3_cont // Their respective counts
     };
 };
+
+exports.customer = customers;

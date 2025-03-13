@@ -13,7 +13,7 @@
     </div>
     
     <div class="login_container">
-        <form id="loginForm" action="/" method="POST" onsubmit="return handleSubmit(event)">
+        <form id="loginForm" action="/" method="POST" onsubmit="/*return handleSubmit(event)*/">
             <h2 class="sign-in"><%= title %></h2> 
             <div class="username">
                 <input class="log_input" type="text" id="username" placeholder="User name" name="username"  required>
@@ -58,23 +58,23 @@
 
 
 
-        // function handleSubmit(event) {
-        //     event.preventDefault();
+        function handleSubmit(event) {
+             event.preventDefault();
 
-        //     const username = document.getElementById('username').value;
-        //     const password = document.getElementById('password').value;
-        //     const mobile = document.getElementById('mobile')?.value;
+             const username = document.getElementById('username').value;
+             const password = document.getElementById('password').value;
+             const mobile = document.getElementById('mobile')?.value;
 
-        //     if (username && password) {
-        //         if (mobile && !/^\d{10}$/.test(mobile)) {
-        //             alert('Please enter a valid 10-digit mobile number.');
-        //             return;
-        //         }
-        //         alert('Form submitted successfully!');
-        //     } else {
-        //         alert('Please fill in both the username and password fields.');
-        //     }
-        // }
+             if (username && password) {
+                 if (mobile && !/^\d{10}$/.test(mobile)) {
+                     alert('Please enter a valid 10-digit mobile number.');
+                     return;
+                 }
+                document.querySelector("#log_button").click();
+             } else {
+                 alert('Please fill in both the username and password fields.');
+             }
+        }
 
     </script>
 

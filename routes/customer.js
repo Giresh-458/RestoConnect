@@ -18,6 +18,8 @@ router.post('/order_reservation',customerController.postOrderAndReservation );
 router.get('/order_reservation',customerController.postOrderAndReservation );
 router.post('/order_reservation/order', customerController.order);
 router.post('/order_reservation/reservation',customerController.reservation);
+router.get('/payments',customerController.getPayments);
+router.post('/orderplaced',customerController.postPaymentsSuccess);
 
 
 

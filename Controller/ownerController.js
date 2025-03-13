@@ -2,7 +2,6 @@
 let products = [];
 
 exports.getOwnerHomepage = (req, res) => {
-    console.log("btbjt");
     res.render("ownerHomepage");
 };
 

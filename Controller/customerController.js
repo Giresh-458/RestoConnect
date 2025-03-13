@@ -2,7 +2,9 @@ const path = require('path');
 
 //dashboard data
 const customer_model = require('../Model/customer_model');
-let data =  customer_model.get_user_function('alex');
+const restaurent_model = require('../Model/Restaurents_model');
+
+
 
 //feedbackdata
 let feedbacks = []; 
@@ -17,7 +19,8 @@ let reservations = [];
 
 //dashboards
 exports.getCustomerDashboard = (req,res)=>{
-    res.render(path.join(__dirname,'..','Views','customerDashboard'),data);
+    let data =  customer_model.get_user_function(req.cookies.username);
+    res.render(path.join(__dirname,'..','Views','customerDashboard'),JSON.parse(JSON.stringify(data)));
 };
 
 
@@ -56,10 +59,11 @@ exports.postSubmitFeedBack = (req, res) => {
 
 
 //order_and_reservation
+
 exports.postOrderAndReservation = (req, res) => {
     const restaurantName = req.body.restaurant; 
-    const cart = JSON.parse(req.body.order); 
-    console.log(cart);
+    const cart = JSON.parse(req.body.order);
+    req.session.temp_cart=cart;
     res.render('orderReservation', { restaurantName, cart });
 };
 
@@ -72,9 +76,12 @@ exports.order = (req, res) => {
         specialRequests,
         status: "Pending"
     };
-    console.log(newOrder);
+    order_temp=newOrder;
+    req.session.tempOrder=order_temp;
     orders.push(newOrder);
-    res.redirect('/');
+
+
+    res.redirect('/customer/payments');
 };
 
 exports.reservation =  (req, res) => {
@@ -89,3 +96,35 @@ exports.reservation =  (req, res) => {
     reservations.push(newReservation);
     res.redirect('/');
 };
+
+
+
+exports.getPayments = (req,res)=>{
+   // console.log(req);
+res.render('payment',{bill_price:300});
+}
+
+exports.postPaymentsSuccess = (req,res)=>{
+   
+    
+console.log(req.session.tempOrder);
+console.log(req.session.temp_cart);
+let username = req.cookies.username;
+
+let user = customer_model.customer.find(r => r.name==username);
+
+console.log(user , req.cookies.username);
+
+let rest_name = req.session.tempOrder.restaurant;
+let {dish:dish}  = req.session.temp_cart;
+console.log(dish);
+user.add_order({ name: rest_name, items:  [dish]});
+req.session.destroy(err => {
+    if (err) {
+        console.log(err);
+    } else {
+        res.redirect('/');
+    }
+});
+
+} 

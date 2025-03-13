@@ -163,7 +163,7 @@ if (selectedRestaurant) {
     ];
 }
 
-console.log(selectedRestaurant);
+
 
 
 
