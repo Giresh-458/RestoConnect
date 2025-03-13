@@ -107,18 +107,34 @@ res.render('payment',{bill_price:300});
 exports.postPaymentsSuccess = (req,res)=>{
    
     
-console.log(req.session.tempOrder);
-console.log(req.session.temp_cart);
+//console.log(req.session.tempOrder);
+//console.log(req.session.temp_cart);
 let username = req.cookies.username;
 
 let user = customer_model.customer.find(r => r.name==username);
 
-console.log(user , req.cookies.username);
+
 
 let rest_name = req.session.tempOrder.restaurant;
-let {dish:dish}  = req.session.temp_cart;
-console.log(dish);
-user.add_order({ name: rest_name, items:  [dish]});
+ 
+
+ let dishes  = [];
+ let rest = restaurent_model.restaurants.find(r => r.name === rest_name);
+ //console.log(rest);
+    let len = req.session.temp_cart.length;
+    for(let i =0 ;i<len;i++){
+        dishes.push(req.session.temp_cart[i].dish);
+        
+rest.tasks.push({id:req.session.tempOrder.id,name:req.session.temp_cart[i].dish});
+
+    }
+
+
+
+
+
+
+user.add_order({ name: rest_name, items: dishes });
 req.session.destroy(err => {
     if (err) {
         console.log(err);

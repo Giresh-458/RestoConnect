@@ -38,8 +38,13 @@ const authentication = require('./authenticationMiddleWare.js');
 
 
 
+//for clearing previous seted cookies
+
+
+
 app.get('/logout',(req,res)=>{
     req.cookies.username = null;
+    res.clearCookie('username');
     res.redirect('/');
 })
 

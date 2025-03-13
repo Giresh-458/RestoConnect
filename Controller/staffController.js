@@ -2,20 +2,23 @@
 
 
 
-const restaurents = require('../Model/Restaurents_model').restaurants;
-const rest = restaurents.find(r => r.name === "The Gourmet Spot");
+const {restaurents} = require('../Model/Restaurents_model');
+const user_model = require('../Model/userRoleModel'); 
 
 
 
 //Dashboard Methods
 
 exports.getDashBoard  = (req, res) => {
-    res.render('staffDashboard', {orders: rest.orders, tables:rest.tables, inventory:rest.inventory, ordersData:rest.ordersData, inventoryData:rest.inventoryData });
+    
+    const rest = restaurents.find(r => r.name ===  user_model.users.find(r => r.name == req.cookies.username));
+    res.render('staffDashboard', {orders: rest.orders, tables:rest.tables, inventory:rest.inventory, ordersData:rest.orderData, inventoryData:rest.inventoryData });
 }
 
 exports.postUpdateOrder = (req, res) => {
     const { orderId, status } = req.body;
-    orders = orders.map(order => order.id == orderId ? { ...order, status } : order);
+    const rest = restaurents.find(r => r.name ===  user_model.users.find(r => r.name == req.cookies.username));
+    rest.orders = rest.orders.map(order => order.id == orderId ? { ...order, status } : order);
     res.redirect('/staff/Dashboard');
 }
 
@@ -23,12 +26,14 @@ exports.postUpdateOrder = (req, res) => {
 //HomePage Methods
 
 exports.getHomePage = (req, res) => {
+    const rest = restaurents.find(r => r.name ===  user_model.users.find(r => users.name == req.cookies.username));
     res.render('staffHomepage', { tasks:rest.tasks });
 };
 
 exports.postHomePageTask = (req, res) => {
     const newTask = { id: Date.now(), name: req.body.name };
-    tasks.push(newTask);
+    const rest = restaurents.find(r => r.name ===  user_model.users.find(r => users.name == req.cookies.username));
+    rest.tasks.push(newTask);
     res.json({ success: true, task: newTask });
 }
 
