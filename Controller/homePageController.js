@@ -13,7 +13,7 @@ exports.getHomePage = (req,res)=>{
   if(loco!=null)
   var arr = restaurants_data.filter(r => r.location.trim().toLowerCase() === loco.trim().toLowerCase() && r.name.trim().toLowerCase() === name2.trim().toLowerCase());
   else
-  var arr = restaurants_data.filter(r => true);
+  var arr = restaurants_data.filter(r => false);
 if(req.cookie && req.cookie.username){
   login = true;
 }
@@ -33,7 +33,7 @@ res.render(path.join(__dirname,'..','Views','home_page'),{arr,login:login,user:p
       res.cookie('username',req.body.username,{ httpOnly: true });
       
 
-var arr = restaurants_data.filter(r => true);
+var arr = restaurants_data.filter(r => false);
 
 let a = users.find(r => r.username == req.cookies.username);
 if(a){
