@@ -1,4 +1,5 @@
 
+const shortid = require('shortid');
 class Restaurant {
     constructor(name, image, rating, location,amount,date) {
         this.name = name;
@@ -29,11 +30,15 @@ class Restaurant {
     addDish(dish) {
         this.dishes.push(dish);
     }
+    
+    crateAndAdd(name, price, description, image){
+        let temp = new Dish(name, price, description, image);
+        this.dishes.push(temp);
+    }
 
     // Remove a dish by name
-    removeDish(dishName) {
-        this.dishes = this.dishes.filter(dish => dish.name !== dishName);
-        
+    removeDish(id) {
+        this.dishes = this.dishes.filter(dish => dish.id !== id);
     }
 
 }
@@ -45,6 +50,7 @@ class Dish {
         this.price = price;
         this.description = description;
         this.image = image;
+        this.id = shortid.generate();
     }
 }
 

@@ -34,5 +34,12 @@ res.render(path.join(__dirname,'..','Views','home_page'),{arr,login:login,user:p
       
 
 var arr = restaurants_data.filter(r => true);
-res.render(path.join(__dirname,'..','Views','home_page'),{arr,login:true,user:users.find(r => r.username == req.cookies.username).role});
+
+let a = users.find(r => r.username == req.cookies.username);
+if(a){
+  a=a.role;
+}
+
+
+res.render(path.join(__dirname,'..','Views','home_page'),{arr,login:true,user:a});
 };

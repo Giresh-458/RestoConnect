@@ -46,7 +46,7 @@
                         <input type="text" name="imageUrl" value="<%= product.imageUrl %>">
                         <button type="submit">Edit</button>
                     </form>
-                    <form action="menuManagement/delete/<%= product.id %>" method="delete">
+                    <form action="menuManagement/delete/<%= product.id %>" method="POST">
                         <button type="submit" class="delete-btn">Delete</button>
                     </form>
                 </li>
