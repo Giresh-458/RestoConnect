@@ -174,3 +174,4 @@ if (selectedRestaurant) {
 
 
 exports.restaurants = restaurants;
+exports.Restaurant =Restaurant;

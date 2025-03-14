@@ -100,7 +100,34 @@
 
         <!-- Main content end -->
     </div>
+
+
+    <div id="form">
+        <form action="/admin/add_restaurent" method="POST">
+            <label>Name:</label>
+            <input type="text" name="name" required>
+        
+            <label>Location:</label>
+            <input type="text" name="location" required>
+        
+            <label>Payment Amount:</label>
+            <input type="number" name="amount" required>
+        
+            <label>Date Joined:</label>
+            <input type="date" name="date" required>
+        
+            <button type="submit">Submit</button>
+        </form>
+        
+
+    </div>
+
 </div>
+
+
+
+
+
 
 <script src="/js/admin_dash_script.js"></script>
 
