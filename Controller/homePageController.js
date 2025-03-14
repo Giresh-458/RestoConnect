@@ -2,12 +2,13 @@
 const path = require('path');
 
 const restaurants_data = require('../Model/Restaurents_model').restaurants;
+const users = require('../Model/userRoleModel').users;
 
 exports.getHomePage = (req,res)=>{
   let login=true;
   if(req.cookies.username==null)
    login = false;
-  console.log(req.cookies.username,login);
+
   const { city_option_home: loco, name_resaurent: name2 } = req.query;
   if(loco!=null)
   var arr = restaurants_data.filter(r => r.location.trim().toLowerCase() === loco.trim().toLowerCase() && r.name.trim().toLowerCase() === name2.trim().toLowerCase());
@@ -17,7 +18,12 @@ if(req.cookie && req.cookie.username){
   login = true;
 }
 
-res.render(path.join(__dirname,'..','Views','home_page'),{arr,login:login});
+
+let pass = users.find(r => r.username == req.cookies.username);
+if(pass!=null)
+  pass = pass.role;
+
+res.render(path.join(__dirname,'..','Views','home_page'),{arr,login:login,user:pass});
   };
 
 
@@ -28,5 +34,5 @@ res.render(path.join(__dirname,'..','Views','home_page'),{arr,login:login});
       
 
 var arr = restaurants_data.filter(r => true);
-res.render(path.join(__dirname,'..','Views','home_page'),{arr,login:true});
+res.render(path.join(__dirname,'..','Views','home_page'),{arr,login:true,user:users.find(r => r.username == req.cookies.username).role});
 };

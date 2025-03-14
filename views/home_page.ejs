@@ -20,7 +20,18 @@
         <div class="logo">Resto <span>Connect</span></div>
         <ul class="nav-links">
             <% if(login) {%>
-            <li ><a href="/customer/customerDashboard">DashBoard</a></li>
+                <% if (user === 'customer') { %>
+                    <li><a href="/customer/customerDashboard">Dashboard</a></li>
+                <% } else if (user === 'staff') { %>
+                    <li><a href="/staff/dashboard">Dashboard</a></li>
+                <% } else if (user === 'admin') { %>
+                    <li><a href="/admin/dashboard">Dashboard</a></li>
+                <% } else if (user === 'owner') { %>
+                    <li><a href="/owner/dashboard">Dashboard</a></li>
+                <% } %> 
+        
+
+                <li><a href="/logout">logout</a></li>             
             <% } else {%>
 
             <li><a href="/LoginPage">Login/Register</a></li>
