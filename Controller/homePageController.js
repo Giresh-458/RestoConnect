@@ -14,8 +14,11 @@ exports.getHomePage = (req,res)=>{
   var arr = restaurants_data.filter(r => r.location.trim().toLowerCase() === loco.trim().toLowerCase() && r.name.trim().toLowerCase() === name2.trim().toLowerCase());
   else
   var arr = restaurants_data.filter(r => false);
-if(req.cookie && req.cookie.username){
+
+if(req.cookies && req.cookies.username){
   login = true;
+  arr = restaurants_data.filter(r => true);
+  console.log("ububuj");
 }
 
 
@@ -33,7 +36,7 @@ res.render(path.join(__dirname,'..','Views','home_page'),{arr,login:login,user:p
       res.cookie('username',req.body.username,{ httpOnly: true });
       
 
-var arr = restaurants_data.filter(r => false);
+var arr = restaurants_data.filter(r => true);
 
 let a = users.find(r => r.username == req.cookies.username);
 if(a){

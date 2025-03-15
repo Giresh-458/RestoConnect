@@ -11,15 +11,73 @@
         .none{
             display: none;
         }
-
+        
+        body{
+            visibility: visible;
+        }
+        .visibilityHidden{
+            visibility: hidden;
+        }
     </style>
 
 </head>
 <body>
+    <% if(!login) { %>
+    <div class="back_ground">
+        <div class="overlay">
     <nav class="nav-bar">
         <div class="logo">Resto <span>Connect</span></div>
         <ul class="nav-links">
-            <% if(login) {%>
+            <li><a href="/LoginPage">Login/Register</a></li>
+        </ul>
+        <div class="menu-toggle">&#9776;</div>
+    </nav>
+    
+    <section class="hero">
+
+        <div class="hero_text_container">
+            <ul class="hero_text_title">
+                <li><span>Resto</span></li>
+                <li><span> &nbsp; </span></li>
+                <li><span>Connect</span></li>
+            </ul>
+            
+            <div class="sub_text">
+                Discover the best food & dining experiences
+            </div>
+        </div>
+        
+    </section>
+    </div>
+</div>
+<% } else { %>
+
+
+   
+    <nav class="nav-bar">
+
+        <div class="logo">Resto <span>Connect</span></div>
+
+
+
+
+        <div class="search-bar">
+            <form action="/" method="get">
+        <select class="location-dropdown" name="city_option_home">
+            <option>Tirupati</option>
+            <option>Chennai</option>
+            <option>Hyderabad</option>
+        </select>
+        <input type="text" placeholder="Search for restaurant, cuisine, or dish" name="name_resaurent" required>
+        <!-- <button>Search</button> -->
+         <!-- From Uiverse.io by Gautammsharma --> 
+         <button class="comic-button">Search</button>
+
+            </form>
+    </div>
+
+
+        <ul class="nav-links">
                 <% if (user === 'customer') { %>
                     <li><a href="/customer/customerDashboard">Dashboard</a></li>
                 <% } else if (user === 'staff') { %>
@@ -29,57 +87,35 @@
                 <% } else if (user === 'owner') { %>
                     <li><a href="/owner/dashboard">Dashboard</a></li>
                 <% } %> 
-        
-
                 <li><a href="/logout">logout</a></li>             
-            <% } else {%>
-
-            <li><a href="/LoginPage">Login/Register</a></li>
-            <% } %>
-            
-            <li><a href="#">Cart</a></li>
         </ul>
         <div class="menu-toggle">&#9776;</div>
+
+
+
+
+
+
+
     </nav>
     
-    <section class="hero">
-        <h1>Resto <span>Connect</span></h1>
-        <p>Discover the best food & dining experiences</p>
-        
-        <div class="search-bar">
-                <form action="/" method="get">
-            <select class="location-dropdown" name="city_option_home">
-                <option>Tirupati</option>
-                <option>Chennai</option>
-                <option>Hyderabad</option>
-            </select>
-            <input type="text" placeholder="Search for restaurant, cuisine, or dish" name="name_resaurent" required>
-            <button>Search</button>
-                </form>
-        </div>
 
-          
+    <% } %>
 
-    </section>
+
+
+
     
     <section class="restaurants">
-      
-        <% if(arr.length !=0) { %>
         <% arr.forEach(function(restaurant) { %>
             <a href="/menu/<%= restaurant.name %>">
-            <div class="restaurant">
-              <img src="<%=restaurant.image %>" alt="<%= restaurant.name %>">
-              <p><%= restaurant.name %></p>
-              <p>Rating: <%= restaurant.rating %> ⭐</p>
-            </div>
-        </a>
-          <% }); %>
-          <% } %>
-
-          
-    
-        
-       
+                <div class="restaurant">
+                    <img src="<%= restaurant.image %>" alt="<%= restaurant.name %>">
+                    <p class="restaurant-name"><%= restaurant.name %></p>
+                    <p class="restaurant-rating">Rating: <%= restaurant.rating %> ⭐</p>
+                </div>
+            </a>
+        <% }); %>
     </section>
     
     <footer>
