@@ -8,13 +8,13 @@
 </head>
 <body>
     <div class="container">
-        <h1>Staff Home</h1>
+        <h1 class="title">Staff Home Page</h1>
         <div class="task-box">
             <h2>Today's Tasks</h2>
             <ul id="task-list">
                 <% tasks.forEach(task => { %>
                     <li id="task-<%= task.id %>">
-                        <%= task.name %>
+                        <span class="task-text"><%= task.name %></span>
                         <button class="delete-btn" onclick="deleteTask('<%= task.id %>')">❌</button>
                     </li>
                 <% }); %>
@@ -22,8 +22,11 @@
             <button class="add-btn" id="add-task-btn">+ Add Task</button>
         </div>
     </div>
-    
 
     <script src="/js/staffHomepage.js"></script>
 </body>
 </html>
+
+
+
+
