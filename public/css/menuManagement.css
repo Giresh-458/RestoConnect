@@ -1,13 +1,14 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f8f9fa;
+    background-color: #ffffff;
+    color: #000000;
 }
 
 nav {
-    background-color: #333;
-    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #ffffff;
     padding: 15px;
     text-align: center;
 }
@@ -28,16 +29,20 @@ input, select, button {
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
 }
 
 button {
-    background-color: #007bff;
+    background-color: #e50914;
     color: white;
     cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #f40612;
 }
 
 .product-list {
@@ -49,11 +54,12 @@ button:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: white;
+    background: rgba(0, 0, 0, 0.7);
     padding: 15px;
     margin-top: 10px;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #ffffff;
 }
 
 .product-list img {
@@ -72,5 +78,14 @@ button:hover {
 
     form {
         flex-direction: column;
+    }
+
+    .product-list li {
+        padding: 10px;
+    }
+
+    .product-list img {
+        width: 80px;
+        height: 80px;
     }
 }
