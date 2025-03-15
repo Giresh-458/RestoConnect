@@ -27,9 +27,7 @@
         <div class="overlay">
     <nav class="nav-bar">
         <div class="logo">Resto <span>Connect</span></div>
-        <ul class="nav-links">
-            <li><a href="/LoginPage">Login/Register</a></li>
-        </ul>
+       
         <div class="menu-toggle">&#9776;</div>
     </nav>
     
@@ -45,7 +43,14 @@
             <div class="sub_text">
                 Discover the best food & dining experiences
             </div>
+
+                <div>
+                <a href="/LoginPage" id="login_registerlink" class="comic-button">Login/Register</a>
+            </div>
+            
         </div>
+
+       
         
     </section>
     </div>
@@ -54,7 +59,7 @@
 
 
    
-    <nav class="nav-bar">
+    <nav class="nav-bar" style="position: sticky; top: 0px; z-index: 1000; background-color: black;">
 
         <div class="logo">Resto <span>Connect</span></div>
 
@@ -77,7 +82,7 @@
     </div>
 
 
-        <ul class="nav-links">
+        <ul class="nav-links" >
                 <% if (user === 'customer') { %>
                     <li><a href="/customer/customerDashboard">Dashboard</a></li>
                 <% } else if (user === 'staff') { %>
