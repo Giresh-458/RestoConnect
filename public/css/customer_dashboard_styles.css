@@ -1,116 +1,116 @@
-
-*{
-
-
-margin: 5px;
-
+* {
+    margin: 5px;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-
-.none{
-
-
+.none {
     display: none;
 }
 
-
-.nadcuscontainer1{
-
-
-display: grid;
-grid-template-columns: 0.4fr 0.6fr;
-grid-template-rows: auto;
-}
-
-
-.nadcuscontainer2{
+.nadcuscontainer1 {
     display: grid;
     grid-template-columns: 0.4fr 0.6fr;
     grid-template-rows: auto;
-    
 }
 
+.nadcuscontainer2 {
+    display: grid;
+    grid-template-columns: 0.4fr 0.6fr;
+    grid-template-rows: auto;
+}
 
-.ncusdasheditform{
-
+.ncusdasheditform {
     padding: 10px;
-    background-color: orange;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #ffffff;
+    border-radius: 8px;
 }
-
-
-
 
 .navbar {
-    background-color: #333;
+    background-color: rgba(0, 0, 0, 0.7);
     overflow: hidden;
     display: flex;
     justify-content: space-between;
     padding: 10px 20px;
 }
+
 .navbar a {
-    color: white;
+    color: #ffffff;
     text-decoration: none;
     padding: 14px 20px;
+    transition: background-color 0.3s ease;
 }
+
 .navbar a:hover {
-    background-color: #575757;
+    background-color: rgba(255, 255, 255, 0.2);
 }
+
 .nav-links {
     display: flex;
     gap: 10px;
 }
 
-.nadcusdashboards.box{
+.nadcusdashboards.box {
     display: flex;
     justify-content: space-around;
     align-items: center;
-
-
-
 }
 
-
-
-/* change password form*/
-
-
-.ncusdasheditform{
-
-
-position: absolute;
-height: 200px;
-width: 250px;
-
-top: 50%;
+.ncusdasheditform {
+    position: absolute;
+    height: 200px;
+    width: 250px;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-
-
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);  
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 8px;
+    padding: 20px;
+    color: #ffffff;
 }
 
-
-
-#cross_symbol{
-position: absolute;
-left:175px;
+#cross_symbol {
+    position: absolute;
+    left: 175px;
+    cursor: pointer;
+    color: #ffffff;
 }
-
-
-
-
-
-
-
-
-
-
-
-/*media queries*/
-
 
 @media (max-width: 900px) {
     .nadcuscontainer1 {
-        display: block; /* Removes flex */
+        display: block;
+    }
+
+    .nadcuscontainer2 {
+        display: block;
+    }
+
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .ncusdasheditform {
+        width: 90%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ncusdasheditform {
+        width: 100%;
+        padding: 10px;
+    }
+
+    #cross_symbol {
+        left: 90%;
     }
 }
