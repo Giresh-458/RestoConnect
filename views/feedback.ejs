@@ -7,26 +7,24 @@
     <link rel="stylesheet" href="/css/feedback.css">
 </head>
 <body>
+    <div class="feedback-wrapper">
+        <h1 class="title">Restaurant Feedback</h1>
 
-    <h1 class="title">Restaurant Feedback</h1>
-
-    <div class="rating-container">
-        <p>Rate your experience for dining</p>
-        
-        <div class="stars" id="starRating">
-            <span class="star" data-value="1">&#9733;</span>
-            <span class="star" data-value="2">&#9733;</span>
-            <span class="star" data-value="3">&#9733;</span>
-            <span class="star" data-value="4">&#9733;</span>
-            <span class="star" data-value="5">&#9733;</span>
+        <div class="rating-section">
+            <p>Rate your dining experience</p>
+            <div class="stars" id="starRating">
+                <span class="star" data-value="1">&#9733;</span>
+                <span class="star" data-value="2">&#9733;</span>
+                <span class="star" data-value="3">&#9733;</span>
+                <span class="star" data-value="4">&#9733;</span>
+                <span class="star" data-value="5">&#9733;</span>
+            </div>
+            <p id="diningRatingText">Good</p>
         </div>
-        <p id="diningRatingText">Good</p>
-    </div>
 
-    <div class="container">
         <div class="feedback-container">
-            <p>What all did you love? 😍</p>
-            <input type="text" id="feedbackInput" placeholder="Enter your feedback here...">
+            <p>What did you love? 😍</p>
+            <input type="text" id="feedbackInput" placeholder="Enter your feedback...">
             <div class="tags">
                 <span class="tag">Cappuccino</span>
                 <span class="tag">Iced Peach Tea</span>
@@ -37,11 +35,9 @@
         </div>
 
         <div class="order-rating-container">
-            <h3>Choose the order you wish to rate</h3>
+            <h3>Rate your order</h3>
             <p class="order-details">2 HOURS AGO</p>
             <p class="order-details">Chicken Nuggets, Chicken & Cheese Toast, Coffee</p>
-            
-            <p>Please rate your order experience</p>
             <div class="stars" id="orderStarRating">
                 <span class="star" data-value="1">&#9733;</span>
                 <span class="star" data-value="2">&#9733;</span>
@@ -51,18 +47,14 @@
             </div>
             <p id="orderRatingText">Very Good</p>
         </div>
+
+        <form id="feedbackForm" action="/submit-feedback" method="POST">
+            <textarea id="feedbackInputExtra" name="feedback" placeholder="Your words make us better..." rows="5"></textarea>
+            <button class="submit-btn" type="submit">SUBMIT FEEDBACK</button>
+            
+        </form>
     </div>
 
-    <form id="feedbackForm" action="/submit-feedback" method="POST">
-        <div class="feedback-container">
-            <p>Tell us what you liked...</p>
-            <textarea id="feedbackInputExtra" name="feedback" placeholder="Your word makes RestoConnect a better place..." rows="10" cols="30"></textarea>
-        </div>
-
-        <button class="submit-btn" type="submit">SUBMIT YOUR FEEDBACK</button>
-    </form>
-
     <script src="/js/feedback.js"></script>
-
 </body>
 </html>
