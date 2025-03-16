@@ -36,7 +36,7 @@ const homepageController = require(path.join(__dirname,'Controller','homePageCon
 const ownerRouter = require('./routes/ownerRoutes.js');
 const staffRouter = require('./routes/staffRouter.js');
 const authentication = require('./authenticationMiddleWare.js');
-
+const validation = require('./passwordAuth.js');
 
 
 //for clearing previous seted cookies
@@ -49,12 +49,12 @@ app.get('/logout',(req,res)=>{
     res.redirect('/');
 })
 
-console.log("asdfkh")
+//console.log("asdfkh")
 app.use('/loginPage',loginPage);
 
 
 app.get('/',homepageController.getHomePage);
-app.post('/',homepageController.putHomePage);
+app.post('/',validation,homepageController.putHomePage);
 app.get('/menu/:restnmae',authentication('customer'),menuController.getMenu)
 app.use('/customer',authentication('customer'),customer);
 app.use('/admin',authentication('admin'),admin);

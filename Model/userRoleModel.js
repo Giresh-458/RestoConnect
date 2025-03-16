@@ -23,11 +23,11 @@ class User {
 }
 
 
-const admin = new User('adam','admin');
+const admin = new User('adam','admin',null,'123');
 
 
-const alex = new User('alex', 'customer', '123');
-const john = new User('John', 'customer','123');
+const alex = new User('alex', 'customer', null,'123');
+const john = new User('John', 'customer',null,'123');
 
 
 const staff1 = new User('emma', 'staff', 'The Gourmet Spot', '123');
