@@ -1,9 +1,16 @@
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #ffffff;
     color: #000000;
+}
+
+a {
+    text-decoration: none;
+    color: #e50914;
+    font-weight: bold;
+    margin: 10px;
 }
 
 nav {
@@ -19,10 +26,15 @@ nav {
     padding: 20px;
 }
 
+h2 {
+    margin-bottom: 20px;
+}
+
 form {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    margin-bottom: 20px;
 }
 
 input, select, button {
@@ -30,7 +42,7 @@ input, select, button {
     border: 1px solid #ddd;
     border-radius: 5px;
     background-color: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
+    color: #000000;
 }
 
 button {
@@ -68,6 +80,14 @@ button:hover {
     object-fit: cover;
     margin-bottom: 10px;
     border-radius: 5px;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
 }
 
 @media (max-width: 600px) {

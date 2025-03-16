@@ -9,12 +9,12 @@
 <body>
   <header>
     <h1>Order & Table Reservation</h1>
+    <a href="/menu/<%= restaurantName %>" class="back-btn">Back</a>
   </header>
 
   <main>
     <h2>Restaurant: <%= restaurantName %></h2>
 
-  
     <section class="cart-section">
       <h3>Your Order</h3>
       <ul>
@@ -28,7 +28,6 @@
       </ul>
     </section>
 
- 
     <section class="order-section">
       <h3>Confirm Your Order</h3>
       <form action="/customer/order_reservation/order" method="POST">
@@ -39,7 +38,6 @@
       </form>
     </section>
 
-   
     <section class="reservation-section">
       <h3>Reserve a Table</h3>
       <form action="/customer/order_reservation/reservation" method="POST">

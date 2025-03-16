@@ -33,8 +33,8 @@ const customer = require(path.join(__dirname,'routes','customer.js'));
 const admin = require(path.join(__dirname,'routes','adminroutes.js'));
 const menuController = require(path.join(__dirname,'Controller','menuController.js'))
 const homepageController = require(path.join(__dirname,'Controller','homePageController.js'));
-const ownerRouter = require('./routes/ownerRoutes');
-const staffRouter = require('./routes/staffRouter');
+const ownerRouter = require('./routes/ownerRoutes.js');
+const staffRouter = require('./routes/staffRouter.js');
 const authentication = require('./authenticationMiddleWare.js');
 
 
@@ -60,6 +60,7 @@ app.use('/customer',authentication('customer'),customer);
 app.use('/admin',authentication('admin'),admin);
 app.use('/owner',authentication('owner'),ownerRouter);
 app.use('/staff',authentication('staff'),staffRouter);
+
 
 
 

@@ -4,16 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payments Page</title>
-    <link rel="stylesheet" href="/css/project1.css"> 
+    <link rel="stylesheet" href="/css/payment.css"> 
 </head>
 <body>
+    <header>
+        <h1>Payment Options</h1>
+        <a href="/order_reservation" class="back-btn">Back</a>
+    </header>
 
     <div class="outer">
         <h2>Payment Options</h2>
         <p>To pay: <%= bill_price %></p>
-
     </div>
-    
     
     <div id="mainPage" class="outer">
         <div class="box">
@@ -54,8 +56,7 @@
         </div>
     </div>
 
-    <div id="upiForm" class="payment-form outer">
-
+    <div id="upiForm" class="payment-form outer" style="display: none;">
         <button class="back-button" onclick="goBack()">
             <img src="/images/back-svgrepo-com.svg" alt="Back">
         </button>
@@ -63,7 +64,7 @@
         <button class="form-button verify-button" onclick="verifyUPI()">Verify</button>
     </div>
 
-    <div id="cardForm" class="payment-form outer">
+    <div id="cardForm" class="payment-form outer" style="display: none;">
         <button class="back-button" onclick="goBack()">
             <img src="/images/back-svgrepo-com.svg" alt="Back">
         </button>
@@ -87,9 +88,7 @@
         <button class="back-button" onclick="goBack()">
             <img src="/images/back-svgrepo-com.svg" alt="Back">
         </button>
-    
         <p class="select-wallet-text">Select your UPI app to proceed</p> 
-
         <div class="select_upi_app">
             <button class="upi_app" onclick="selectWallet('PhonePe')">
                 <img src="/images/phonepe-1.svg" alt="PhonePe" class="upi-logo">
@@ -103,32 +102,26 @@
         </div>
     </div>
 
-    
-        <form action="/customer/orderplaced" method ="post">
-            <button type="submit">pay</button>
-        </form>
-
+    <form action="/customer/orderplaced" method="post">
+        <button type="submit">Pay</button>
+    </form>
 
     <script>
-        
         function showUPIForm() {
             document.getElementById('mainPage').style.display = 'none';  
             document.getElementById('upiForm').style.display = 'block';  
         }
 
-        
         function showCardForm() {
             document.getElementById('mainPage').style.display = 'none';  
             document.getElementById('cardForm').style.display = 'block';  
         }
 
-        
         function showWallets() {
             document.getElementById('mainPage').style.display = 'none';  
             document.getElementById('walletsForm').style.display = 'block';  
         }
 
-        
         function goBack() {
             document.getElementById('mainPage').style.display = 'block';  
             document.getElementById('upiForm').style.display = 'none';  

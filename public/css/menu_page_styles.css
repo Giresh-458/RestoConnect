@@ -1,11 +1,67 @@
-/* Center the items */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    text-align: center;
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #333;
+    color: #fff;
+    position: sticky;
+    top: 0;
+}
+
+.logo {
+    font-size: 2em;
+    font-weight: bold;
+    color: #fff;
+}
+
+.logo span {
+    color: #ff914d;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1em;
+    padding: 10px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #ff914d;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 2em;
+    cursor: pointer;
+}
+
 .item_list {
     display: flex;
     justify-content: center;
     margin: 25px auto;
 }
 
-/* Styling for each menu item */
 .items {
     display: flex;
     justify-content: space-between;
@@ -18,7 +74,6 @@
     border-radius: 10px;
 }
 
-/* Content Styling */
 .text-content {
     flex: 1;
     padding-right: 20px;
@@ -42,7 +97,6 @@
     max-width: 100%;
 }
 
-/* Right Section */
 .right-side {
     display: flex;
     flex-direction: column;
@@ -50,7 +104,6 @@
     padding-left: 20px;
 }
 
-/* Dish Image */
 .dish_img img {
     width: 120px;
     height: 110px;
@@ -59,7 +112,6 @@
     margin-bottom: 10px;
 }
 
-/* Cart Button */
 .cart_button {
     width: 104px;
     height: 28px;
@@ -78,7 +130,6 @@
     background-color: #6c757d;
 }
 
-/* Counter Styling */
 .counter {
     display: none;
     align-items: center;
@@ -95,7 +146,6 @@
     transform: translateY(-10px);
 }
 
-/* Counter Buttons */
 .counter button {
     padding: 5px 15px;
     font-size: 16px;
@@ -105,7 +155,6 @@
     cursor: pointer;
 }
 
-/* Order Button (Sticky at Bottom Center) */
 .btn2 {
     position: fixed;
     bottom: 20px;
@@ -126,4 +175,39 @@
 
 .btn2:hover {
     background: linear-gradient(135deg, #FF4500, #FF2500);
+}
+
+@media (max-width: 768px) {
+    .items {
+        flex-direction: column;
+        width: 90%;
+    }
+
+    .right-side {
+        padding-left: 0;
+        margin-top: 10px;
+    }
+
+    .dish_img img {
+        width: 100%;
+        height: auto;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #333;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
 }
