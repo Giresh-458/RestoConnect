@@ -1,188 +1,235 @@
 body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  color: #333;
 }
 
 header {
-    background-color: #333;
-    color: #fff;
-    padding: 15px;
-    text-align: center;
-    position: relative;
+  background-color: #333;
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+  position: relative;
 }
 
 header h1 {
-    margin: 0;
+  margin: 0;
 }
 
 .back-btn {
-    position: absolute;
-    left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: #e50914;
-    color: #fff;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #e50914;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
 
 .back-btn:hover {
-    background-color: #c82333;
+  background-color: #c82333;
 }
 
 .outer {
-    width: 80%;
-    margin: auto;
-    padding: 20px;
-    text-align: center;
+  width: 80%;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
 }
 
 h2 {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .box {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
 }
 
 .payment_txt {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
 }
 
 .payment_txt img {
-    width: 30px;
-    height: 30px;
-    margin-right: 10px;
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
 }
 
 .inner {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .payment-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-    display: flex;
-    align-items: center;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
 }
 
 .payment-button:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
 
-.square, .wallet {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-    background-color: #fff;
-    border-radius: 5px;
-    margin-right: 10px;
+.square,
+.wallet {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background-color: #fff;
+  border-radius: 5px;
+  margin-right: 10px;
 }
 
 .text {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .payment-form {
-    display: none;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+  display: none;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.wallet-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.wallet-icon-container img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.wallet .wallet_icon {
+  display: none;
 }
 
 .back-button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    margin-bottom: 20px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 20px;
 }
 
 .back-button img {
-    width: 30px;
-    height: 30px;
+  width: 30px;
+  height: 30px;
 }
 
-.input_box_txt, .card_details, .form-button {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 16px;
+.input_box_txt,
+.card_details,
+.form-button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
 }
 
 .card-group {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
 }
 
 .form-button {
-    background-color: #e50914;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  background-color: #e50914;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .form-button:hover {
-    background-color: #c82333;
+  background-color: #c82333;
 }
 
 .select-wallet-text {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .select_upi_app {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
 .upi_app {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 .upi-logo {
-    width: 50px;
-    height: 50px;
+  width: 50px;
+  height: 50px;
+}
+
+.wallet_icon {
+  width: 30px;
+  height: 30px;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+form button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #0056b3;
 }
 
 @media (max-width: 600px) {
-    .outer {
-        width: 100%;
-        padding: 10px;
-    }
+  .outer {
+    width: 100%;
+    padding: 10px;
+  }
 
-    .payment-button, .form-button {
-        width: 100%;
-    }
+  .payment-button,
+  .form-button {
+    width: 100%;
+  }
 
-    .card-group {
-        flex-direction: column;
-    }
+  .card-group {
+    flex-direction: column;
+  }
 }
