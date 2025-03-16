@@ -14,12 +14,9 @@ const auth_middleware = (role) =>{
         if(temp==null){
             res.redirect('/loginPage');
         }
-        if(temp.role==role)
+        if(temp.role== role)
         {
             next();
-        }
-        else{
-            res.redirect('/');
         }
     }
 

@@ -1,132 +1,117 @@
+/* Center the items */
 .item_list {
     display: flex;
     justify-content: center;
     margin: 25px auto;
 }
 
-
+/* Styling for each menu item */
 .items {
     display: flex;
-    justify-content: space-between; 
-    align-items: flex-start; 
+    justify-content: space-between;
+    align-items: flex-start;
     width: 750px;
-    height: auto;
-    background-color:#f1f1f6 ;
+    background-color: #f1f1f6;
     border: 2px solid rgb(227, 219, 219);
     margin: 25px auto;
     padding: 16px;
     border-radius: 10px;
 }
 
+/* Content Styling */
 .text-content {
-    flex: 1; 
+    flex: 1;
     padding-right: 20px;
+}
 
+.dish_name, .dish_price, .dish_description {
+    color: black;
+    margin: 12px 0 0 0;
 }
 
 .dish_name {
-    color: black;
-    padding: 5px 0;
     font-size: 22px;
-    margin: 12px 0 0 0;
 }
 
 .dish_price {
-    color: black;
-    padding: 5px 0;
     font-size: 18px;
-    margin: 12px 0 0 0;
 }
 
-.dish_discription {
-    color: black;
-    padding: 5px 0;
+.dish_description {
     font-size: 14px;
-    max-width: 100%; 
-    margin: 12px 0 0 0;
+    max-width: 100%;
 }
 
+/* Right Section */
 .right-side {
     display: flex;
-    flex-direction: column; 
-    justify-content: flex-start;
-    align-items: center; 
+    flex-direction: column;
+    align-items: center;
     padding-left: 20px;
 }
 
-.dish_img {
-    background-size: cover;
+/* Dish Image */
+.dish_img img {
     width: 120px;
     height: 110px;
-    background-color: #347928;
     border-radius: 8px;
-    margin-bottom: 10px; 
+    object-fit: cover;
+    margin-bottom: 10px;
 }
 
-
-
-.cart_button{
+/* Cart Button */
+.cart_button {
     width: 104px;
     height: 28px;
-}
-
-.cart_button, .counter button {
-    padding: 10px ; 
-    border-radius: 5px;
-    background-color: #28a745; 
+    padding: 10px;
+    background-color: #28a745;
     color: white;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    display: inline-block;
-    font-family: Arial, sans-serif; 
-    text-align: center; 
-
+    text-align: center;
+    font-family: Arial, sans-serif;
 }
 
-
-.cart_button:disabled, .counter button:disabled {
-    background-color: #6c757d; 
+.cart_button:disabled {
+    background-color: #6c757d;
 }
 
+/* Counter Styling */
 .counter {
-    display: none; 
+    display: none;
     align-items: center;
     margin-top: 10px;
-    background-color: #f1f1f1; 
-    border-radius: 5px; 
+    background-color: #f1f1f1;
+    border-radius: 5px;
     padding: 10px;
-    transition: transform 0.3s ease-out; 
-    font-size: 16px; 
-    font-family: Arial, sans-serif; 
-     width: max-content; 
+    font-size: 16px;
+    width: max-content;
 }
 
 .counter.active {
     background-color: #28a745;
-    transform: translateY(-10px); 
+    transform: translateY(-10px);
 }
 
+/* Counter Buttons */
 .counter button {
-    padding: 5px 15px; 
+    padding: 5px 15px;
     font-size: 16px;
     background-color: #28a745;
+    border: none;
+    color: white;
+    cursor: pointer;
 }
 
-.counter span {
-    margin: 0 10px;
-    font-size: 16px; 
-}
-
-.right-side {
-    margin-top: 20px;
-}
-
-
+/* Order Button (Sticky at Bottom Center) */
 .btn2 {
-    display: block;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     width: 220px;
-    margin: 40px auto;
     padding: 14px;
     font-size: 18px;
     font-weight: bold;
@@ -136,9 +121,9 @@
     border-radius: 10px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .btn2:hover {
     background: linear-gradient(135deg, #FF4500, #FF2500);
-    transform: scale(1.05);
 }

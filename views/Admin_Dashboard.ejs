@@ -3,131 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-<link rel="stylesheet" href="/css/admin_dashboard_styles.css">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/css/admin_dashboard_styles.css">
 </head>
 <body>
 
-<div class="nad dash" > 
+<div class="dashboard"> 
 
-    <div id="nav_bar" style="position: sticky; top: 0px;">
-        <div class="nad dash nav">
-            <div>
-                <a href="">revenue</a>
-            </div>
-            <div>
-                <a href="">users statistic</a>
-            </div>
-            <div>
-                <a href="">restaurents</a>
-            </div>
-            <div>
-                <a href="">profile</a>
-            </div>
-            <div class="naddashlogout">
-                <a href="">logout</a>
-            </div>
-        </div>
-    </div>
+    <nav class="sidebar">
+        <ul>
+            <li><a href="#">Revenue</a></li>
+            <li><a href="#">Users Statistics</a></li>
+            <li><a href="#">Restaurants</a></li>
+            <li><a href="#">Profile</a></li>
+            <li class="logout"><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
 
-    <div class="nad maincontent">
-        <!-- Main content start -->
-        <div class="nad container" id="revenue" style="height: 700px;">
-            <canvas id="canvas_admi_revenue"></canvas>
-        </div>
-
-        <div class="users-container" id="users-count">
-            <div class="user-box">
-                <h6>Active Users Count</h6>
-                <div class="user-count"><h1><%= active_user_count%></h1></div>
+    <main class="content">
+        <section class="stats">
+            <div class="stat-box">
+                <h6>Active Users</h6>
+                <div class="stat-number"><h1><%= active_user_count %></h1></div>
             </div>
-            <div class="user-box">
-                <h6>Total Users Count</h6>
-                <div class="user-count"><h1><%= total_user_count%></h1></div>
+            <div class="stat-box">
+                <h6>Total Users</h6>
+                <div class="stat-number"><h1><%= total_user_count %></h1></div>
             </div>
-        </div>
+        </section>
 
-        <div class="nad restaurents_list" style="overflow: auto; height: 300px;">
-            <button style="display:block;" id="naddashbtn">add</button>
+        <section class="restaurant-list">
 
-
-            <% restaurents_list.forEach(restaurent =>{%>
-                    
-                
-                <div class="naddash-container">
-                    <div class="naddash-details">
-                        <!-- Name -->
-                        <div class="naddash-name">
-                            <strong>Name:</strong> <%= restaurent.name %>
-                        </div>
-                
-                        <!-- Location -->
-                        <div class="naddash-location">
-                            <strong>Location:</strong> <%= restaurent.location %>
-                        </div>
-                
-                        <!-- Payment Amount -->
-                        <div class="naddash-payment">
-                            <strong>Payment Amount:</strong> <%= restaurent.amount%>
-                        </div>
-                
-                        <!-- Date Joined -->
-                        <div class="naddash-date">
-                            <strong>Date Joined:</strong> <%= restaurent.date%>
-                        </div>
-                    </div>
+            <% restaurants_list.forEach(restaurent => { %>
+                <div class="restaurant-card">
+                    <div><strong>Name:</strong> <%= restaurent.name %></div>
+                    <div><strong>Location:</strong> <%= restaurent.location %></div>
+                    <div><strong>Payment:</strong> <%= restaurent.amount %></div>
+                    <div><strong>Joined:</strong> <%= restaurent.date %></div>
                 </div>
-                
-                
+            <% }) %>
+        </section>
 
+        <section class="profile">
+            <h2>John Doe</h2>
+            <p>Administrator</p>
+            <p>johndoe@example.com</p>
+        </section>
 
-            <%})%>
+        <section class="form-section">
+            <form action="/admin/add_restaurant" method="POST">
+                <label>Name:</label>
+                <input type="text" name="name" required>
 
+                <label>Location:</label>
+                <input type="text" name="location" required>
 
+                <label>Payment Amount:</label>
+                <input type="number" name="amount" required>
 
+                <label>Date Joined:</label>
+                <input type="date" name="date" required>
 
-        </div>
-
-        <div class="nadmin profile">
-
-            
-            <h2 class="profile-name">John Doe</h2>
-            <p class="profile-role">Administrator</p>
-            <p class="profile-email">johndoe@example.com</p>
-
-
-        </div>
-
-        <!-- Main content end -->
-    </div>
-
-
-    <div id="form">
-        <form action="/admin/add_restaurent" method="POST">
-            <label>Name:</label>
-            <input type="text" name="name" required>
-        
-            <label>Location:</label>
-            <input type="text" name="location" required>
-        
-            <label>Payment Amount:</label>
-            <input type="number" name="amount" required>
-        
-            <label>Date Joined:</label>
-            <input type="date" name="date" required>
-        
-            <button type="submit">Submit</button>
-        </form>
-        
-
-    </div>
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    </main>
 
 </div>
-
-
-
-
-
 
 <script src="/js/admin_dash_script.js"></script>
 

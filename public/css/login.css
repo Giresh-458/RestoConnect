@@ -4,7 +4,7 @@
     border: border-box;
 }
 
-.backgroud{
+.background{
     background-image: url("/images/login_img.jpg");
     background-size: cover;
     position: absolute;

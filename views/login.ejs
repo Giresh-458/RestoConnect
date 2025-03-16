@@ -8,22 +8,28 @@
 </head> 
 <body>
 
-    <div class="backgroud">
+    <div class="background">
        <div class="overlay"></div>
     </div>
     
     <div class="login_container">
-        <form id="loginForm" action="/" method="POST" onsubmit="/*return handleSubmit(event)*/">
+        <form id="loginForm" action="/" method="POST" onsubmit="return handleSubmit(event)">
             <h2 class="sign-in"><%= title %></h2> 
+            
             <div class="username">
-                <input class="log_input" type="text" id="username" placeholder="User name" name="username"  required>
+                <input class="log_input" type="text" id="username" placeholder="User name" name="username" required>
             </div>
+
+            <div id="extraFields"></div> <!-- Extra fields for Sign Up -->
+
             <div class="password">
-                <input class="log_input" type="password" id="password" placeholder="Password" password = "password" required>
+                <input class="log_input" type="password" id="password" placeholder="Password" name="password" required>
             </div>
+
             <button class="log_button" type="submit" id="submitBtn"><%= buttonText %></button> 
+
             <p id="toggleLink">
-                <a class="toggle_color" href="#" onclick="toggleForm()"><%= toggleText %></a> 
+                <a class="toggle_color" href="#" onclick="toggleForm(); return false;"><%= toggleText %></a> 
             </p>
         </form>
     </div>
@@ -33,49 +39,55 @@
             const form = document.getElementById('loginForm');
             const submitBtn = document.getElementById('submitBtn');
             const toggleLink = document.getElementById('toggleLink');
-            const usernameDiv = document.querySelector('.username');
-            const passwordDiv = document.querySelector('.password');
+            const extraFieldsDiv = document.getElementById('extraFields');
 
-            if (toggleLink.innerText === "New user? Sign Up") {
-                
-                toggleLink.innerHTML = '<a class="toggle_color" href="#" onclick="toggleForm()">Already have an account? Login</a>';
+            if (submitBtn.innerText === "Log In") {
+                // Switch to Sign Up
+                toggleLink.innerHTML = '<a class="toggle_color" href="#" onclick="toggleForm(); return false;">Already have an account? Login</a>';
                 form.querySelector('.sign-in').innerText = "Sign Up";
-                usernameDiv.insertAdjacentHTML('beforeend', '<input class="log_input" type="text" id="fullName" placeholder="Full Name" required >');
-                usernameDiv.insertAdjacentHTML('beforeend', '<input class="log_input" type="email" id="email" placeholder="Email" required >');
-                usernameDiv.insertAdjacentHTML('beforeend', '<input class="log_input" type="tel" id="mobile" placeholder="Mobile Number"required >');
                 submitBtn.innerText = "Sign Up";
+
+                // Add additional fields
+                extraFieldsDiv.innerHTML = `
+                    <div class="extra-input">
+                        <input class="log_input" type="text" id="fullName" placeholder="Full Name" name="fullName" required>
+                    </div>
+                    <div class="extra-input">
+                        <input class="log_input" type="email" id="email" placeholder="Email" name="email" required>
+                    </div>
+                    <div class="extra-input">
+                        <input class="log_input" type="tel" id="mobile" placeholder="Mobile Number" name="mobile" required>
+                    </div>
+                `;
+
             } else {
-                
-                toggleLink.innerHTML = '<a class="toggle_color" href="#" onclick="toggleForm()">New user? Sign Up</a>';
+                // Switch to Login
+                toggleLink.innerHTML = '<a class="toggle_color" href="#" onclick="toggleForm(); return false;">New user? Sign Up</a>';
                 form.querySelector('.sign-in').innerText = "Log In";
-                document.getElementById('fullName')?.remove();
-                document.getElementById('email')?.remove();
-                document.getElementById('mobile')?.remove();
-                submitBtn.innerText = "Log In";    
+                submitBtn.innerText = "Log In";
+                
+                // Remove additional fields
+                extraFieldsDiv.innerHTML = "";
             }
         }
 
-
-
-
         function handleSubmit(event) {
-             event.preventDefault();
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const mobile = document.getElementById('mobile')?.value.trim();
+            
+            if (!username || !password) {
+                alert('Please fill in all required fields.');
+                return false;
+            }
 
-             const username = document.getElementById('username').value;
-             const password = document.getElementById('password').value;
-             const mobile = document.getElementById('mobile')?.value;
+            if (mobile && !/^\d{10}$/.test(mobile)) {
+                alert('Please enter a valid 10-digit mobile number.');
+                return false;
+            }
 
-             if (username && password) {
-                 if (mobile && !/^\d{10}$/.test(mobile)) {
-                     alert('Please enter a valid 10-digit mobile number.');
-                     return;
-                 }
-                document.querySelector("#log_button").click();
-             } else {
-                 alert('Please fill in both the username and password fields.');
-             }
+            return true; // Proceed with form submission
         }
-
     </script>
 
 </body>

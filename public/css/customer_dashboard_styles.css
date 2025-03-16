@@ -1,46 +1,36 @@
+/* General Reset */
 * {
-    margin: 5px;
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
-.none {
-    display: none;
-}
-
-.nadcuscontainer1 {
-    display: grid;
-    grid-template-columns: 0.4fr 0.6fr;
-    grid-template-rows: auto;
-}
-
-.nadcuscontainer2 {
-    display: grid;
-    grid-template-columns: 0.4fr 0.6fr;
-    grid-template-rows: auto;
-}
-
-.ncusdasheditform {
-    padding: 10px;
-    background-color: rgba(0, 0, 0, 0.7);
+/* Body Styling */
+body {
+    background-color: #0d1117;
     color: #ffffff;
-    border-radius: 8px;
+    padding: 20px;
 }
 
+/* Navbar */
 .navbar {
-    background-color: rgba(0, 0, 0, 0.7);
-    overflow: hidden;
     display: flex;
     justify-content: space-between;
-    padding: 10px 20px;
+    align-items: center;
+    background: linear-gradient(135deg, #1f2937, #111827);
+    padding: 15px 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
 }
 
 .navbar a {
     color: #ffffff;
     text-decoration: none;
-    padding: 14px 20px;
-    transition: background-color 0.3s ease;
+    padding: 12px 18px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-weight: 500;
 }
 
 .navbar a:hover {
@@ -49,48 +39,135 @@
 
 .nav-links {
     display: flex;
-    gap: 10px;
+    gap: 15px;
 }
 
-.nadcusdashboards.box {
+/* Dashboard Layout */
+.nadcuscontainer1 {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 25px;
+    margin-top: 20px;
+}
+
+/* Profile Box */
+.profile {
+    background: #1f2937;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+.profile img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    border: 3px solid #ff5733;
+}
+
+/* Orders & Analytics */
+.nadcusdashboards {
+    background: #1f2937;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.1);
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
+.nadcusdashboards ul {
+    list-style: none;
+    padding: 15px;
+    color: #ddd;
+}
+
+/* Order History */
+.ncuspastorder {
+    background: #1f2937;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.1);
+    margin-top: 20px;
+    height: 400px;
+    overflow-y: auto;
+}
+
+.ncusprevdiv div {
+    background: #222;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Change Password Form */
 .ncusdasheditform {
-    position: absolute;
-    height: 200px;
-    width: 250px;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
-    background-color: rgba(0, 0, 0, 0.7);
-    border-radius: 8px;
-    padding: 20px;
-    color: #ffffff;
+    background: #1f2937;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+    color: white;
+    display: none;
+    width: 320px;
 }
 
+.ncusdasheditform label {
+    display: block;
+    margin: 12px 0 6px;
+    font-weight: 500;
+}
+
+.ncusdasheditform input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    border: none;
+    border-radius: 6px;
+    background: #333;
+    color: white;
+    outline: none;
+    transition: 0.3s ease;
+}
+
+.ncusdasheditform input:focus {
+    background: #444;
+}
+
+/* Close Button */
 #cross_symbol {
-    position: absolute;
-    left: 175px;
-    cursor: pointer;
-    color: #ffffff;
+    text-align: right;
 }
 
+.close-btn {
+    color: white;
+    text-decoration: none;
+    font-size: 22px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.close-btn:hover {
+    color: red;
+}
+
+/* Mobile Styles */
 @media (max-width: 900px) {
     .nadcuscontainer1 {
-        display: block;
+        grid-template-columns: 1fr;
     }
+}
 
-    .nadcuscontainer2 {
-        display: block;
-    }
-
+@media (max-width: 480px) {
     .navbar {
         flex-direction: column;
-        align-items: center;
+        text-align: center;
     }
 
     .nav-links {
@@ -100,17 +177,5 @@
 
     .ncusdasheditform {
         width: 90%;
-        max-width: 300px;
-    }
-}
-
-@media (max-width: 480px) {
-    .ncusdasheditform {
-        width: 100%;
-        padding: 10px;
-    }
-
-    #cross_symbol {
-        left: 90%;
     }
 }

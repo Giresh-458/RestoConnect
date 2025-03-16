@@ -2,10 +2,11 @@
 
 
 class User {
-    constructor(username, role, restaurantName = null) {
+    constructor(username, role, restaurantName = null, password) {
         this.username = username;
         this.role = role;
         this.restaurantName = role !== 'customer' ? restaurantName : null;
+        this.password = password;
     }
 
 
@@ -25,14 +26,14 @@ class User {
 const admin = new User('adam','admin');
 
 
-const alex = new User('alex', 'customer');
-const john = new User('John', 'customer');
+const alex = new User('alex', 'customer', '123');
+const john = new User('John', 'customer','123');
 
 
-const staff1 = new User('emma', 'staff', 'The Gourmet Spot');
-const staff2 = new User('liam', 'staff', 'The Gourmet Spot');
+const staff1 = new User('emma', 'staff', 'The Gourmet Spot', '123');
+const staff2 = new User('liam', 'staff', 'The Gourmet Spot', '123');
 
-const owner1 = new User('roy','owner','The Gourmet Spot');
+const owner1 = new User('roy','owner','The Gourmet Spot','123');
 
 
 

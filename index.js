@@ -17,7 +17,7 @@ app.set('view engine','ejs');
 app.set('views','views');
 app.use(express.static(path.join(__dirname,'public')));
 app.use(session({
-    secret: 'session', // Keep this key secure
+    secret: 'session', 
     resave: false,
     saveUninitialized: true
 }));
@@ -49,7 +49,7 @@ app.get('/logout',(req,res)=>{
     res.redirect('/');
 })
 
-
+console.log("asdfkh")
 app.use('/loginPage',loginPage);
 
 

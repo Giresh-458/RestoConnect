@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu Page</title>
-    <link rel="stylesheet" href="/css/menu_page_styles.css" />
+    <link rel="stylesheet" href="/css/menu_page_styles.css">
 </head>
 <body>
 
+    <!-- Restaurant Info -->
     <div class="item_list items" id="restaurant_info">
         <h2 id="restaurant_name"><%= restaurant.name %></h2>
         <h4 id="restaurant_location"><%= restaurant.location %></h4>
     </div>
 
+    <!-- Menu Items -->
     <div id="menu">
-        <% dishes.forEach(function(dish, index) { %>
+        <% dishes.forEach((dish, index) => { %>
             <div class="items">
                 <div class="text-content">
                     <h2 class="dish_name"><%= dish.name %></h2>
@@ -23,16 +25,13 @@
                 </div>
                 <div class="right-side">
                     <div class="dish_img">
-                        <img src="/images/<%= dish.image %>" alt="<%= dish.name %>" class="dish_img" />
+                        <img src="/images/<%= dish.image %>" alt="<%= dish.name %>">
                     </div>
-
-                    <!-- Add to Cart Button -->
-                    <div class="cart_button" id="cart_button_<%= index %>" data-index="<%= index %>" data-dish="<%= dish.name %>">Add to Cart</div>
-
-                    <!-- Counter -->
-                    <div class="counter" id="counter_<%= index %>" data-index="<%= index %>" data-dish="<%= dish.name %>" style="display: none;">
+                    <!-- Add to Cart & Counter -->
+                    <button class="cart_button" data-index="<%= index %>" data-dish="<%= dish.name %>">Add to Cart</button>
+                    <div class="counter" data-index="<%= index %>" data-dish="<%= dish.name %>">
                         <button class="decrease" data-index="<%= index %>">-</button>
-                        <span id="item_count_<%= index %>">0</span>
+                        <span class="item_count">0</span>
                         <button class="increase" data-index="<%= index %>">+</button>
                     </div>
                 </div>
@@ -40,88 +39,73 @@
         <% }); %>
     </div>
 
-    <!-- Form to Submit Order -->
+    <!-- Hidden Form for Order Submission -->
     <form id="orderForm" action="/customer/order_reservation" method="post" style="display: none;">
-        <input type="hidden" name="restaurant" id="restaurantInput" />
-        <input type="hidden" name="order" id="orderInput" />
+        <input type="hidden" name="restaurant" id="restaurantInput">
+        <input type="hidden" name="order" id="orderInput">
     </form>
 
+    <!-- Order Button -->
     <button class="btn2">Order</button>
 
     <script>
-// Handle Add to Cart Button Click
-        document.querySelectorAll('.cart_button').forEach(cartButton => {
-            cartButton.addEventListener('click', () => {
-                const index = cartButton.getAttribute('data-index');
-                const counter = document.getElementById(`counter_${index}`);
-                const itemCount = document.getElementById(`item_count_${index}`);
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('menu').addEventListener('click', function(event) {
+                const target = event.target;
+                const index = target.dataset.index;
+                
+                if (!index) return;
 
-                cartButton.style.display = 'none';
-                counter.style.display = 'flex';
-                itemCount.textContent = 1;
-                counter.classList.add('active');
-            });
-        });
+                const cartButton = document.querySelector(`.cart_button[data-index="${index}"]`);
+                const counter = document.querySelector(`.counter[data-index="${index}"]`);
+                const itemCount = counter.querySelector('.item_count');
 
-        // Handle Increase Button Click
-        document.querySelectorAll('.increase').forEach(increaseButton => {
-            increaseButton.addEventListener('click', () => {
-                const index = increaseButton.getAttribute('data-index');
-                const itemCount = document.getElementById(`item_count_${index}`);
-                let count = parseInt(itemCount.textContent);
-                itemCount.textContent = ++count;
-            });
-        });
+                if (target.classList.contains('cart_button')) {
+                    cartButton.style.display = 'none';
+                    counter.style.display = 'flex';
+                    itemCount.textContent = 1;
+                    counter.classList.add('active');
+                } 
 
-        // Handle Decrease Button Click
-        document.querySelectorAll('.decrease').forEach(decreaseButton => {
-            decreaseButton.addEventListener('click', () => {
-                const index = decreaseButton.getAttribute('data-index');
-                const itemCount = document.getElementById(`item_count_${index}`);
-                let count = parseInt(itemCount.textContent);
+                if (target.classList.contains('increase')) {
+                    itemCount.textContent = parseInt(itemCount.textContent) + 1;
+                }
 
-                if (count > 0) {
-                    count--;
+                if (target.classList.contains('decrease')) {
+                    let count = parseInt(itemCount.textContent) - 1;
                     itemCount.textContent = count;
-                }
-
-                // If count is 0, reset the view
-                if (count === 0) {
-                    document.getElementById(`cart_button_${index}`).style.display = 'inline-block';
-                    document.getElementById(`counter_${index}`).style.display = 'none';
-                }
-            });
-        });
-
-        // Handle Order Button Click (Form Submission)
-        document.querySelector('.btn2').addEventListener('click', () => {
-            const restaurantName = document.getElementById('restaurant_name').innerText;
-            const order = [];
-
-            document.querySelectorAll('.counter').forEach(counter => {
-                const index = counter.getAttribute('data-index');
-                const dishName = counter.getAttribute('data-dish');
-                const quantity = parseInt(document.getElementById(`item_count_${index}`).textContent);
-
-                if (quantity > 0) {
-                    order.push({ dish: dishName, quantity: quantity });
+                    
+                    if (count === 0) {
+                        cartButton.style.display = 'inline-block';
+                        counter.style.display = 'none';
+                    }
                 }
             });
 
-            if (order.length === 0) {
-                alert('No items selected!');
-                return;
-            }
+            document.querySelector('.btn2').addEventListener('click', () => {
+                const restaurantName = document.getElementById('restaurant_name').innerText;
+                const order = [];
 
-            // Set form data
-            document.getElementById('restaurantInput').value = restaurantName;
-            document.getElementById('orderInput').value = JSON.stringify(order);
+                document.querySelectorAll('.counter').forEach(counter => {
+                    const dishName = counter.dataset.dish;
+                    const quantity = parseInt(counter.querySelector('.item_count').textContent);
+                    
+                    if (quantity > 0) {
+                        order.push({ dish: dishName, quantity });
+                    }
+                });
 
-            console.log("Order Data:", JSON.stringify(order));
-            document.getElementById('orderForm').submit(); // Submit form
+                if (order.length === 0) {
+                    alert('No items selected!');
+                    return;
+                }
+
+                document.getElementById('restaurantInput').value = restaurantName;
+                document.getElementById('orderInput').value = JSON.stringify(order);
+                document.getElementById('orderForm').submit();
+            });
         });
     </script>
 
 </body>
 </html>
-
