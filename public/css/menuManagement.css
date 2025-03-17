@@ -1,112 +1,165 @@
 body {
-  font-family: 'Poppins', sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f4;
-  color: #333;
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background-color: #f8f9fa;
 }
 
-a {
-  text-decoration: none;
-  color: #e50914;
-  font-weight: bold;
-  margin: 10px;
-}
-
-nav {
+header {
   background-color: #333;
-  color: #fff;
-  padding: 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 2rem auto;
-  padding: 20px;
-}
-
-h2 {
-  margin-bottom: 20px;
-}
-
-form {
+  color: white;
+  text-align: center;
+  padding: 15px;
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 20px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
-input, select, button {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: #000;
-}
-
-button {
+#backButton {
+  position: absolute;
+  left: 15px;
   background-color: #e50914;
   color: white;
   cursor: pointer;
+  font-size: 16px;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 5px;
   border: none;
-  transition: background-color 0.3s ease;
 }
 
-button:hover {
+#backButton:hover {
   background-color: #c82333;
 }
 
-.product-list {
-  list-style: none;
-  padding: 0;
+.container {
+  max-width: 800px;
+  margin: auto;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
-.product-list li {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.7);
-  padding: 15px;
-  margin-top: 10px;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  color: #fff;
-}
-
-.product-list img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  margin-bottom: 10px;
+.add-button {
+  display: block;
+  margin: 20px auto;
+  background: #ffa500;
+  color: white;
+  padding: 10px 15px;
+  border: none;
   border-radius: 5px;
+  cursor: pointer;
 }
 
-.delete-btn {
+.form-container {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  margin: 20px auto;
+  max-width: 400px;
+}
+
+input,
+textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  font-size: 16px;
+}
+
+.submit-button:hover {
+  transform: scale(1.1);
+}
+
+.submit-button:active {
+  transform: scale(0.9);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.available {
+  color: green;
+  font-weight: bold;
+}
+
+.actions {
+  display: flex;
+  gap: 5px;
+}
+
+.edit,
+.delete {
+  cursor: pointer;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.edit {
+  background-color: #ffa500;
+  color: white;
+}
+
+.delete {
   background-color: #dc3545;
+  color: white;
 }
 
-.delete-btn:hover {
+.edit:hover {
+  background-color: #ffa500;
+}
+
+.delete:hover {
   background-color: #c82333;
 }
 
 @media (max-width: 600px) {
-  .container {
-    width: 100%;
-    padding: 10px;
-  }
-
-  form {
+  header {
     flex-direction: column;
   }
 
-  .product-list li {
-    padding: 10px;
+  #backButton {
+    position: relative;
+    margin-bottom: 10px;
   }
 
-  .product-list img {
-    width: 80px;
-    height: 80px;
+  .container {
+    width: 90%;
+  }
+
+  table {
+    font-size: 12px;
+  }
+
+  .edit,
+  .delete {
+    font-size: 12px;
+    padding: 3px 6px;
   }
 }
