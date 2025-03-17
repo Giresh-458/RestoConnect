@@ -40,12 +40,13 @@ exports.getFeedBack = (req, res) => {
 };
 exports.postSubmitFeedBack = (req, res) => {
     const feedbackText = req.body.feedback;
-    if (!feedbackText.trim()) {
+    console.log("good");
+   /* if (!feedbackText.trim()) {
         return res.status(400).json({ success: false, message: "Feedback cannot be empty!" });
     }
     feedbacks.push({ id: Date.now(), text: feedbackText });
-    res.json({ success: true, message: "Feedback submitted successfully!" });
-    res.redirec('/');
+   res.json({ success: true, message: "Feedback submitted successfully!" });*/
+    res.redirect('/');
 };
 
 
@@ -61,9 +62,18 @@ exports.postSubmitFeedBack = (req, res) => {
 //order_and_reservation
 
 exports.postOrderAndReservation = (req, res) => {
-    const restaurantName = req.body.restaurant; 
-    const cart = JSON.parse(req.body.order);
+    let restaurantName;
+    let cart;
+    if(req.body.restaurant){
+     restaurantName = req.body.restaurant; 
+     cart= JSON.parse(req.body.order);
     req.session.temp_cart=cart;
+    req.session.rest_name=restaurantName;
+    }else{
+    restaurantName=req.session.rest_name;
+    cart = req.session.temp_cart;
+    console.log(req.session);
+    }
     res.render('orderReservation', { restaurantName, cart });
 };
 
@@ -77,6 +87,7 @@ exports.order = (req, res) => {
         status: "Pending"
     };
     order_temp=newOrder;
+    
     req.session.tempOrder=order_temp;
     orders.push(newOrder);
 
@@ -139,7 +150,7 @@ req.session.destroy(err => {
     if (err) {
         console.log(err);
     } else {
-        res.redirect('/');
+        res.redirect('/customer/feedback');
     }
 });
 

@@ -241,7 +241,7 @@ footer {
     font-weight: bold;
     opacity: 0;
     transform: translateY(50px);
-    animation: slideIn 1.2s ease-out forwards;
+    animation: slideIn 1.2s ease-out forwards; 
 }
 
 .hero_text_title li:nth-child(1) span {

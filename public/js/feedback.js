@@ -23,13 +23,14 @@ document.querySelectorAll('.tag').forEach(tag => {
     });
 });
 
-document.getElementById('feedbackForm').addEventListener('submit', function(event) {
+
+/*document.getElementById('feedbackForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
     const extraFeedback = document.getElementById('feedbackInputExtra').value.trim();
 
     if (extraFeedback) {
-        fetch('/submit-feedback', {
+        fetch('/customer/submit-feedback', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -50,3 +51,4 @@ document.getElementById('feedbackForm').addEventListener('submit', function(even
         alert('Please enter feedback before submitting!');
     }
 });
+*/
