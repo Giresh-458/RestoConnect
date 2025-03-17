@@ -12,6 +12,7 @@ header {
     padding: 1rem;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-height: 36px;
 }
 
 header h1 {
@@ -19,17 +20,30 @@ header h1 {
 }
 
 .back-btn {
-    position: absolute;
-    left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
+    position: relative;
+    left: 20px;
+    top: 50%; 
+    transform: translateY(-50%); 
+    width: 75px;
+    height: 37px;
+    margin-top: -18px;
     background-color: #e50914;
     color: #fff;
-    padding: 10px 20px;
+    padding: 8px 20px;
     text-decoration: none;
     border-radius: 5px;
     transition: background-color 0.3s ease;
+    color: white;
+
 }
+
+.back-btn a {
+    color: white ;
+    text-decoration: none ; 
+    display: block; 
+    padding: 10px 20px; 
+}
+
 
 .back-btn:hover {
     background-color: #c82333;
@@ -54,179 +68,295 @@ h2 {
     margin-bottom: 20px;
 }
 
-.payment_txt {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 10px;
-}
-
-.payment_txt img {
-    width: 30px;
-    height: 30px;
-    margin-right: 10px;
-}
-
-.inner {
-    display: flex;
-    justify-content: center;
-}
-
 .payment-button {
-    background-color: #e50914;
-    color: #fff;
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.payment-button:hover {
-    background-color: #c82333;
-}
-
-.square,
-.wallet {
     display: flex;
     align-items: center;
+    background-color: rgb(255, 255, 255);
+    color: rgb(255, 9, 9);
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    border: transparent;
+    margin-top: 10px; 
+    justify-content: flex-start;
+}
+
+.square {
+    width: 25px;
+    height: 25px;
+    color: #af4c4c;
+    display: flex;
     justify-content: center;
-    width: 30px;
-    height: 30px;
-    background-color: #fff;
+    align-items: center;
+    font-size: 20px;
     border-radius: 5px;
     margin-right: 10px;
+    border: 0.5px solid black;
 }
 
 .text {
-    font-weight: bold;
+    font-size: 16px;
+    margin-left: 15px;
 }
 
-.payment-form {
-    display: none;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-}
-
-.wallet-icon-container {
+.payment_txt {
     display: flex;
     align-items: center;
+    width: 100%;
+    margin-left: 6px;
+    font-size: 17px;
+    padding-bottom: 5px;
+}
+
+.icon {
+    width: 50px;
+    height: 25px;
+    margin-right: 10px; 
+}
+
+.box2 {
+    padding-bottom: 5px;
+}
+
+.wallet{
+   display: flex; 
     justify-content: center;
-    margin-bottom: 10px;
-}
-
-.wallet-icon-container img {
-    width: 30px;
-    height: 30px;
+    align-items: center;
+    font-size: 20px; 
+    border-radius: 5px; 
     margin-right: 10px;
+
+
 }
 
-.wallet .wallet_icon {
+.wallet_icon{
+    width: 25px;
+    height: 25px;
+    margin-left: 3px; 
+}
+
+
+
+
+.payment-form {
+    margin-top: 20px;
     display: none;
+    position: relative;
+     padding-top: 60px; 
+     place-items: center;
+}
+
+
+.payment-form2 {
+    margin-top: 20px;
+    display: none;
+    position: relative;
+     padding-top: 60px; 
+}
+
+
+
+.form-button {
+    padding: 10px 30px;
+    border: none;
+    cursor: pointer;
+    width: 752px;
+    height: 56px;
+    border-radius: 10px;
+    margin-top: 10px;
+    font-size: 18px;
+
+}
+
+
+.verify-button {
+     background-color:  #e50914; 
+    color: white;
+}
+.verify-button:hover {
+    background-color:  #f40612; 
+}
+
+.submit-button {
+    background-color: #e50914 ;
+    color: white;
+}
+.submit-button:hover {
+    background-color: #f40612;
 }
 
 .back-button {
-    background-color: transparent;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: none; 
     border: none;
+    padding: 0;
     cursor: pointer;
-    margin-bottom: 20px;
 }
 
 .back-button img {
-    width: 30px;
-    height: 30px;
+    width: 40px; 
+    height: auto;
 }
 
-.input_box_txt,
-.card_details,
-.form-button {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 16px;
+.payment-options {
+    display: flex;
+    gap: 20px;
+}
+.payment-options button {
+    padding: 10px 20px;
+    background-color: #e50914;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.payment-options button:hover {
+    background-color: #f40612;
+}
+
+.input_box_txt {
+    width: 742px;
+    height: 50px;
+    font-size: 22px;
+    border-radius: 10px;
+
+}
+
+.card_div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+        
+.card_details {
+    width: 742px;
+    height: 50px;
+    font-size: 22px;
+    border-radius: 10px;
 }
 
 .card-group {
     display: flex;
-    gap: 10px;
+    gap: 10px; 
+    justify-content: flex-start;  
 }
 
-.form-button {
-    background-color: #e50914;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+.card-group input {
+    width: auto;
+    flex-grow: 1;  
 }
 
-.form-button:hover {
-    background-color: #c82333;
+.cvv {
+    max-width: 300px;
+    flex-grow: 0;  
 }
 
+.vt{
+    max-width: 425px;
+}
+
+#card-type {
+    width: 742px;
+    height: 50px; 
+    font-size: 22px;
+    border-radius: 10px;
+}
+        
+
+#walletsForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center; 
+}
+        
 .select-wallet-text {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
     margin-bottom: 20px;
 }
-
-.select_upi_app {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
+        
 .upi_app {
     background-color: transparent;
     border: none;
+    padding: 10px;
     cursor: pointer;
-}
-
-.upi-logo {
-    width: 50px;
-    height: 50px;
-}
-
-.wallet_icon {
-    width: 30px;
-    height: 30px;
-}
-
-form {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    align-items: center;
+    transition: transform 0.3s ease;
+    height: 100px;
+    width: 100%
+}
+        
+.upi_app:hover {
+    transform: scale(1.1);
+}
+        
+.upi-logo {
+    width: 80%; 
+    height: auto;
+    max-width: 120px;
+    object-fit: contain;
+}
+        
+.upi_app img {
+    width: 100%;
+    height: 100%;
 }
 
-form button {
-    background-color: #007bff;
-    color: #fff;
+.upi_app:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.select_upi_app{
+    justify-content: center;
+    align-items: center;
+}
+        
+
+.btn2 {
+    display: block;
+    width: 220px;
+    margin: 40px auto;
+    padding: 14px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #FF8C00, #FF4500);
     border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
+    border-radius: 10px;
     cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease-in-out;
 }
 
-form button:hover {
-    background-color: #0056b3;
+.btn2:hover {
+    background: linear-gradient(135deg, #FF4500, #FF2500);
+    transform: scale(1.05);
 }
 
-@media (max-width: 600px) {
-    .outer {
-        width: 100%;
-        padding: 10px;
-    }
 
-    .payment-button,
-    .form-button {
-        width: 100%;
-    }
 
-    .card-group {
-        flex-direction: column;
-    }
+.back-button2{
+    position: absolute;
+    top: 10px;
+    left: 180px;
+    background: none; 
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.back-button2 img {
+    width: 40px; 
+    height: auto;
+    border: none;
 }
