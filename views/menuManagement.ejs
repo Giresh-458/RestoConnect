@@ -1,60 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Menu Management</title>
-    <link rel="stylesheet" href="/css/menuManagement.css">
-</head>
-<body>
-    <a href="/logout">LOGOUT</a>
-    <a href="/owner">BACK</a>
-    <nav>
-        <h1>Restaurant Menu</h1>
-    </nav>
+    <link rel="stylesheet" href="/public/css/menuManagement.css" />
+  </head>
+  <body>
+    <header>
+      <button id="backButton">Back</button>
+      <h1>Menu Management</h1>
+    </header>
+    <div class="container">
+      <button class="add-button" onclick="showForm()">Add New Item</button>
 
-    <main class="container">
-        <h2>Manage Menu</h2>
+      <div class="form-container" id="formContainer">
+        <input type="text" id="itemName" placeholder="Item Name" />
+        <input type="text" id="category" placeholder="Category" />
+        <input type="number" id="price" placeholder="Price" />
+        <textarea id="description" placeholder="Description"></textarea>
+        <button class="submit-button" onclick="addItem()">Submit</button>
+      </div>
 
-        <form action="menuManagement/add" method="POST">
-            <input type="text" name="name" placeholder="Name" required>
-            <input type="text" name="category" placeholder="Category" required>
-            <input type="number" name="price" placeholder="Price" required>
-            <select name="status">
-                <option value="Available">Available</option>
-                <option value="Unavailable">Unavailable</option>
-            </select>
-            <input type="text" name="imageUrl" placeholder="Image URL">
-            <button type="submit">Add Item</button>
-        </form>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="menuTable">
+          <!-- Items will be added dynamically -->
+        </tbody>
+      </table>
+    </div>
 
-        <ul class="product-list">
-            <% products.forEach(product => { %>
-                <li>
-                    <img src="<%= product.imageUrl %>" alt="<%= product.name %>">
-                    <h3><%= product.name %></h3>
-                    <p>Category: <%= product.category %></p>
-                    <p>Price: ₹<%= product.price %></p>
-                    <p>Status: <%= product.status %></p>
-                    <form action="menuManagement/edit/<%= product.id %>" method="POST">
-                        <input type="text" name="name" value="<%= product.name %>" required>
-                        <input type="text" name="category" value="<%= product.category %>" required>
-                        <input type="number" name="price" value="<%= product.price %>" required>
-                        <select name="status">
-                            <option value="Available" <%= product.status === "Available" ? "selected" : "" %>>Available</option>
-                            <option value="Unavailable" <%= product.status === "Unavailable" ? "selected" : "" %>>Unavailable</option>
-                        </select>
-                        <input type="text" name="imageUrl" value="<%= product.imageUrl %>">
-                        <button type="submit">Edit</button>
-                    </form>
-                    <form action="menuManagement/delete/<%= product.id %>" method="POST">
-                        <button type="submit" class="delete-btn">Delete</button>
-                    </form>
-                </li>
-            <% }); %>
-        </ul>
-    </main>
-
-    <script src="/js/script.js"></script>
-</body>
+    <script src="/public/js/menuManagement.js"></script>
+  </body>
 </html>
