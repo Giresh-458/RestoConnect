@@ -7,22 +7,31 @@
     <link rel="stylesheet" href="/css/staffHomepage.css">
 </head>
 <body>
-    <div>
-        <a href="/staff/Dashboard">Dashboard</a>
-    </div>
-    <div class="container">
-        <h1 class="title">Staff Home Page</h1>
-        <div class="task-box">
-            <h2>Today's Tasks</h2>
-            <ul id="task-list">
-                <% tasks.forEach(task => { %>
-                    <li id="task-<%= task.id %>">
-                        <span class="task-text"><%= task.name %></span>
-                        <button class="delete-btn" onclick="deleteTask('<%= task.id %>')">❌</button>
-                    </li>
-                <% }); %>
-            </ul>
-            <button class="add-btn" id="add-task-btn">+ Add Task</button>
+    <nav class="nav-header">
+        <div class="nav-container">
+            <div class="logo">RestoConnect</div>
+            <div class="nav-links">
+                <a href="/staff/Dashboard" class="nav-link">Dashboard</a>
+                <a href="/logout" class="nav-link">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <div class="container">
+            <h1 class="title">Staff Tasks Management</h1>
+            <div class="task-box">
+                <h2>Today's Tasks</h2>
+                <ul id="task-list">
+                    <% tasks.forEach(task => { %>
+                        <li id="task-<%= task.id %>">
+                            <span class="task-text"><%= task.name %></span>
+                            <button class="delete-btn" onclick="deleteTask('<%= task.id %>')">❌</button>
+                        </li>
+                    <% }); %>
+                </ul>
+                <button class="add-btn" id="add-task-btn">+ Add Task</button>
+            </div>
         </div>
     </div>
 

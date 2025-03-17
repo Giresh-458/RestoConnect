@@ -1,32 +1,69 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const ordersChartData = JSON.parse(document.getElementById("ordersChart").dataset.chart);
-    const inventoryChartData = JSON.parse(document.getElementById("inventoryChart").dataset.chart);
+    const ordersChartData = {
+        labels: ["Sandwich", "biryani", "pizza"],
+        values: [10, 20, 30]
+    };
 
-    const ctx1 = document.getElementById('ordersChart').getContext('2d');
-    new Chart(ctx1, {
-        type: 'bar',
+    const inventoryChartData = {
+        labels: ["tomato", "olives", "cucumber"],
+        values: [50, 40, 30]
+    };
+
+    new Chart(document.getElementById('ordersChart'), {
+        type: 'doughnut',
         data: {
             labels: ordersChartData.labels,
             datasets: [{
-                label: 'Orders Processed',
                 data: ordersChartData.values,
-                backgroundColor: 'rgba(54, 162, 235, 0.6)'
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.8)',
+                    'rgba(255, 206, 86, 0.8)',
+                    'rgba(75, 192, 192, 0.8)'
+                ],
+                borderWidth: 1
             }]
         },
-        options: { responsive: true, maintainAspectRatio: false }
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                },
+                title: {
+                    display: true,
+                    text: 'Orders Processed'
+                }
+            }
+        }
     });
 
-    const ctx2 = document.getElementById('inventoryChart').getContext('2d');
-    new Chart(ctx2, {
+    new Chart(document.getElementById('inventoryChart'), {
         type: 'doughnut',
         data: {
             labels: inventoryChartData.labels,
             datasets: [{
-                label: 'Inventory Levels',
                 data: inventoryChartData.values,
-                backgroundColor: ['rgba(255, 99, 132, 0.6)', 'rgba(255, 206, 86, 0.6)', 'rgba(75, 192, 192, 0.6)']
+                backgroundColor: [
+                    'rgba(75, 192, 192, 0.8)',
+                    'rgba(153, 102, 255, 0.8)',
+                    'rgba(255, 159, 64, 0.8)'
+                ],
+                borderWidth: 1
             }]
         },
-        options: { responsive: true, maintainAspectRatio: false }
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                },
+                title: {
+                    display: true,
+                    text: 'Inventory Levels'
+                }
+            }
+        }
     });
 });

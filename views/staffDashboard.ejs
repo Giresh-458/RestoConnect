@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Staff Dashboard</title>
     <link rel="stylesheet" href="/css/staffDashboard.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
 </head>
 <body>
     <header>
@@ -57,11 +57,16 @@
         
         <section class="charts">
             <h2>Performance Analytics</h2>
-            <canvas id="ordersChart" data-chart='<%= JSON.stringify(ordersData) %>'></canvas>
-            <canvas id="inventoryChart" data-chart='<%= JSON.stringify(inventoryData) %>'></canvas>
+            <div class="charts-container">
+                <div class="chart-wrapper">
+                    <canvas id="ordersChart"></canvas>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="inventoryChart"></canvas>
+                </div>
+            </div>
         </section>
     </main>
-
     <script src="/js/staffDashboard.js"></script>
 </body>
 </html>

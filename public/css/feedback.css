@@ -1,6 +1,7 @@
 body {
-    font-family: Arial, sans-serif;
-    background: #f8f9fa;
+    font-family: 'Poppins', sans-serif;
+    background: #121212;
+    color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -87,7 +88,7 @@ body {
 .submit-btn {
     width: 100%;
     padding: 10px;
-    background-color: orange;
+    background-color: #ff914d;
     color: white;
     border: none;
     border-radius: 5px;
