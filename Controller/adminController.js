@@ -1,11 +1,25 @@
 const path = require('path');
-const { active_user_count, total_user_count, restaurants_list } = require('../Model/admin_model');
+const {  restaurants_list ,getDb} = require('../Model/admin_model');
 const { restaurants, Restaurant } = require('../Model/Restaurents_model');
+const { get } = require('http');
+ 
 
 exports.getAdminDashboard = (req, res) => {
-    res.render(path.join(__dirname, '..', 'Views', 'Admin_Dashboard'), { 
-        active_user_count, total_user_count, restaurants_list 
-    });
+
+   
+     getDb((db)=>{db.all('select * from userstats',(err,rows)=>{
+        
+        
+                                
+        res.render(path.join(__dirname, '..', 'Views', 'Admin_Dashboard'), { 
+            active_user_count:rows[0].active_user_count, total_user_count:rows[0].total_user_count, restaurants_list 
+        });
+
+    })
+});
+        
+    
+    
 };
 
 exports.postAddRestaurent = (req, res) => {
