@@ -30,10 +30,22 @@
                         </li>
                     <% }); %>
                 </ul>
+
                 <button class="add-btn" id="add-task-btn">+ Add Task</button>
             </div>
         </div>
     </div>
+
+
+
+        <div id="task_taker" class="dispaly_none">
+            <form action="/staff/HomePage/tasks" method="post" id="add_task_form">
+                <input type="text" name="name">
+                <button type="submit" onclick="add_task()">add</button>
+            </form>
+        </div>
+
+
 
     <script src="/js/staffHomepage.js"></script>
 </body>

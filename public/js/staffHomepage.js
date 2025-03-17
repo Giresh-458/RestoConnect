@@ -17,30 +17,15 @@ function deleteTask(taskId) {
 }
 
 document.getElementById('add-task-btn').addEventListener('click', () => {
-    const taskName = prompt('Enter the name of the new task:');
-    if (taskName) {
-        fetch('/staff/HomePage/tasks', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ name: taskName }),
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                const taskList = document.getElementById('task-list');
-                const newTask = document.createElement('li');
-                newTask.id = `task-${data.task.id}`;
-                newTask.innerHTML = `
-                    ${data.task.name}
-                    <button class="delete-btn" onclick="deleteTask('${data.task.id}')">❌</button>
-                `;
-                taskList.appendChild(newTask);
-            } else {
-                alert('Failed to add task.');
-            }
-        })
-        .catch(error => console.error('Error:', error));
-    }
-});
+
+let task_taker = document.getElementById('task_taker');
+task_taker.remove
+task_taker.classList.remove('dispaly_none');
+
+})
+
+
+let add_task = function(){
+    task_taker.classList.add('dispaly_none');
+    document.getElementById('task_taker').submit();
+}

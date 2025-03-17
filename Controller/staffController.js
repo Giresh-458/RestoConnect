@@ -37,7 +37,8 @@ exports.postHomePageTask = (req, res) => {
     const newTask = { id: Date.now(), name: req.body.name };
     const rest = restaurents.find(r => r.name ===  user_model.users.find(r => r.username == req.cookies.username).restaurantName);
     rest.tasks.push(newTask);
-    res.json({ success: true, task: newTask });
+   // res.json({ success: true, task: newTask });
+   res.redirect('/staff/Homepage')
 }
 
 exports.deleteHomePageTasks = (req, res) => {

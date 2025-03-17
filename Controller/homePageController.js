@@ -7,6 +7,7 @@ exports.getHomePage = (req, res) => {
     const { city_option_home: loco, name_resaurent: name2 } = req.query;
     let arr = [];
 
+    
     if (loco && name2) {
         arr = restaurants_data.filter(r =>
             r.location.trim().toLowerCase() === loco.trim().toLowerCase() &&
@@ -14,6 +15,11 @@ exports.getHomePage = (req, res) => {
         );
     } else if (login) {
         arr = restaurants_data; // Load all restaurants if logged in and no search filters
+    }
+
+    if(arr.length==0){
+        arr =  restaurants_data.filter(r => true);
+
     }
 
     let userRole = users.find(r => r.username === req.cookies?.username);
