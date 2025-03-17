@@ -5,29 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="/css/admin_dashboard_styles.css">
+   
 </head>
 <body>
 
 <div class="dashboard"> 
 
+
+
+
+    
+
     <nav class="sidebar">
         <ul>
-            <li><a href="#">Revenue</a></li>
-            <li><a href="#">Users Statistics</a></li>
-            <li><a href="#">Restaurants</a></li>
-            <li><a href="#">Profile</a></li>
+            <li><a href="#profile">Profile</a></li>
+            <li><a href="#revenue">Revenue</a></li>
+            <li><a href="#stats">Users Statistics</a></li>
+            <li><a href="#restlist">Restaurants</a></li>
             <li class="logout"><a href="/logout">Logout</a></li>
         </ul>
     </nav>
 
+
+
+   
     <main class="content">
-        <section class="profile">
+
+
+        <section id="revenue">
+
+        </section>
+
+
+        <section class="profile" id="profile">
             <h2>adam</h2>
             <p>Administrator</p>
             <p>adam@gmail.com</p>
         </section> 
 
-        <section class="stats">
+        <section class="stats" id="stats">
             <div class="stat-box">
                 <h6>Active Users</h6>
                 <div class="stat-number"><h1><%= active_user_count %></h1></div>
@@ -38,7 +54,7 @@
             </div>
         </section>
 
-        <section class="restaurant-list">
+        <section class="restaurant-list" id="restlist">
 
             <% restaurants_list.forEach(restaurent => { %>
                 <div class="restaurant-card">
@@ -72,6 +88,7 @@
     </main>
 
 </div>
+
 
 <script src="/js/admin_dash_script.js"></script>
 
