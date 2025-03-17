@@ -4,13 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RestoConnect - Dashboard</title>
-    <link rel="stylesheet" href="/css/owner_Homepage_dashboard.css" />
+    <link rel="stylesheet" href="/public/css/owner_Homepage_dashboard.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
-    <a href="/logout"></a>
     <header>
+      <a href="/Back" class="backButton">Back</a>
       <h1>Manager Dashboard - <%= restaurant %></h1>
+      <a href="/logout" class="logout-btn">Logout</a>
     </header>
     <main>
       <div class="dashboard-container">
@@ -39,6 +40,6 @@
         </div>
       </div>
     </main>
-    <script src="/js/ownerDashboard.js"></script>
+    <script src="/public/js/ownerDashboard.js"></script>
   </body>
 </html>
