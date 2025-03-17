@@ -22,7 +22,6 @@ header {
   color: white;
   cursor: pointer;
   font-size: 16px;
-  text-decoration: none;
   padding: 10px 15px;
   border-radius: 5px;
   border: none;
@@ -62,7 +61,8 @@ header {
 }
 
 input,
-textarea {
+textarea,
+select {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -102,9 +102,23 @@ td {
   text-align: left;
 }
 
-.available {
-  color: green;
+.status {
   font-weight: bold;
+  padding: 5px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.status-available {
+  color: green;
+}
+
+.status-outofstock {
+  color: red;
+}
+
+.status-comingsoon {
+  color: #ffa500;
 }
 
 .actions {
@@ -132,34 +146,9 @@ td {
 }
 
 .edit:hover {
-  background-color: #ffa500;
+  background-color: #e67e22;
 }
 
 .delete:hover {
   background-color: #c82333;
-}
-
-@media (max-width: 600px) {
-  header {
-    flex-direction: column;
-  }
-
-  #backButton {
-    position: relative;
-    margin-bottom: 10px;
-  }
-
-  .container {
-    width: 90%;
-  }
-
-  table {
-    font-size: 12px;
-  }
-
-  .edit,
-  .delete {
-    font-size: 12px;
-    padding: 3px 6px;
-  }
 }
