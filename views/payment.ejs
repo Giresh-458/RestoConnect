@@ -9,12 +9,15 @@
 <body>
     <header>
         <h1>Payment Options</h1>
-        <a href="/customer/order_reservation" class="back-btn">Back</a>
+        <div class="back-btn">
+        <a href="/customer/order_reservation" >Back</a>
+
+        </div>
     </header>
 
     <div class="outer">
-        <h2>Payment Options</h2>
-        <p>To pay: <%= bill_price %></p>
+        <h2>To pay: <%= bill_price %></h2>
+
     </div>
     
     <div id="mainPage" class="outer">
@@ -43,38 +46,38 @@
             </div>
         </div>
 
-       <div class="box">
-    <div class="wallet-icon-container">
-        <img src="/public/images/wallet-svgrepo-com.svg" alt="Wallet Icon" class="wallet_icon">
-        <b>Wallets</b>
+<div class="box">
+    <div class="payment_txt">
+        <b> Wallets</b>
     </div>
     <div class="inner">
         <button class="payment-button" onclick="showWallets()">
-            <div class="wallet">
-                
-            </div>
-            <span class="text"><b>Wallets</b></span>
-        </button>
+            <div class="wallet"> <img src="/images/wallet-svgrepo-com.svg" alt="Icon" class="wallet_icon"> </div>
+            <span class="text"> <b>Wallets</b> </span>
+        </button> 
     </div>
+</div>
 </div>
 
     <div id="upiForm" class="payment-form outer" style="display: none;">
         <button class="back-button" onclick="goBack()">
             <img src="/images/back-svgrepo-com.svg" alt="Back">
         </button>
+        <div class="box">
         <input type="text" id="upi-id" class="input_box_txt" placeholder=" ENTER UPI ID HERE">
         <button class="form-button verify-button" onclick="verifyUPI()">Verify</button>
     </div>
+    </div>
 
-    <div id="cardForm" class="payment-form outer" style="display: none;">
-        <button class="back-button" onclick="goBack()">
+    <div id="cardForm" class="payment-form card_form" style="display: none;">
+        <button class="back-button2" onclick="goBack()">
             <img src="/images/back-svgrepo-com.svg" alt="Back">
         </button>
-        <div class="card_div">
+        <div class="card_div box">
             <input type="text" id="card-number" class="card_details" placeholder="Card Number">
             <div class="card-group">
-                <input type="text" id="valid-thru" class="card_details" placeholder="Valid Through (MM/YY)">
-                <input type="text" id="cvv" class="card_details" placeholder="CVV">
+                <input type="text" id="valid-thru" class="card_details vt" placeholder="Valid Through (MM/YY)">
+                <input type="text" id="cvv" class="card_details cvv" placeholder="CVV">
             </div>
             <input type="text" id="card-name" class="card_details" placeholder="Name on Card">
             <select id="card-type" class="card_details">
@@ -86,12 +89,12 @@
         </div>
     </div>
     
-    <div id="walletsForm" class="payment-form outer" style="display: none;">
+    <div id="walletsForm" class="payment-form2 outer" style="display: none;">
         <button class="back-button" onclick="goBack()">
             <img src="/images/back-svgrepo-com.svg" alt="Back">
         </button>
         <p class="select-wallet-text">Select your UPI app to proceed</p> 
-        <div class="select_upi_app">
+        <div class="select_upi_app box">
             <button class="upi_app" onclick="selectWallet('PhonePe')">
                 <img src="/images/phonepe-1.svg" alt="PhonePe" class="upi-logo">
             </button>
@@ -105,7 +108,7 @@
     </div>
 
     <form action="/customer/orderplaced" method="post">
-        <button type="submit">Pay</button>
+        <button type="submit" class="btn2">Pay</button>
     </form>
 
     <script>
