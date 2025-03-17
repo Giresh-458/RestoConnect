@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Handle Back Button Click
+ 
   document.getElementById("backButton").addEventListener("click", function () {
     window.history.back();
   });
@@ -14,20 +14,23 @@ function addItem() {
   let category = document.getElementById("category").value;
   let price = document.getElementById("price").value;
   let description = document.getElementById("description").value;
+  let status = document.getElementById("status").value;
 
-  if (!name || !category || !price || !description) {
+  if (!name || !category || !price || !description || !status) {
     alert("All fields are required!");
     return;
   }
 
   let table = document.getElementById("menuTable");
   let row = table.insertRow();
+  let statusClass = getStatusClass(status);
+
   row.innerHTML = `
         <td>${name}</td>
         <td>${category}</td>
         <td>$${parseFloat(price).toFixed(2)}</td>
         <td>${description}</td>
-        <td class='available'>Available</td>
+        <td class='status ${statusClass}'>${status}</td>
         <td class="actions">
             <button class='edit' onclick='editItem(this)'>Edit</button>
             <button class='delete' onclick='deleteItem(this)'>Delete</button>
@@ -39,6 +42,7 @@ function addItem() {
   document.getElementById("category").value = "";
   document.getElementById("price").value = "";
   document.getElementById("description").value = "";
+  document.getElementById("status").value = "Available";
 }
 
 function deleteItem(element) {
@@ -54,6 +58,15 @@ function editItem(element) {
     ""
   );
   document.getElementById("description").value = row.cells[3].innerText;
+  document.getElementById("status").value = row.cells[4].innerText;
+
   row.remove();
   showForm();
 }
+
+function getStatusClass(status) {
+  if (status === "Available") return "status-available";
+  if (status === "Out of Stock") return "status-outofstock";
+  if (status === "Coming Soon") return "status-comingsoon";
+}
+
