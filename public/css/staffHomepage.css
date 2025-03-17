@@ -167,6 +167,20 @@ h2 {
     color: #333;
 }
 
+
+.task_taker{
+position: absolute;
+top: 10px;
+left: 0.5vw;
+}
+
+.dispaly_none{
+    display: none;
+}
+
+
+
+
 /* Responsive Design */
 @media (max-width: 600px) {
     .container {
