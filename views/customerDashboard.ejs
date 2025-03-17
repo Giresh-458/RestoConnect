@@ -1,81 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/customer_dashboard_styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Dashboard</title>
+  <link rel="stylesheet" href="/css/customer_dashboard_styles.css">
 </head>
 <body>
-
-    <div class="navbar">
-        <div class="nav-links">
-            <a href="/">Home</a>   
-            <a href="#prev_order">Orders</a>
-            <a href="#" id="chg_pass">Change Password</a>
-        </div>
-        <a href="/logout" style="margin-left: auto;">Logout</a>
+  <div class="dashboard">
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="#prev_order">Orders</a></li>
+        <li><a href="#" id="chg_pass">Change Password</a></li>
+        <li class="logout"><a href="/logout">Logout</a></li>
+      </ul>
     </div>
 
-    <div class="nadcuscontainer1" id="home">
+    <!-- Main Content Area -->
+    <div class="content">
+      <!-- Profile / Home Section -->
+      <div class="nadcuscontainer1" id="home">
         <div class="profile box">
-            <span></span>
-            <div>
-                <img src="<%=img_url%>" alt="Profile Image" width="40px">
-                <h3><%= name %></h3>
-                <h4>Address:</h4>
-            </div>
+          <span></span>
+          <div>
+            <img src="<%= img_url %>" alt="Profile Image" width="40px">
+            <h3><%= name %></h3>
+            <h4>Address:</h4>
+          </div>
         </div>
         
+        <!-- Dashboard / Charts Section -->
         <div class="nadcusdashboards box" id="prev_order">
-            <div class="chart-container">
-                <canvas id="pichart1" width="200" height="200"></canvas>
-                <ul>
-                    <% item_list.forEach(product => { %>
-                        <li><%= product %></li>
-                    <% }) %>
-                </ul>
-            </div>
-            <div class="chart-container">
-                <canvas id="pichart2" width="200" height="200"></canvas>
-                <ul>
-                    <% restaurent_list.forEach(product => { %>
-                        <li><%= product %></li>
-                    <% }) %>
-                </ul>
-            </div>
+          <div class="chart-container">
+            <canvas id="pichart1" width="200" height="200"></canvas>
+            <ul>
+              <% item_list.forEach(product => { %>
+                <li><%= product %></li>
+              <% }); %>
+            </ul>
+          </div>
+          <div class="chart-container">
+            <canvas id="pichart2" width="200" height="200"></canvas>
+            <ul>
+              <% restaurent_list.forEach(product => { %>
+                <li><%= product %></li>
+              <% }); %>
+            </ul>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <div class="ncuspastorder box">
+      <!-- Past Orders Section -->
+      <div class="ncuspastorder box">
         <div class="ncusprevdiv">
-            <% prev_order.forEach(rest => { %>
-                <div>
-                    <h1><%= rest.name %></h1>
-                    <ul>
-                        <% rest.items.forEach(item => { %>
-                            <li><%= item %></li>
-                        <% }) %>
-                    </ul>
-                </div>
-            <% }) %>
+          <% prev_order.forEach(rest => { %>
+            <div>
+              <h1><%= rest.name %></h1>
+              <ul>
+                <% rest.items.forEach(item => { %>
+                  <li><%= item %></li>
+                <% }); %>
+              </ul>
+            </div>
+          <% }); %>
         </div>
-    </div>
-    
-    <div class="ncusdasheditform box none">
+      </div>
+      
+      <!-- Change Password Form (Hidden by Default) -->
+      <div class="ncusdasheditform box none">
         <div id="cross_symbol">
-            <a href="#" class="close-btn">&#10006;</a>  
+          <a href="#" class="close-btn">&#10006;</a>
         </div>
         <h1>Change Password</h1>
         <form action="" method="post">
-            <label for="ncusformoldpass">Old Password</label>
-            <input type="text" id="ncusformoldpass">
-            <br>
-            <label for="ncusformnewpass">New Password</label>
-            <input type="text" id="ncusformnewpass">
+          <label for="ncusformoldpass">Old Password</label>
+          <input type="text" id="ncusformoldpass">
+          <br>
+          <label for="ncusformnewpass">New Password</label>
+          <input type="text" id="ncusformnewpass">
         </form>
+      </div>
     </div>
+  </div>
 
-    <script src="/js/customer_dashboard_script.js"></script>
-
+  <script src="/js/customer_dashboard_script.js"></script>
 </body>
 </html>

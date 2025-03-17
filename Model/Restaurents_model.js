@@ -62,11 +62,6 @@ const restaurantsData = [
     { name: "Ocean Feast", image: "/images/h1.jpeg", rating: 4.8, location: "Tada", amount: 2200, date: "2025-02-22" },
     { name: "Grill House", image: "/images/h1.jpeg", rating: 4.6, location: "Hyderabad", amount: 2000, date: "2025-02-19" },
     { name: "Spicy Biryani House", image: "/images/h1.jpeg", rating: 4.6, location: "Bangalore", amount: 1700, date: "2025-02-18" },
-    { name: "Spice Delight", image: "/images/h1.jpeg", rating: 4.2, location: "New York, NY", amount: 1200, date: "2025-02-20" },
-    { name: "The Food Hub", image: "/images/h1.jpeg", rating: 4.0, location: "Los Angeles, CA", amount: 850, date: "2025-02-18" },
-    { name: "Tasty Treats", image: "/images/h1.jpeg", rating: 3.9, location: "Chicago, IL", amount: 950, date: "2025-02-15" },
-    { name: "Gourmet Bites", image: "/images/h1.jpeg", rating: 4.5, location: "Houston, TX", amount: 1500, date: "2025-02-10" },
-    { name: "Savor Street", image: "/images/h1.jpeg", rating: 4.1, location: "San Francisco, CA", amount: 700, date: "2025-02-05" }
 ];
 
 

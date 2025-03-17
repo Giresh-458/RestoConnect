@@ -1,185 +1,221 @@
-body {
+/* Reset & Global */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    background: #121212;
+  }
+  
+  body {
+    background-color: #121212;
     color: #fff;
     margin: 0;
     padding: 0;
-}
-
-.navbar {
+    text-align: center;
+  }
+  
+  /* ----- Dashboard Layout ----- */
+  .dashboard {
     display: flex;
+    height: 100vh; /* Full viewport height; adjust if needed */
+  }
+  
+  /* ----- Sidebar ----- */
+  .sidebar {
+    width: 250px;
     background-color: #333;
     color: #fff;
-    padding: 10px;
-}
-
-.navbar a {
-    color: #ffffff;
-    text-decoration: none;
-    padding: 12px 18px;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    font-weight: 500;
-}
-
-.navbar .nav-links a {
+    padding: 20px;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar ul li {
+    margin: 20px 0;
+  }
+  
+  .sidebar ul li a {
     color: #fff;
     text-decoration: none;
-    margin-right: 20px;
-}
-
-.navbar a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-.navbar .nav-links a:hover {
+    font-size: 18px;
+  }
+  
+  .sidebar ul li a:hover {
     text-decoration: underline;
-}
-
-.nav-links {
-    display: flex;
-    gap: 15px;
-}
-
-.nadcuscontainer1 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  }
+  
+  .logout a {
+    color: #e50914;
+    font-weight: bold;
+  }
+  
+  /* ----- Main Content ----- */
+  .content {
+    flex: 1;
     padding: 20px;
-}
-
-.profile {
-    background-color: #00ffff;
+    /* If you want a dark main area, use a dark color; if you want contrast, use lighter. */
+    background-color: #1f1f1f;
+    color: #fff;
+    overflow-y: auto; /* Scroll if content is tall */
+    text-align: left; /* Usually better for content sections */
+  }
+  
+  /* Optional: If you prefer the content fully dark with no contrast, 
+     you could do: 
+     background-color: #121212; 
+     color: #fff; 
+  */
+  
+  /* ----- Reusing "box" styling for sections ----- */
+  .box {
+    background-color: #2a2a2a;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  /* Profile Box inside .nadcuscontainer1 */
+  .profile.box {
+    text-align: center;
+  }
+  
+  .profile.box img {
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  /* Charts / Dashboard Section */
+  .nadcusdashboards.box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .chart-container {
+    width: 45%;
+    min-width: 280px;
+    background-color: #3a3a3a;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .chart-container canvas {
+    display: block;
+    margin: 0 auto 10px auto;
+  }
+  
+  .chart-container ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  /* Past Orders Section */
+  .ncuspastorder.box {
+    /* Already has background from .box */
+    text-align: left; /* Usually better for listing orders */
+  }
+  
+  .ncusprevdiv div {
+    background-color: #3a3a3a;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 10px;
+  }
+  
+  .ncusprevdiv h1 {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  
+  .ncusprevdiv ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  /* Change Password Form */
+  .ncusdasheditform.box {
+    display: none; /* Hidden by default, show via JS when needed */
+    position: relative;
+    text-align: left;
+  }
+  
+  .ncusdasheditform h1 {
+    margin-bottom: 15px;
+  }
+  
+  .ncusdasheditform label {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .ncusdasheditform input {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #2a2a2a;
+    color: #fff;
+  }
+  
+  /* Close Button */
+  .close-btn {
+    text-decoration: none;
+    color: #fff;
+    font-size: 24px;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    transition: color 0.3s;
+  }
+  
+  .close-btn:hover {
+    color: #e50914;
+  }
+  
+  /* ----- Example "Stats" (If you want a stats row) ----- */
+  /* (Optional) 
+  .stats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+  .stat-box {
+    background-color: #ff4b4b;
+    color: #fff;
     padding: 20px;
     border-radius: 5px;
     text-align: center;
-    margin-bottom: 20px;
-    width: 100%;
-}
-
-.profile img {
-    border-radius: 50%;
-}
-
-.profile h3 {
-    margin: 10px 0;
-}
-
-.nadcusdashboards {
-    background-color: #000;
-    color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.chart-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.nadcusdashboards canvas {
-    margin-bottom: 10px;
-}
-
-.nadcusdashboards ul {
-    list-style: none;
-    padding: 0;
-}
-
-.nadcusdashboards ul li {
-    margin-bottom: 10px;
-}
-
-.ncuspastorder {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    width: 100%;
-    border: 1px solid #ddd;
-    color: #333;
-}
-
-.ncusprevdiv {
-    overflow-y: auto;
-}
-
-.ncusprevdiv div {
-    border: 1px solid #000;
-    padding: 10px;
-    margin-bottom: 10px;
-}
-
-.ncusdasheditform {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    display: none;
-    color: #333;
-}
-
-.ncusdasheditform h1 {
-    margin-top: 0;
-}
-
-.ncusdasheditform form {
-    display: flex;
-    flex-direction: column;
-}
-
-.ncusdasheditform label {
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-.ncusdasheditform input {
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-#cross_symbol {
-    text-align: right;
-}
-
-.close-btn {
-    text-decoration: none;
-    color: #000;
-    font-size: 24px;
-    float: right;
-    transition: 0.3s ease;
-}
-
-.close-btn:hover {
-    color: red;
-}
-
-@media (max-width: 900px) {
-    .nadcuscontainer1 {
-        grid-template-columns: 1fr;
+    width: 30%;
+  }
+  */
+  
+  /* ----- Responsive Adjustments ----- */
+  @media (max-width: 768px) {
+    .dashboard {
+      flex-direction: column;
+      height: auto; /* Let content flow */
     }
-}
-
-@media (max-width: 480px) {
-    .navbar {
-        flex-direction: column;
-        text-align: center;
+  
+    .sidebar {
+      width: 100%;
+      height: auto;
+      text-align: center;
     }
-
-    .nav-links {
-        flex-direction: column;
-        gap: 5px;
+  
+    .content {
+      margin-top: 20px;
     }
-
-    .ncusdasheditform {
-        width: 90%;
+  
+    .nadcusdashboards.box {
+      flex-direction: column;
+      align-items: center;
     }
-}
+    .chart-container {
+      width: 100%;
+    }
+  }
+  
