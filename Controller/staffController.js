@@ -43,12 +43,17 @@ exports.postHomePageTask = (req, res) => {
 
 exports.deleteHomePageTasks = (req, res) => {
     const taskId = parseInt(req.params.id);
-    const initialLength = tasks.length;
-    tasks = tasks.filter(task => task.id !== taskId);
+   
 
-    if (tasks.length < initialLength) {
+      const rest = restaurents.find(r => r.name ===  user_model.users.find(r => r.username == req.cookies.username).restaurantName);
+      console.log(rest.tasks);
+    rest.tasks = rest.tasks.filter(task => task.id !== taskId);
+    console.log(rest.tasks);
+    /*if (tasks.length < initialLength) {
         res.json({ success: true });
     } else {
         res.status(404).json({ success: false, message: "Task not found" });
-    }
+    }*/
+
+        res.redirect('/staff/Dashboard');
 }
