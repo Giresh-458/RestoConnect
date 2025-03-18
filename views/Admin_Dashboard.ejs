@@ -10,12 +10,6 @@
 <body>
 
 <div class="dashboard"> 
-
-
-
-
-    
-
     <nav class="sidebar">
         <ul>
             <li><a href="#profile">Profile</a></li>
@@ -26,24 +20,21 @@
         </ul>
     </nav>
 
-
-
-   
     <main class="content">
 
 
-        <section id="revenue">
+        <div id="revenue">
 
-        </section>
+        </div>
 
 
-        <section class="profile" id="profile">
+        <div class="profile" id="profile">
             <h2>adam</h2>
             <p>Administrator</p>
             <p>adam@gmail.com</p>
-        </section> 
+        </div> 
 
-        <section class="stats" id="stats">
+        <div class="stats" id="stats">
             <div class="stat-box">
                 <h6>Active Users</h6>
                 <div class="stat-number"><h1><%= active_user_count %></h1></div>
@@ -52,9 +43,9 @@
                 <h6>Total Users</h6>
                 <div class="stat-number"><h1><%= total_user_count %></h1></div>
             </div>
-        </section>
+        </div>
 
-        <section class="restaurant-list" id="restlist">
+        <div class="restaurant-list" id="restlist">
 
             <% restaurants_list.forEach(restaurent => { %>
                 <div class="restaurant-card">
@@ -64,11 +55,11 @@
                     <div><strong>Joined:</strong> <%= restaurent.date %></div>
                 </div>
             <% }) %>
-        </section>
+        </div>
 
         
 
-        <section class="form-section">
+        <div class="form-section">
             <form action="/admin/add_restaurant" method="POST">
                 <label>Name:</label>
                 <input type="text" name="name" required>
@@ -84,7 +75,7 @@
 
                 <button type="submit">Submit</button>
             </form>
-        </section>
+        </div>
     </main>
 
 </div>

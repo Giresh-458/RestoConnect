@@ -5,7 +5,7 @@ class User {
     constructor(username, role, restaurantName = null, password) {
         this.username = username;
         this.role = role;
-        this.restaurantName = role !== 'customer' ? restaurantName : null;
+        this.restaurantName = role !== 'customer' || 'admin' ? restaurantName : null;
         this.password = password;
     }
 

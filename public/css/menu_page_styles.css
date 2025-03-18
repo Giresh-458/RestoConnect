@@ -6,7 +6,6 @@ body {
   color: #333;
   text-align: center;
 }
-
 .nav-bar {
   display: flex;
   justify-content: space-between;

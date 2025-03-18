@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Customer Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="/css/customer_dashboard_styles.css">
 </head>
 <body>
   <div class="dashboard">
-    <!-- Sidebar Navigation -->
     <div class="sidebar">
       <ul>
         <li><a href="/">Home</a></li>
@@ -18,9 +18,7 @@
       </ul>
     </div>
 
-    <!-- Main Content Area -->
     <div class="content">
-      <!-- Profile / Home Section -->
       <div class="nadcuscontainer1" id="home">
         <div class="profile box">
           <span></span>
@@ -31,7 +29,6 @@
           </div>
         </div>
         
-        <!-- Dashboard / Charts Section -->
         <div class="nadcusdashboards box" id="prev_order">
           <div class="chart-container">
             <canvas id="pichart1" width="200" height="200"></canvas>
@@ -52,7 +49,6 @@
         </div>
       </div>
 
-      <!-- Past Orders Section -->
       <div class="ncuspastorder box">
         <div class="ncusprevdiv">
           <% prev_order.forEach(rest => { %>
@@ -68,7 +64,6 @@
         </div>
       </div>
       
-      <!-- Change Password Form (Hidden by Default) -->
       <div class="ncusdasheditform box none">
         <div id="cross_symbol">
           <a href="#" class="close-btn">&#10006;</a>

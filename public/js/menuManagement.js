@@ -9,6 +9,7 @@ function showForm() {
   document.getElementById("formContainer").style.display = "flex";
 }
 
+
 function addItem() {
   let name = document.getElementById("itemName").value;
   let category = document.getElementById("category").value;

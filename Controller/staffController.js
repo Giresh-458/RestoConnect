@@ -10,8 +10,6 @@ const user_model = require('../Model/userRoleModel');
 //Dashboard Methods
 
 exports.getDashBoard  = (req, res) => {
-   
-    
     const rest = restaurents.find(r => r.name ===  user_model.users.find(r => r.username == req.cookies.username).restaurantName);
    
     res.render('staffDashboard', {orders: rest.orders, tables:rest.tables, inventory:rest.inventory, ordersData:rest.orderData, inventoryData:rest.inventoryData });

@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="/css/login.css">
 </head> 
 <body>
-
     <div class="background">
        <div class="overlay"></div>
     </div>
@@ -20,7 +19,7 @@
                 <input class="log_input" type="text" id="username" placeholder="User name" name="username" required>
             </div>
 
-            <div id="extraFields"></div> <!-- Extra fields for Sign Up -->
+            <div id="extraFields"></div> 
 
             <div class="password">
                 <input class="log_input" type="password" id="password" placeholder="Password" name="password" required>
@@ -42,12 +41,10 @@
             const extraFieldsDiv = document.getElementById('extraFields');
 
             if (submitBtn.innerText === "Log In") {
-                // Switch to Sign Up
                 toggleLink.innerHTML = '<a class="toggle_color" href="#" onclick="toggleForm(); return false;">Already have an account? Login</a>';
                 form.querySelector('.sign-in').innerText = "Sign Up";
                 submitBtn.innerText = "Sign Up";
 
-                // Add additional fields
                 extraFieldsDiv.innerHTML = `
                     <div class="extra-input">
                         <input class="log_input" type="text" id="fullName" placeholder="Full Name" name="fullName" required>
@@ -61,12 +58,10 @@
                 `;
 
             } else {
-                // Switch to Login
                 toggleLink.innerHTML = '<a class="toggle_color" href="#" onclick="toggleForm(); return false;">New user? Sign Up</a>';
                 form.querySelector('.sign-in').innerText = "Log In";
                 submitBtn.innerText = "Log In";
                 
-                // Remove additional fields
                 extraFieldsDiv.innerHTML = "";
             }
         }
@@ -86,7 +81,7 @@
                 return false;
             }
 
-            return true; // Proceed with form submission
+            return true; 
         }
     </script>
 

@@ -11,18 +11,15 @@
         
         <ul class="nav-links">
             <li><a href="/">Home</a></li>
-            
         </ul>
         <div class="menu-toggle">&#9776;</div>
     </nav>
 
-    <!-- Restaurant Info -->
     <div class="item_list items" id="restaurant_info">
         <h2 id="restaurant_name"><%= restaurant.name %></h2>
         <h4 id="restaurant_location"><%= restaurant.location %></h4>
     </div>
 
-    <!-- Menu Items -->
     <div id="menu">
         <% dishes.forEach((dish, index) => { %>
             <div class="items">
@@ -35,7 +32,6 @@
                     <div class="dish_img">
                         <img src="/images/<%= dish.image %>" alt="<%= dish.name %>">
                     </div>
-                    <!-- Add to Cart & Counter -->
                     <button class="cart_button" data-index="<%= index %>" data-dish="<%= dish.name %>">Add to Cart</button>
                     <div class="counter" data-index="<%= index %>" data-dish="<%= dish.name %>">
                         <button class="decrease" data-index="<%= index %>">-</button>
@@ -47,72 +43,15 @@
         <% }); %>
     </div>
 
-    <!-- Hidden Form for Order Submission -->
     <form id="orderForm" action="/customer/order_reservation" method="post" style="display: none;">
         <input type="hidden" name="restaurant" id="restaurantInput">
         <input type="hidden" name="order" id="orderInput">
     </form>
 
-    <!-- Order Button -->
     <button class="btn2">Order</button>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('menu').addEventListener('click', function(event) {
-                const target = event.target;
-                const index = target.dataset.index;
-                
-                if (!index) return;
-
-                const cartButton = document.querySelector(`.cart_button[data-index="${index}"]`);
-                const counter = document.querySelector(`.counter[data-index="${index}"]`);
-                const itemCount = counter.querySelector('.item_count');
-
-                if (target.classList.contains('cart_button')) {
-                    cartButton.style.display = 'none';
-                    counter.style.display = 'flex';
-                    itemCount.textContent = 1;
-                    counter.classList.add('active');
-                } 
-
-                if (target.classList.contains('increase')) {
-                    itemCount.textContent = parseInt(itemCount.textContent) + 1;
-                }
-
-                if (target.classList.contains('decrease')) {
-                    let count = parseInt(itemCount.textContent) - 1;
-                    itemCount.textContent = count;
-                    
-                    if (count === 0) {
-                        cartButton.style.display = 'inline-block';
-                        counter.style.display = 'none';
-                    }
-                }
-            });
-
-            document.querySelector('.btn2').addEventListener('click', () => {
-                const restaurantName = document.getElementById('restaurant_name').innerText;
-                const order = [];
-
-                document.querySelectorAll('.counter').forEach(counter => {
-                    const dishName = counter.dataset.dish;
-                    const quantity = parseInt(counter.querySelector('.item_count').textContent);
-                    
-                    if (quantity > 0) {
-                        order.push({ dish: dishName, quantity });
-                    }
-                });
-
-                if (order.length === 0) {
-                    alert('No items selected!');
-                    return;
-                }
-
-                document.getElementById('restaurantInput').value = restaurantName;
-                document.getElementById('orderInput').value = JSON.stringify(order);
-                document.getElementById('orderForm').submit();
-            });
-        });
+    <script src="/js/menu.js">
+       
     </script>
 
 </body>

@@ -20,7 +20,6 @@ const overallRevenueChart = new Chart(
     },
   }
 );
-
 const monthlyRevenueChart = new Chart(
   document.getElementById("monthlyRevenueChart"),
   {

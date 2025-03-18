@@ -1,8 +1,4 @@
 
-
-
-
-
 class Person {
 
 constructor(name,img_url){
@@ -85,10 +81,10 @@ exports.get_user_function = function(name) {
         name: user.name,
         img_url: user.img_url,
         prev_order:user.prev_orders,
-        item_list: topDishesData.top3, // Top 3 dish names
-        top_dishes_count: topDishesData.top3_cont, // Their respective counts
-        restaurent_list: topRestaurantsData.top3, // Top 3 restaurant names
-        top_restaurants_count: topRestaurantsData.top3_cont // Their respective counts
+        item_list: topDishesData.top3, 
+        top_dishes_count: topDishesData.top3_cont,
+        restaurent_list: topRestaurantsData.top3,
+        top_restaurants_count: topRestaurantsData.top3_cont
     };
 };
 

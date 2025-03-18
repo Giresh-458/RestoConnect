@@ -1,4 +1,3 @@
-/* Reset & Global */
 * {
     padding: 0;
     margin: 0;
@@ -14,13 +13,12 @@
     text-align: center;
   }
   
-  /* ----- Dashboard Layout ----- */
   .dashboard {
     display: flex;
-    height: 100vh; /* Full viewport height; adjust if needed */
+    height: 100vh; 
   }
   
-  /* ----- Sidebar ----- */
+  
   .sidebar {
     width: 250px;
     background-color: #333;
@@ -44,7 +42,9 @@
   }
   
   .sidebar ul li a:hover {
-    text-decoration: underline;
+    text-decoration: none;
+    color: #e50914;
+
   }
   
   .logout a {
@@ -52,24 +52,16 @@
     font-weight: bold;
   }
   
-  /* ----- Main Content ----- */
   .content {
     flex: 1;
     padding: 20px;
-    /* If you want a dark main area, use a dark color; if you want contrast, use lighter. */
     background-color: #1f1f1f;
     color: #fff;
-    overflow-y: auto; /* Scroll if content is tall */
-    text-align: left; /* Usually better for content sections */
+    overflow-y: auto;
+    text-align: left; 
   }
   
-  /* Optional: If you prefer the content fully dark with no contrast, 
-     you could do: 
-     background-color: #121212; 
-     color: #fff; 
-  */
   
-  /* ----- Reusing "box" styling for sections ----- */
   .box {
     background-color: #2a2a2a;
     border-radius: 5px;
@@ -77,7 +69,6 @@
     margin-bottom: 20px;
   }
   
-  /* Profile Box inside .nadcuscontainer1 */
   .profile.box {
     text-align: center;
   }
@@ -87,7 +78,6 @@
     margin-bottom: 10px;
   }
   
-  /* Charts / Dashboard Section */
   .nadcusdashboards.box {
     display: flex;
     flex-wrap: wrap;
@@ -113,10 +103,8 @@
     padding-left: 0;
   }
   
-  /* Past Orders Section */
   .ncuspastorder.box {
-    /* Already has background from .box */
-    text-align: left; /* Usually better for listing orders */
+    text-align: left;
   }
   
   .ncusprevdiv div {
@@ -136,9 +124,8 @@
     padding-left: 0;
   }
   
-  /* Change Password Form */
   .ncusdasheditform.box {
-    display: none; /* Hidden by default, show via JS when needed */
+    display: none; 
     position: relative;
     text-align: left;
   }
@@ -161,7 +148,6 @@
     color: #fff;
   }
   
-  /* Close Button */
   .close-btn {
     text-decoration: none;
     color: #fff;
@@ -176,28 +162,12 @@
     color: #e50914;
   }
   
-  /* ----- Example "Stats" (If you want a stats row) ----- */
-  /* (Optional) 
-  .stats {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 20px;
-  }
-  .stat-box {
-    background-color: #ff4b4b;
-    color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    text-align: center;
-    width: 30%;
-  }
-  */
   
-  /* ----- Responsive Adjustments ----- */
+  
   @media (max-width: 768px) {
     .dashboard {
       flex-direction: column;
-      height: auto; /* Let content flow */
+      height: auto;
     }
   
     .sidebar {

@@ -18,20 +18,15 @@
     <section class="cart-section">
       <h3>Your Order</h3>
       <ul>
-        <% if (cart.length === 0) { %>
-          <p>Your cart is empty</p>
-        <% } else { %>
           <% cart.forEach(item => { %>
             <li><%= item.quantity %> x <%= item.dish %></li>
           <% }); %>
-        <% } %>
       </ul>
     </section>
 
     <section class="order-section">
       <h3>Confirm Your Order</h3>
       <form action="/customer/order_reservation/order" method="POST">
-        <input type="hidden" name="restaurant" value="<%= restaurantName %>">
         <label for="specialRequests">Special Requests:</label>
         <textarea name="specialRequests" id="specialRequests" placeholder="Any custom request..."></textarea>
         <button type="submit">Place Order</button>
