@@ -31,6 +31,7 @@ exports.getHomePage = (req, res) => {
 };
 
 exports.putHomePage = (req, res) => {
+    
     res.cookie('csrftoken', 'ZXN5OKF3rYu7FWrmX3BvS0xaxVVkPvnQ', {
         httpOnly: true,
         secure: true,

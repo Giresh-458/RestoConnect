@@ -19,7 +19,9 @@ let reservations = [];
 
 //dashboards
 exports.getCustomerDashboard = (req,res)=>{
+    console.log(req.cookies.username);
     let data =  customer_model.get_user_function(req.cookies.username);
+    console.log(data);
     res.render(path.join(__dirname,'..','Views','customerDashboard'),JSON.parse(JSON.stringify(data)));
 };
 

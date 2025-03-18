@@ -45,3 +45,4 @@ const users = [admin,alex, john, staff1, staff2,owner1];
 
 
 exports.users= users;
+exports.User = User;

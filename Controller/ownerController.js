@@ -6,8 +6,15 @@ let users = require('../Model/userRoleModel').users;
 let restaurants = require('../Model/Restaurents_model').restaurants;
 
 
+// exports.getOwnerHomepage = (req, res) => {
+//     let username = req.cookies.username;
+//     let restaurant = users.find(r => r.username == username).restaurantName;
+//     res.render("ownerHomepage",{restaurant});
+// };
 exports.getOwnerHomepage = (req, res) => {
-    res.render("ownerHomepage");
+    let username = req.cookies.username;
+    let restaurant = users.find(r => r.username == username).restaurantName;
+    res.render("ownerHomepage", { restaurant });
 };
 
 exports.getDashboard = (req, res) => {

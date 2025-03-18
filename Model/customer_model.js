@@ -69,19 +69,6 @@ getTopItems(map) {
 const alex = new Person("Alex", "/images/benjamin-chambon-vRu-Bs27E2M-unsplash.jpg");
 const john = new Person("John", "/images/benjamin-chambon-vRu-Bs27E2M-unsplash.jpg"); 
 
-// **Adding orders for Alex**
-alex.add_order({ name: "Spice Villa", items: ["Butter Chicken", "Naan", "Paneer Tikka"] });
-alex.add_order({ name: "Ocean Delight", items: ["Grilled Salmon", "Fish Tacos"] });
-alex.add_order({ name: "Spice Villa", items: ["Biryani", "Butter Chicken"] });
-alex.add_order({ name: "BBQ Junction", items: ["Grilled Ribs", "Smoked Brisket"] });
-alex.add_order({ name: "Spice Villa", items: ["Butter Chicken"] });
-
-// **Adding orders for John (Dummy Data)**
-john.add_order({ name: "Pasta Paradise", items: ["Lasagna", "Garlic Bread", "Penne Arrabbiata"] });
-john.add_order({ name: "Green Leaf Café", items: ["Quinoa Salad", "Smoothie Bowl", "Avocado Toast"] });
-john.add_order({ name: "Pasta Paradise", items: ["Spaghetti Carbonara", "Lasagna"] });
-john.add_order({ name: "5 Star Dine", items: ["Steak", "Truffle Pasta"] });
-john.add_order({ name: "Green Leaf Café", items: ["Veggie Wrap", "Quinoa Salad"] });
 
 
 let customers = [alex,john];
@@ -89,11 +76,7 @@ let customers = [alex,john];
 exports.get_user_function = function(name) {
     let user;
     
-    if (name === 'alex') {
-        user = alex;
-    } else {
-        user = john;
-    }
+    user = customers.find(r => r.name == name);
 
     let topDishesData = user.give_topDishes();
     let topRestaurantsData = user.give_topRestaurents();
@@ -110,3 +93,4 @@ exports.get_user_function = function(name) {
 };
 
 exports.customer = customers;
+exports.Person =Person;

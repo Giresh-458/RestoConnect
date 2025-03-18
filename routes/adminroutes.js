@@ -8,7 +8,7 @@ const admincontroller = require('../Controller/adminController');
 
 
 router.get('/dashboard',admincontroller.getAdminDashboard);
-router.get('/add_restaurent',admincontroller.postAddRestaurent);
+ router.post('/add_restaurant',admincontroller.postAddRestaurent);
 
 
 module.exports = router;
