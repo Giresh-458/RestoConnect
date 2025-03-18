@@ -3,16 +3,8 @@ function deleteTask(taskId) {
         method: 'DELETE',
     })
     .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            const taskElement = document.getElementById(`task-${taskId}`);
-            if (taskElement) {
-                taskElement.remove();
-            }
-        } else {
-            alert('Failed to delete task.');
-        }
-    })
+    .then(
+       () =>{ window.location.href = '/staff/HomePage'})
     .catch(error => console.error('Error:', error));
 }
 
