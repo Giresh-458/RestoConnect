@@ -42,7 +42,7 @@ exports.getFeedBack = (req, res) => {
 };
 exports.postSubmitFeedBack = (req, res) => {
     const feedbackText = req.body.feedback;
-    console.log("good");
+    
    /* if (!feedbackText.trim()) {
         return res.status(400).json({ success: false, message: "Feedback cannot be empty!" });
     }
@@ -74,8 +74,8 @@ exports.postOrderAndReservation = (req, res) => {
     }else{
     restaurantName=req.session.rest_name;
     cart = req.session.temp_cart;
-    console.log(req.session);
     }
+    
     res.render('orderReservation', { restaurantName, cart });
 };
 
@@ -88,14 +88,15 @@ exports.order = (req, res) => {
         specialRequests,
         status: "Pending"
     };
-    order_temp=newOrder;
-    
+    let order_temp=newOrder;
     req.session.tempOrder=order_temp;
     orders.push(newOrder);
-
-
     res.redirect('/customer/payments');
 };
+
+
+
+
 
 exports.reservation =  (req, res) => {
     const { restaurant, date, time, guests } = req.body;
@@ -112,41 +113,38 @@ exports.reservation =  (req, res) => {
 
 
 
+
+
 exports.getPayments = (req,res)=>{
-   // console.log(req);
 res.render('payment',{bill_price:300});
 }
+
+
+
+
+
+
 
 exports.postPaymentsSuccess = (req,res)=>{
    
     
-//console.log(req.session.tempOrder);
-//console.log(req.session.temp_cart);
+console.log(req.session.tempOrder);
+console.log(req.session.temp_cart);
 let username = req.cookies.username;
 
 let user = customer_model.customer.find(r => r.name==username);
 
 
+console.log(req.session);
 
-let rest_name = req.session.tempOrder.restaurant;
- 
-
+let rest_name = req.session.rest_name;
  let dishes  = [];
  let rest = restaurent_model.restaurants.find(r => r.name === rest_name);
- //console.log(rest);
     let len = req.session.temp_cart.length;
     for(let i =0 ;i<len;i++){
         dishes.push(req.session.temp_cart[i].dish);
-        
 rest.tasks.push({id:req.session.tempOrder.id,name:req.session.temp_cart[i].dish});
-
     }
-
-
-
-
-
-
 user.add_order({ name: rest_name, items: dishes });
 req.session.destroy(err => {
     if (err) {
