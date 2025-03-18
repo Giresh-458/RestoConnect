@@ -128,14 +128,13 @@ res.render('payment',{bill_price:300});
 exports.postPaymentsSuccess = (req,res)=>{
    
     
-console.log(req.session.tempOrder);
-console.log(req.session.temp_cart);
+// console.log(req.session.tempOrder);
+// console.log(req.session.temp_cart);
 let username = req.cookies.username;
-
 let user = customer_model.customer.find(r => r.name==username);
 
 
-console.log(req.session);
+//console.log(req.session);
 
 let rest_name = req.session.rest_name;
  let dishes  = [];

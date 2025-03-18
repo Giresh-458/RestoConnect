@@ -50,7 +50,8 @@ exports.putHomePage = (req, res) => {
     }
 
     if (user.role === "owner") {
-        res.render(path.join(__dirname, '..', 'Views', 'ownerHomepage'));
+       // res.render(path.join(__dirname, '..', 'Views', 'ownerHomepage'));
+       res.redirect('/owner/');
     } else if (user.role === "staff") {
         const rest = restaurants_data.find(r => r.name === user?.restaurantName);
         res.render(path.join(__dirname, '..', 'Views', 'staffHomepage'), {
