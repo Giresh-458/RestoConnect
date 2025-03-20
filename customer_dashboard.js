@@ -1,3 +1,9 @@
+const chartOptions = {
+  responsive: false,
+  maintainAspectRatio: false,
+  width: 250,
+  height: 250,
+};
 
 const ctx1 = document.getElementById("chart1").getContext("2d");
 const ctx2 = document.getElementById("chart2").getContext("2d");
@@ -13,6 +19,7 @@ new Chart(ctx1, {
       },
     ],
   },
+  options: chartOptions,
 });
 
 new Chart(ctx2, {
@@ -27,10 +34,10 @@ new Chart(ctx2, {
     ],
   },
   options: {
+    ...chartOptions,
     cutout: "75%",
   },
 });
-
 
 document
   .getElementById("change-password-link")
