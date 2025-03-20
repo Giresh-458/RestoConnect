@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Report</title>
+    <link rel="stylesheet" href="staff_dashbord.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>RESTO <span class="highlight">CONNECT</span></h1>
+            <nav>
+                <a href="#">Change Password</a>
+                <a href="#">LogOut</a>
+            </nav>
+        </header>
+        <main>
+            <h2>THE GOURMET SPOT</h2>
+            <section class="profile-card"> 
+                <div class="profile-info">
+                    <div class="profile-image"></div>
+                    <div class="details">
+                        <p><strong>Name:</strong> John </p>
+                        <p><strong>Address:</strong> hyderabad</p>
+                        <p><strong>Phone Number:</strong>1234567890</p>
+                        <p><strong>Joined:</strong> March 15, 2022</p>
+                        <p><strong>Rating:</strong>
+                            <span class="star" data-value="1">★</span>
+                            <span class="star" data-value="2">★</span>
+                            <span class="star" data-value="3">★</span>
+                            <span class="star" data-value="4">★</span>
+                            <span class="star" data-value="5">★</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="role">Role: <span class="role-badge">Waiter</span></div>
+            </section>
+            <section class="performance">
+                <h3>Day-wise Performance</h3>
+                <div class="graph">[Graph Placeholder]</div>
+            </section>
+            <section class="feedbacks">
+                <h3>Feedbacks Given</h3>
+                <div class="feedback-box"></div>
+                <div class="feedback-box"></div>
+                <div class="feedback-box"></div>
+            </section>
+        </main>
+    </div>
+    <script>
+        document.querySelectorAll('.star').forEach(star => {
+            star.addEventListener('click', function() {
+                let value = this.getAttribute('data-value');
+                document.querySelectorAll('.star').forEach(s => {
+                    s.classList.remove('filled');
+                });
+                for (let i = 0; i < value; i++) {
+                    document.querySelectorAll('.star')[i].classList.add('filled');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

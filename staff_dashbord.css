@@ -1,0 +1,84 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+.container {
+    width: 80%;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #333;
+    color: white;
+    padding: 15px;
+}
+.highlight {
+    color: orange;
+}
+nav a {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+}
+main h2 {
+    text-align: center;
+}
+.profile-card {
+    display: flex;
+    justify-content: space-between;
+    background: #eaeaea;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+.profile-info {
+    display: flex;
+}
+.profile-image {
+    width: 60px;
+    height: 60px;
+    background: gray;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+.role-badge {
+    background: orange;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+}
+.rating {
+    margin-top: 10px;
+}
+.star {
+    font-size: 24px;
+    cursor: pointer;
+    color: #ccc;
+}
+.star.filled {
+    color: gold;
+}
+.performance, .feedbacks {
+    margin-bottom: 20px;
+    text-align: center;
+}
+.graph {
+    background: #ddd;
+    height: 200px;
+    margin: 10px auto;
+    border-radius: 5px;
+}
+.feedback-box {
+    background: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin: 10px 0;
+    border-radius: 5px;
+}
