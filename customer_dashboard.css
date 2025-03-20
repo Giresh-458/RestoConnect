@@ -24,6 +24,9 @@ body {
   text-decoration: none;
 }
 
+.nav-links a:hover {
+  color: orange;
+}
 .container {
   width: 90%;
   margin: 20px auto;
@@ -71,11 +74,19 @@ body {
 }
 
 .chart-box {
-  width: 48%;
+  width: 40%;
   background: white;
   padding: 20px;
   border-radius: 8px;
   border: 2px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chart-box canvas {
+  width: 250px !important;
+  height: 250px !important;
 }
 
 .orders-container {
@@ -115,11 +126,20 @@ body {
 
 .modal-content {
   background: white;
-  padding: 20px;
+  padding: 50px;
   border-radius: 8px;
   width: 300px;
   text-align: center;
   position: relative;
+}
+
+.modal-content input {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 .close-btn {
@@ -136,5 +156,5 @@ body {
   border: none;
   padding: 10px;
   cursor: pointer;
-  width: 100%;
+  width: 105%;
 }
