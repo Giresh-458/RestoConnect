@@ -44,9 +44,14 @@ const validation = require('./passwordAuth.js');
 
 
 app.get('/logout',(req,res)=>{
-    req.cookies.username = null;
-    res.clearCookie('username');
-    res.redirect('/');
+    req.session.destroy(err => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.redirect('/');
+        }
+    });
+    
 })
 
 //console.log("asdfkh")

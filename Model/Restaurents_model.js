@@ -1,4 +1,9 @@
 
+
+let {getDb} = require('../util/database');
+let db = getDb();
+
+
 const shortid = require('shortid');
 class Restaurant {
     constructor(name, image, rating, location,amount,date) {
@@ -9,6 +14,7 @@ class Restaurant {
         this.amount=amount;
         this.date = date || new Date();
         this.dishes = []; // Empty array to store dishes
+        this._id = shortid.generate();
         
         //added now can be deleted
         this.orders = [];
@@ -50,7 +56,7 @@ class Dish {
         this.price = price;
         this.description = description;
         this.image = image;
-        this.id = shortid.generate();
+        this._id = shortid.generate();
     }
 }
 
@@ -163,6 +169,11 @@ if (selectedRestaurant) {
         { id: 2, name: "Serve Drinks" }
     ];
 }
+
+
+
+
+
 
 
 

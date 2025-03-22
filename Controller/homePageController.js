@@ -3,7 +3,7 @@ const restaurants_data = require('../Model/Restaurents_model').restaurants;
 const users = require('../Model/userRoleModel').users;
 
 exports.getHomePage = (req, res) => {
-    let login = req.cookies?.username ? true : false;
+    let login = req.session?.username ? true : false;
     const { city_option_home: loco, name_resaurent: name2 } = req.query;
     let arr = [];
 
@@ -22,7 +22,7 @@ exports.getHomePage = (req, res) => {
 
     }
 
-    let userRole = users.find(r => r.username === req.cookies?.username);
+    let userRole = users.find(r => r.username === req.session?.username);
     res.render(path.join(__dirname, '..', 'Views', 'home_page'), {
         arr,
         login,
@@ -32,13 +32,14 @@ exports.getHomePage = (req, res) => {
 
 exports.putHomePage = (req, res) => {
     
-    res.cookie('csrftoken', 'ZXN5OKF3rYu7FWrmX3BvS0xaxVVkPvnQ', {
+   /* res.cookie('csrftoken', 'ZXN5OKF3rYu7FWrmX3BvS0xaxVVkPvnQ', {
         httpOnly: true,
         secure: true,
         sameSite: 'Strict'
-    });
+    });*/
 
-    res.cookie('username', req.body.username, { httpOnly: true });
+    //res.cookie('username', req.body.username, { httpOnly: true });
+    req.session.username = req.body.username;
 
     const user = users.find(r => r.username === req.body.username);
     if (!user) {
@@ -59,7 +60,7 @@ exports.putHomePage = (req, res) => {
         });
     } else if (user.role === "admin") {
         const { active_user_count, total_user_count, restaurants_list } = require('../Model/admin_model');
-        console.log(restaurants_list);
+        //console.log(restaurants_list);
         res.render(path.join(__dirname, '..', 'Views', 'Admin_Dashboard'), {
             active_user_count, total_user_count, restaurants_list
         });

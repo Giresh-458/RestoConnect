@@ -19,8 +19,8 @@ let reservations = [];
 
 //dashboards
 exports.getCustomerDashboard = (req,res)=>{
-    console.log(req.cookies.username);
-    let data =  customer_model.get_user_function(req.cookies.username);
+    console.log(req.session.username);
+    let data =  customer_model.get_user_function(req.session.username);
     console.log(data);
     res.render(path.join(__dirname,'..','Views','customerDashboard'),JSON.parse(JSON.stringify(data)));
 };
@@ -75,7 +75,7 @@ exports.postOrderAndReservation = (req, res) => {
     restaurantName=req.session.rest_name;
     cart = req.session.temp_cart;
     }
-    
+    //console.log(req.session);
     res.render('orderReservation', { restaurantName, cart });
 };
 
@@ -130,11 +130,10 @@ exports.postPaymentsSuccess = (req,res)=>{
     
 // console.log(req.session.tempOrder);
 // console.log(req.session.temp_cart);
-let username = req.cookies.username;
+let username = req.session.username;
 let user = customer_model.customer.find(r => r.name==username);
 
 
-//console.log(req.session);
 
 let rest_name = req.session.rest_name;
  let dishes  = [];
@@ -145,12 +144,11 @@ let rest_name = req.session.rest_name;
 rest.tasks.push({id:req.session.tempOrder.id,name:req.session.temp_cart[i].dish});
     }
 user.add_order({ name: rest_name, items: dishes });
-req.session.destroy(err => {
-    if (err) {
-        console.log(err);
-    } else {
-        res.redirect('/customer/feedback');
-    }
-});
+
+req.session.tempOrder=undefined;
+req.session.temp_cart=undefined;
+req.session.rest_name=undefined;
+
+res.redirect('/customer/feedback');
 
 } 

@@ -4,17 +4,20 @@ const users = require('./Model/userRoleModel').users;
 const auth_middleware = (role) =>{
 
     return (req,res,next) =>{
-        console.log(req.cookies.username);
-        if(!req.cookies.username){
-            console.log(req.cookies.username);
-            res.redirect('/loginPage');
+
+       console.log(req.session);
+       
+        if(!req.session.username){
+           // console.log(req.cookies.username);
+           return res.redirect('/loginPage');
         }
 
-        let temp = users.find(r => r.username === req.cookies.username);
+        let temp = users.find(r => r.username === req.session.username);
+
         if(temp==null){
-            res.redirect('/loginPage');
+           res.redirect('/loginPage');
         }
-        if(temp.role== role)
+       else if(temp.role== role)
         {
             next();
         }

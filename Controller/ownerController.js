@@ -12,19 +12,19 @@ let restaurants = require('../Model/Restaurents_model').restaurants;
 //     res.render("ownerHomepage",{restaurant});
 // };
 exports.getOwnerHomepage = (req, res) => {
-    let username = req.cookies.username;
+    let username = req.session.username;
     let restaurant = users.find(r => r.username == username).restaurantName;
     res.render("ownerHomepage", { restaurant:restaurant });
 };
 
 exports.getDashboard = (req, res) => {
-    let username = req.cookies.username;
+    let username = req.session.username;
     let restaurant = users.find(r => r.username == username).restaurantName;
     res.render("ownerDashboard", { restaurant });
 };
 
 exports.getMenuManagement = (req, res) => {
-    let username = req.cookies.username;
+    let username = req.session.username;
     let rest = restaurants.find(r => r.name == users.find(r => r.username == username).restaurantName);
     let products = rest.dishes;
     res.render('menuManagement', {products  });
@@ -60,7 +60,7 @@ exports.editProduct = (req, res) => {
 
 exports.deleteProduct = (req, res) => {
     //products = products.filter(p => p.id != req.params.id);
-    let username = req.cookies.username;
+    let username = req.session.username;
     let rest = restaurants.find(r => r.name == users.find(r => r.username == username).restaurantName);
     rest.removeDish(req.params.id);
     res.redirect('/owner/menuManagement');

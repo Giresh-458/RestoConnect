@@ -1,8 +1,7 @@
 const path = require('path');
 const {  restaurants_list ,getDb} = require('../Model/admin_model');
 const { restaurants, Restaurant } = require('../Model/Restaurents_model');
-const { get } = require('http');
- 
+
 
 exports.getAdminDashboard = (req, res) => {
      getDb((db)=>{db.all('select * from userstats',(err,rows)=>{                         
@@ -23,6 +22,6 @@ exports.postAddRestaurent = (req, res) => {
     }
     
     restaurants.push(new Restaurant(req.body.name, '', 4, req.body.location, req.body.amount, new Date()));
-    console.log(restaurants);
+   
   res.redirect('/admin/dashboard');
 };

@@ -1,10 +1,12 @@
 const path = require('path');
 
 
-
 const Restaurant_model = require('../Model/Restaurents_model');
+;
 
 exports.getMenu = (req,res)=>{
+    
+
     
     const name = req.params.restnmae;
     const rest = Restaurant_model.restaurants.find(r => r.name==name);
