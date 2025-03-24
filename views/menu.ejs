@@ -46,6 +46,7 @@
     <form id="orderForm" action="/customer/order_reservation" method="post" style="display: none;">
         <input type="hidden" name="restaurant" id="restaurantInput">
         <input type="hidden" name="order" id="orderInput">
+        <input type="hidden" name="rest_id" value="<%= restaurant.rest_id %>">
     </form>
 
     <button class="btn2">Order</button>

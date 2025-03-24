@@ -1,10 +1,12 @@
 
-const sqlite3 = require('sqlite3').verbose();
+//const sqlite3 = require('sqlite3').verbose();
+
+const { Restaurant } = require("./Restaurents_model");
 
 let active_user_count = 34;
 let total_user_count = 200;
 
-let db = new sqlite3.Database(":memory:", (err) => {
+/*let db = new sqlite3.Database(":memory:", (err) => {
     if (err) {
         console.error("Error opening database:", err.message);
     } else {
@@ -37,19 +39,23 @@ const getDb = (cb) => {
         return;
     }
     cb(db);
-};
+};*/
 
-const restaurants_list = require('../Model/Restaurents_model').restaurants.map(r1 => ({
-    name: r1.name,
-    location: r1.location,
-    amount: r1.amount,
-    date: r1.date
-}));
+let restaurants_list = [];
 
-// Export properly using `module.exports`
+
+Restaurant.findAll().then(restaurants => {
+    restaurants_list = restaurants.map(r1 => ({
+        name: r1.name,
+        location: r1.location,
+        amount: r1.amount,
+        date: r1.date
+    }));
+})
+
+
 module.exports = {
     active_user_count,
     total_user_count,
     restaurants_list,
-    getDb
 };

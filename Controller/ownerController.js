@@ -3,7 +3,8 @@
 let products = [];
 
 let users = require('../Model/userRoleModel').users;
-let restaurants = require('../Model/Restaurents_model').restaurants;
+let Restaurant = require('../Model/Restaurents_model').Restaurant;
+let Dish  = require('../Model/Dishes_model_test').Dish;
 
 
 // exports.getOwnerHomepage = (req, res) => {
@@ -23,10 +24,13 @@ exports.getDashboard = (req, res) => {
     res.render("ownerDashboard", { restaurant });
 };
 
-exports.getMenuManagement = (req, res) => {
-    let username = req.session.username;
-    let rest = restaurants.find(r => r.name == users.find(r => r.username == username).restaurantName);
-    let products = rest.dishes;
+exports.getMenuManagement = async (req, res) => {
+   
+    let rest = await Restaurant.find_by_id(req.session.rest_id);
+    for(let i=0 ;i<rest.dishes.length;i++){    
+    let tm_dishes = await Dish.find_by_id(rest.dishes[i]);
+    products.push(tm_dishes);
+    }
     res.render('menuManagement', {products  });
 };
 
@@ -34,24 +38,15 @@ exports.getMenuManagement = (req, res) => {
 
 exports.addProduct = (req, res) => {
     const { name, category, price, status, imageUrl } = req.body;
-    /*const newProduct = {
-        id: Date.now(),
-        name,
-        category,
-        price,
-        status,
-        imageUrl
-    };*/
-    //products.push(newProduct);
-
-    let rest = restaurants.find(r => r.name == users.find(r => r.username == username).restaurantName);
-    rest.crateAndAdd(name,  price, category, imageUrl);
+    new Dish(name,price,"good one",imageUrl).add_Dish(req.session.rest_id);
     res.redirect('/owner');
 };
 
 exports.editProduct = (req, res) => {
     const { id } = req.params;
+   // console.log(req);
     const { name, category, price, status, imageUrl } = req.body;
+
     products = products.map(p => 
         p.id == id ? { ...p, name, category, price, status, imageUrl } : p
     );
@@ -59,7 +54,6 @@ exports.editProduct = (req, res) => {
 };
 
 exports.deleteProduct = (req, res) => {
-    //products = products.filter(p => p.id != req.params.id);
     let username = req.session.username;
     let rest = restaurants.find(r => r.name == users.find(r => r.username == username).restaurantName);
     rest.removeDish(req.params.id);

@@ -5,7 +5,7 @@ const auth_middleware = (role) =>{
 
     return (req,res,next) =>{
 
-       console.log(req.session);
+       
        
         if(!req.session.username){
            // console.log(req.cookies.username);

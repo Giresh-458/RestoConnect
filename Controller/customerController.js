@@ -2,7 +2,7 @@ const path = require('path');
 
 //dashboard data
 const customer_model = require('../Model/customer_model');
-const restaurent_model = require('../Model/Restaurents_model');
+const Restaurant = require('../Model/Restaurents_model').Restaurant;
 
 
 
@@ -19,9 +19,7 @@ let reservations = [];
 
 //dashboards
 exports.getCustomerDashboard = (req,res)=>{
-    console.log(req.session.username);
     let data =  customer_model.get_user_function(req.session.username);
-    console.log(data);
     res.render(path.join(__dirname,'..','Views','customerDashboard'),JSON.parse(JSON.stringify(data)));
 };
 
@@ -42,14 +40,11 @@ exports.getFeedBack = (req, res) => {
 };
 exports.postSubmitFeedBack = (req, res) => {
     const feedbackText = req.body.feedback;
-    
-   /* if (!feedbackText.trim()) {
-        return res.status(400).json({ success: false, message: "Feedback cannot be empty!" });
-    }
-    feedbacks.push({ id: Date.now(), text: feedbackText });
-   res.json({ success: true, message: "Feedback submitted successfully!" });*/
     res.redirect('/');
 };
+
+
+
 
 
 
@@ -66,17 +61,20 @@ exports.postSubmitFeedBack = (req, res) => {
 exports.postOrderAndReservation = (req, res) => {
     let restaurantName;
     let cart;
+    let rest_id;
     if(req.body.restaurant){
      restaurantName = req.body.restaurant; 
+    rest_id = req.body.rest_id;
      cart= JSON.parse(req.body.order);
     req.session.temp_cart=cart;
     req.session.rest_name=restaurantName;
+    req.session.rest_id = rest_id;
     }else{
     restaurantName=req.session.rest_name;
     cart = req.session.temp_cart;
+    rest_id = req.session.rest_id;
     }
-    //console.log(req.session);
-    res.render('orderReservation', { restaurantName, cart });
+    res.render('orderReservation', { restaurantName, cart ,rest_id });
 };
 
 
@@ -90,7 +88,7 @@ exports.order = (req, res) => {
     };
     let order_temp=newOrder;
     req.session.tempOrder=order_temp;
-    orders.push(newOrder);
+    //orders.push(newOrder);
     res.redirect('/customer/payments');
 };
 
@@ -107,7 +105,8 @@ exports.reservation =  (req, res) => {
         time,
         guests
     };
-    reservations.push(newReservation);
+    //reservations.push(newReservation);
+    req.session.resevation = newReservation;
     res.redirect('/');
 };
 
@@ -127,27 +126,28 @@ res.render('payment',{bill_price:300});
 
 exports.postPaymentsSuccess = (req,res)=>{
    
-    
-// console.log(req.session.tempOrder);
-// console.log(req.session.temp_cart);
+  
 let username = req.session.username;
 let user = customer_model.customer.find(r => r.name==username);
 
 
 
 let rest_name = req.session.rest_name;
+let rest_id = req.session.rest_id;
  let dishes  = [];
- let rest = restaurent_model.restaurants.find(r => r.name === rest_name);
+ //let rest = Restaurant.find_by_id(rest_id);
     let len = req.session.temp_cart.length;
     for(let i =0 ;i<len;i++){
         dishes.push(req.session.temp_cart[i].dish);
-rest.tasks.push({id:req.session.tempOrder.id,name:req.session.temp_cart[i].dish});
-    }
+Restaurant.update(rest_id,'tasks',{id:req.session.tempOrder.id,name:req.session.temp_cart[i].dish});
+}
 user.add_order({ name: rest_name, items: dishes });
 
 req.session.tempOrder=undefined;
 req.session.temp_cart=undefined;
 req.session.rest_name=undefined;
+req.session.reservation = undefined;
+req.session.rest_id = undefined;
 
 res.redirect('/customer/feedback');
 

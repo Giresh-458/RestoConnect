@@ -60,7 +60,7 @@ app.use('/loginPage',loginPage);
 
 app.get('/',homepageController.getHomePage);
 app.post('/',validation,homepageController.putHomePage);
-app.get('/menu/:restnmae',authentication('customer'),menuController.getMenu)
+app.get('/menu/:restid',authentication('customer'),menuController.getMenu)
 app.use('/customer',authentication('customer'),customer);
 app.use('/admin',authentication('admin'),admin);
 app.use('/owner',authentication('owner'),ownerRouter);
