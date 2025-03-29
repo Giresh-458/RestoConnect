@@ -26,8 +26,8 @@ exports.postUpdateOrder = (req, res) => {
 
 //HomePage Methods
 
-exports.getHomePage = (req, res) => {
-    let rest = Restaurant.find_by_id(req.session.rest_id);
+exports.getHomePage = async (req, res) => {
+    let rest = await Restaurant.find_by_id(req.session.rest_id);
     res.render('staffHomepage', { tasks:rest.tasks });
 };
 

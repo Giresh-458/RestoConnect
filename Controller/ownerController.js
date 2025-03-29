@@ -47,15 +47,17 @@ exports.editProduct = (req, res) => {
    // console.log(req);
     const { name, category, price, status, imageUrl } = req.body;
 
-    products = products.map(p => 
+   /* products = products.map(p => 
         p.id == id ? { ...p, name, category, price, status, imageUrl } : p
-    );
+    );*/
+    new Dish(name,price,"good one",imageUrl).Update_Dish(id);
     res.redirect('/owner');
 };
 
 exports.deleteProduct = (req, res) => {
     let username = req.session.username;
-    let rest = restaurants.find(r => r.name == users.find(r => r.username == username).restaurantName);
-    rest.removeDish(req.params.id);
+   /* let rest = restaurants.find(r => r.name == users.find(r => r.username == username).restaurantName);
+    rest.removeDish(req.params.id);*/
+    Dish.remove_Dish(req.session.rest_id,id);
     res.redirect('/owner/menuManagement');
 };

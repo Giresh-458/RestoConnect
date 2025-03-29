@@ -42,7 +42,7 @@ exports.putHomePage = async (req, res) => {
        req.session.rest_id = user.rest_id;
        res.redirect('/owner/');
     } else if (user.role === "staff") {
-        const rest = rest.find(r => r.name === user?.restaurantName);
+        const rest = users.find(r => r.name === user?.restaurantName);
         req.session.rest_id = user.rest_id;
         res.render(path.join(__dirname, '..', 'Views', 'staffHomepage'), {
             tasks: rest?.tasks || []
