@@ -46,9 +46,18 @@ class Dish {
         return ret;
     }
 
+    static async find_my_name(fname){
+        let db = getDb();
+        let ret = await db.collection('Dish').findOne({name:fname});
+
+        return ret;
+    } 
+
 
 
 }
+
+
 
 
 

@@ -1,9 +1,10 @@
 
-const users = require('./Model/userRoleModel').users;
+const session = require('express-session');
+const {User} = require('./Model/userRoleModel');
 
 const auth_middleware = (role) =>{
 
-    return (req,res,next) =>{
+    return async (req,res,next) =>{
 
        
        
@@ -11,14 +12,15 @@ const auth_middleware = (role) =>{
            // console.log(req.cookies.username);
            return res.redirect('/loginPage');
         }
-
-        let temp = users.find(r => r.username === req.session.username);
-
+        
+        let temp = await User.findByname(req.session.username);
+       
         if(temp==null){
            res.redirect('/loginPage');
         }
        else if(temp.role== role)
         {
+            
             next();
         }
     }

@@ -5,7 +5,7 @@ const client = new MongoClient(uri);
 
 
 let db;
-let connect = client.connect();
+ client.connect();
  db = client.db('test');
     
 

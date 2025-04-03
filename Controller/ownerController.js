@@ -2,7 +2,7 @@
 
 let products = [];
 
-let users = require('../Model/userRoleModel').users;
+let {User} = require('../Model/userRoleModel');
 let Restaurant = require('../Model/Restaurents_model').Restaurant;
 let Dish  = require('../Model/Dishes_model_test').Dish;
 
@@ -12,15 +12,15 @@ let Dish  = require('../Model/Dishes_model_test').Dish;
 //     let restaurant = users.find(r => r.username == username).restaurantName;
 //     res.render("ownerHomepage",{restaurant});
 // };
-exports.getOwnerHomepage = (req, res) => {
+exports.getOwnerHomepage = async (req, res) => {
     let username = req.session.username;
-    let restaurant = users.find(r => r.username == username).restaurantName;
+    let restaurant = await User.findByname(username).restaurantName;
     res.render("ownerHomepage", { restaurant:restaurant });
 };
 
-exports.getDashboard = (req, res) => {
+exports.getDashboard = async (req, res) => {
     let username = req.session.username;
-    let restaurant = users.find(r => r.username == username).restaurantName;
+    let restaurant = await User.findByname(username).restaurantName;
     res.render("ownerDashboard", { restaurant });
 };
 

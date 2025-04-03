@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const dishName = counter.dataset.dish;
             const quantity = parseInt(counter.querySelector('.item_count').textContent);
             
+            
             if (quantity > 0) {
                 order.push({ dish: dishName, quantity });
             }

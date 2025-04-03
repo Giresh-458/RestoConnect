@@ -1,4 +1,7 @@
 
+let {getDb} = require('../util/database');
+let db = getDb();
+const bcrypt = require('bcrypt');
 
 
 class User {
@@ -7,12 +10,25 @@ class User {
         this.role = role;
         this.restaurantName = role !== 'customer' || 'admin' ? restaurantName : null;
         this.rest_id = role !== 'customer' || 'admin' ? rest_id : null;
-        this.password = password;
+        this.password =bcrypt.hashSync(password,0);
+    }
 
+    static async  findByname(name){
+
+        let ret = await db.collection('User').findOne({username:name});
+        return ret;
+    }
+
+    async saveUser(){
+
+        await db.collection('User').insertOne(this);
+        return;
     }
 
 
-
+    static async  modify(obj){
+        await db.collection('User').updateOne({username:obj.username},{$set:obj});
+    }
 
     
     getUserInfo() {
@@ -25,25 +41,7 @@ class User {
 }
 
 
-const admin = new User('adam','admin',null,'123');
-
-
-const alex = new User('alex', 'customer', null,'123');
-const john = new User('John', 'customer',null,'123');
-
-
-const staff1 = new User('emma', 'staff', 'The Gourmet Spot', '123',"jDpYWsQt0");
-const staff2 = new User('liam', 'staff', 'The Gourmet Spot', '123',"jDpYWsQt0");
-
-const owner1 = new User('roy','owner','The Gourmet Spot','123',"jDpYWsQt0");
 
 
 
-const users = [admin,alex, john, staff1, staff2,owner1];
-
-
-
-
-
-exports.users= users;
 exports.User = User;

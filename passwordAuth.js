@@ -1,27 +1,31 @@
 const { customer,Person } = require('./Model/customer_model');
-
-
 const {users,User} = require('./Model/userRoleModel');
+const bcrypt = require('bcrypt');
 
 
-
-let validate = (req,res,next)=>{
+let validate = async (req,res,next)=>{
 
 
 let {username:username,password:password,fullName:fullName} = req.body;
 
+console.log("in password auth");
 
-//console.log(fullName);
 if(fullName){
     customer.push(new Person(username,'/images/benjamin-chambon-vRu-Bs27E2M-unsplash.jpg'));
-    users.push(new User(username,'customer',null,password.toString().trim()));
+    password = password.toString().trim();
+    let pass =  bcrypt.hashSync(password,0);
+    await new User(username,'customer',null,pass).saveUser();
     res.redirect('/loginPage');
     return;
 }
 
 
-let user = users.find(r => r.username == username);
-if((user?.password || null) == (password.toString().trim())){
+let user = await User.findByname(username);
+console.log(user.password,password.toString().trim());
+if(await bcrypt.compare(password.toString().trim(),user.password)){
+
+
+    req.session.username = req.body.username;
     next();
 }
 else{

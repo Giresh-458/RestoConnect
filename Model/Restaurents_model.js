@@ -58,8 +58,9 @@ class Restaurant {
         );
       }
 
-      async update_full(id){
-        await db.collection("Restaurant").updateOne({_id:id},{$set:this});
+      static async update_full(obj){
+        const { _id:id, ...updateData } = obj;  
+        await db.collection("Restaurant").updateOne({ _id: id }, { $set: updateData });        
       }
 
 

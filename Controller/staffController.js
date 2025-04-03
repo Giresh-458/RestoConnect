@@ -27,24 +27,27 @@ exports.postUpdateOrder = (req, res) => {
 //HomePage Methods
 
 exports.getHomePage = async (req, res) => {
+    console.log("in hmpage");
     let rest = await Restaurant.find_by_id(req.session.rest_id);
-    res.render('staffHomepage', { tasks:rest.tasks });
+   
+    res.render('staffHomepage', { tasks:rest?.tasks|| [] });
 };
 
-exports.postHomePageTask = (req, res) => {
+exports.postHomePageTask = async (req, res) => {
     const newTask = { id: Date.now(), name: req.body.name };
-    let rest = Restaurant.find_by_id(req.session.rest_id);
-    Restaurant.update(req.session.rest_id,'tasks',newTask);
+    let rest =await  Restaurant.find_by_id(req.session.rest_id);
+    await Restaurant.update(req.session.rest_id,'tasks',newTask);
    res.redirect('/staff/Homepage')
 }
 
-exports.deleteHomePageTasks = (req, res) => {
+exports.deleteHomePageTasks = async (req, res) => {
     const taskId = parseInt(req.params.id);
    
 
-    let rest = Restaurant.find_by_id(req.session.rest_id);
+    let rest = await Restaurant.find_by_id(req.session.rest_id);
     rest.tasks = rest.tasks.filter(task => task.id !== taskId);
 
-    new Restaurant().update_full(req.session.rest_id);
+   //let r=  await rest.update_full(req.session.rest_id);
+        await Restaurant.update_full(rest);
         res.redirect('/staff/Dashboard');
 }

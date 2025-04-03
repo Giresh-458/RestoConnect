@@ -1,6 +1,6 @@
 const path = require('path');
 const Restaurant = require('../Model/Restaurents_model').Restaurant;
-const users = require('../Model/userRoleModel').users;
+const {User} = require('../Model/userRoleModel');
 
 exports.getHomePage = async (req, res) => {
     let login = req.session?.username ? true : false;
@@ -16,20 +16,20 @@ exports.getHomePage = async (req, res) => {
         );
     } 
 
-
-    let userRole = users.find(r => r.username === req.session?.username);
+    
+    let userRole = await User.findByname(req.session?.username);
+    userRole=userRole?.role || null;
     res.render(path.join(__dirname, '..', 'Views', 'home_page'), {
         arr,
         login,
-        user: userRole ? userRole.role : null
+        user: userRole
     });
 };
 
 exports.putHomePage = async (req, res) => {
    
-    req.session.username = req.body.username;
-    const user = users.find(r => r.username === req.body.username);
-
+    
+    const user = await User.findByname(req.session?.username);
     if (!user) {
         return res.render('login', {
             title: 'Log In',
@@ -38,15 +38,14 @@ exports.putHomePage = async (req, res) => {
         });
     }
     let rest = await  Restaurant.findAll();
+    console.log("in page ontroller");
     if (user.role === "owner") {
        req.session.rest_id = user.rest_id;
        res.redirect('/owner/');
     } else if (user.role === "staff") {
-        const rest = users.find(r => r.name === user?.restaurantName);
+        
         req.session.rest_id = user.rest_id;
-        res.render(path.join(__dirname, '..', 'Views', 'staffHomepage'), {
-            tasks: rest?.tasks || []
-        });
+        res.redirect('/staff/HomePage');
     } else if (user.role === "admin") {
         const { active_user_count, total_user_count, restaurants_list } = require('../Model/admin_model');
         res.render(path.join(__dirname, '..', 'Views', 'Admin_Dashboard'), {
