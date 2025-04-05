@@ -10,13 +10,12 @@ class User {
         this.role = role;
         this.restaurantName = role !== 'customer' || 'admin' ? restaurantName : null;
         this.rest_id = role !== 'customer' || 'admin' ? rest_id : null;
-        this.password =bcrypt.hashSync(password,0);
+        this.password =bcrypt.hashSync(password,10);
     }
 
     static async  findByname(name){
 
-        let ret = await db.collection('User').findOne({username:name});
-        return ret;
+        return await db.collection('User').findOne({username:name});
     }
 
     async saveUser(){

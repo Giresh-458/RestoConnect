@@ -21,11 +21,14 @@ if(fullName){
 
 
 let user = await User.findByname(username);
+if (!user) {
+    console.log("User not found");
+    return res.redirect('/loginPage');
+}
+console.log(user);
 console.log(user.password,password.toString().trim());
-if(await bcrypt.compare(password.toString().trim(),user.password)){
-
-
-    req.session.username = req.body.username;
+if(await bcrypt.compare(password.trim(),user.password)){
+    req.session.username = username;
     next();
 }
 else{
