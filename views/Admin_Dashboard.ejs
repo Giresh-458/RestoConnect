@@ -5,83 +5,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="/css/admin_dashboard_styles.css">
-   
 </head>
 <body>
+    <header class="topnav">
+        <div class="logo">RESTO <span style="color: orange">CONNECT</span></div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#restlist">Restaurants</a>
+            <a href="#stats">User Statistics</a>
+            <a href="#revenue">Revenue</a>
+            <a href="/logout">LogOut</a>
+        </nav>
+    </header>
 
-<div class="dashboard"> 
-    <nav class="sidebar">
-        <ul>
-            <li><a href="#profile">Profile</a></li>
-            <li><a href="#revenue">Revenue</a></li>
-            <li><a href="#stats">Users Statistics</a></li>
-            <li><a href="#restlist">Restaurants</a></li>
-            <li class="logout"><a href="/logout">Logout</a></li>
-        </ul>
-    </nav>
-
-    <main class="content">
-
-
-        <div id="revenue">
-
-        </div>
-
-
-        <div class="profile" id="profile">
-            <h2>adam</h2>
-            <p>Administrator</p>
-            <p>adam@gmail.com</p>
-        </div> 
-
-        <div class="stats" id="stats">
-            <div class="stat-box">
-                <h6>Active Users</h6>
-                <div class="stat-number"><h1><%= active_user_count %></h1></div>
-            </div>
-            <div class="stat-box">
-                <h6>Total Users</h6>
-                <div class="stat-number"><h1><%= total_user_count %></h1></div>
-            </div>
-        </div>
-
-        <div class="restaurant-list" id="restlist">
-
-            <% restaurants_list.forEach(restaurent => { %>
-                <div class="restaurant-card">
-                    <div><strong>Name:</strong> <%= restaurent.name %></div>
-                    <div><strong>Location:</strong> <%= restaurent.location %></div>
-                    <div><strong>Payment:</strong> <%= restaurent.amount %></div>
-                    <div><strong>Joined:</strong> <%= restaurent.date %></div>
+    <main>
+        <section class="profile-section">
+            <div class="profile-card">
+                <div class="profile-pic"></div>
+                <div class="profile-info">
+                    <p><strong>Name:</strong> adam</p>
+                    <p><strong>Address:</strong></p>
+                    <p><strong>Phone Number:</strong></p>
+                    <p><strong>Email Id:</strong> adam@gmail.com</p>
                 </div>
-            <% }) %>
-        </div>
+                <button class="edit-btn">✎ Edit</button>
+            </div>
+        </section>
 
-        
-
-        <div class="form-section">
+        <section class="add-restaurant-form">
+            <h2>ADD RESTAURANT</h2>
             <form action="/admin/add_restaurant" method="POST">
-                <label>Name:</label>
-                <input type="text" name="name" required>
-
-                <label>Location:</label>
-                <input type="text" name="location" required>
-
-                <label>Payment Amount:</label>
-                <input type="number" name="amount" required>
-
-                <label>Date Joined:</label>
+                <div class="owner-title">Restaurant Name</div>
+                <input type="text" name="name" placeholder="Restaurant Name" required>
+                <div class="owner-title">Location</div>
+                <input type="text" name="location" placeholder="Location" required>
+                <div class="owner-title">Payment</div>
+                <input type="number" name="amount" placeholder="Payment" required>
+                <div class="owner-title">Owner Details</div>
+                <div class="owner-box">
+                    <div class="owner-info">
+                        Name:<br>
+                        Phone Number:<br>
+                        Email Id:
+                    </div>
+                    <button type="button">Add +</button>
+                </div>
+                <div class="owner-title">Payment</div>
+                <input type="number" name="owner_payment" placeholder="Payment" required>
+                <div class="owner-title">Date Joined</div>
                 <input type="date" name="date" required>
-
                 <button type="submit">Submit</button>
             </form>
-        </div>
+        </section>
+
+        <section class="restaurant-list" id="restlist">
+            <h2>Restaurants</h2>
+            <% restaurants_list.forEach(restaurent => { %>
+                <div class="restaurant-card">
+                    <div><strong>Restaurant Name:</strong> <%= restaurent.name %></div>
+                    <div><strong>Location:</strong> <%= restaurent.location %></div>
+                    <div><strong>Payment:</strong> <%= restaurent.amount %></div>
+                    <div><strong>Date Joined:</strong> <%= restaurent.date %></div>
+                    <div><strong>Owner Username:</strong></div>
+                    <div><strong>Owner Password:</strong></div>
+                    <button class="edit-btn">✎ Edit</button>
+                </div>
+            <% }) %>
+        </section>
+
+        <section class="statistics" id="stats">
+            <h2>Statistics</h2>
+            <div>
+                <div class="stat-box orange">
+                    <p>Total Users</p>
+                    <h1><%= total_user_count %></h1>
+                </div>
+                <div class="stat-box orange">
+                    <p>Total Restaurants</p>
+                    <h1><%= restaurants_list.length %></h1>
+                </div>
+            </div>
+        </section>
+
+        <section class="revenue" id="revenue">
+            <h2>Revenue</h2>
+            <div class="revenue-charts">
+                <img src="/images/revenue_graphs.png" alt="Revenue Charts">
+            </div>
+        </section>
     </main>
 
-</div>
-
-
-<script src="/js/admin_dash_script.js"></script>
-
+    <script src="/js/admin_dash_script.js"></script>
 </body>
 </html>
