@@ -17,7 +17,7 @@
             <a href="/logout">LogOut</a>
         </nav>
     </header>
-
+ 
     <main>
         <section class="profile-section">
             <div class="profile-card">
@@ -28,7 +28,7 @@
                     <p><strong>Phone Number:</strong></p>
                     <p><strong>Email Id:</strong> adam@gmail.com</p>
                 </div>
-                <button class="edit-btn">✎ Edit</button>
+                <button class="edit-btn1">✎ Edit</button>
             </div>
         </section>
 
@@ -58,18 +58,37 @@
             </form>
         </section>
 
-        <section class="restaurant-list" id="restlist">
+        <section class="restaurant-list " id="restlist">
+            <div class="restaurent-heading">
             <h2>Restaurants</h2>
+            </div>
             <% restaurants_list.forEach(restaurent => { %>
                 <div class="restaurant-card">
-                    <div><strong>Restaurant Name:</strong> <%= restaurent.name %></div>
-                    <div><strong>Location:</strong> <%= restaurent.location %></div>
-                    <div><strong>Payment:</strong> <%= restaurent.amount %></div>
-                    <div><strong>Date Joined:</strong> <%= restaurent.date %></div>
-                    <div><strong>Owner Username:</strong></div>
-                    <div><strong>Owner Password:</strong></div>
-                    <button class="edit-btn">✎ Edit</button>
+
+                    <div class="restaurant-info">
+
+                        <div class="restaurant-column">
+                            <p><strong>Restaurant Name:</strong> The Gourmet Spot</p>
+                            <p><strong>Phone Number:</strong> +91 9876543210</p>
+                            <p><strong>Email Id:</strong> gourmet@example.com</p>
+                            <p><strong>Date Joined:</strong> Mon Apr 07 2025</p>
+                        </div>
+                
+
+                        <div class="restaurant-column">
+                            <p><strong>Owner Username:</strong> gourmetowner</p>
+                            <p><strong>Owner Password:</strong> ********</p>
+                            <p><strong>Payment:</strong> Online</p>
+                        </div>
+                    </div>
+                
+
+                    <div class="edit-button-container ">
+                        <button class="edit-btn">✎ Edit</button>
+                    </div>
                 </div>
+                
+                
             <% }) %>
         </section>
 
