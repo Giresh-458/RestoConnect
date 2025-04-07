@@ -8,13 +8,18 @@ let validate = async (req,res,next)=>{
 
 let {username:username,password:password,fullName:fullName} = req.body;
 
-console.log("in password auth");
 
 if(fullName){
+
+    let chk =await User.findByname(username);
+    if(chk!=null){
+        res.send('error');
+        return;
+    }
+
     customer.push(new Person(username,'/images/benjamin-chambon-vRu-Bs27E2M-unsplash.jpg'));
     password = password.toString().trim();
-    let pass =  bcrypt.hashSync(password,0);
-    await new User(username,'customer',null,pass).saveUser();
+    await new User(username,'customer',null,password,null).saveUser();
     res.redirect('/loginPage');
     return;
 }
@@ -27,7 +32,9 @@ if (!user) {
 }
 console.log(user);
 console.log(user.password,password.toString().trim());
-if(await bcrypt.compare(password.trim(),user.password)){
+let a= await bcrypt.compare(password.trim(),user.password);
+console.log(a);
+if(a){
     req.session.username = username;
     next();
 }
