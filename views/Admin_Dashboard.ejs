@@ -1,119 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="/css/admin_dashboard_styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="/public/css/admin_dashboard_styles.css" />
+  </head>
+  <body>
     <header class="topnav">
-        <div class="logo">RESTO <span style="color: orange">CONNECT</span></div>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#restlist">Restaurants</a>
-            <a href="#stats">User Statistics</a>
-            <a href="#revenue">Revenue</a>
-            <a href="/logout">LogOut</a>
-        </nav>
+      <div class="logo">RESTO <span style="color: orange">CONNECT</span></div>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#restlist">Restaurants</a>
+        <a href="#stats">User Statistics</a>
+        <a href="#revenue">Revenue</a>
+        <a href="/logout">LogOut</a>
+      </nav>
     </header>
- 
+
     <main>
-        <section class="profile-section">
-            <div class="profile-card">
-                <div class="profile-pic"></div>
-                <div class="profile-info">
-                    <p><strong>Name:</strong> adam</p>
-                    <p><strong>Address:</strong></p>
-                    <p><strong>Phone Number:</strong></p>
-                    <p><strong>Email Id:</strong> adam@gmail.com</p>
-                </div>
-                <button class="edit-btn1">✎ Edit</button>
+      <section class="profile-section">
+        <div class="profile-card">
+          <div class="profile-pic"></div>
+          <div class="profile-info">
+            <p><strong>Name:</strong> adam</p>
+            <p><strong>Address:</strong></p>
+            <p><strong>Phone Number:</strong></p>
+            <p><strong>Email Id:</strong> adam@gmail.com</p>
+          </div>
+          <button class="edit-btn1">✎ Edit</button>
+        </div>
+      </section>
+
+      <section class="add-restaurant-form">
+        <h2>ADD RESTAURANT</h2>
+        <form action="/admin/add_restaurant" method="POST">
+          <div class="owner-title">Restaurant Name</div>
+          <input
+            type="text"
+            name="name"
+            placeholder="Restaurant Name"
+            required
+          />
+          <div class="owner-title">Location</div>
+          <input type="text" name="location" placeholder="Location" required />
+          <div class="owner-title">Payment</div>
+          <input type="number" name="amount" placeholder="Payment" required />
+          <div class="owner-title">Owner Details</div>
+          <div class="owner-box">
+            <div class="owner-info">
+              Name:<br />
+              Phone Number:<br />
+              Email Id:
             </div>
-        </section>
+            <button type="button">Add +</button>
+          </div>
+          <div class="owner-title">Payment</div>
+          <input
+            type="number"
+            name="owner_payment"
+            placeholder="Payment"
+            required
+          />
+          <div class="owner-title">Date Joined</div>
+          <input type="date" name="date" required />
+          <button type="submit">Submit</button>
+        </form>
+      </section>
 
-        <section class="add-restaurant-form">
-            <h2>ADD RESTAURANT</h2>
-            <form action="/admin/add_restaurant" method="POST">
-                <div class="owner-title">Restaurant Name</div>
-                <input type="text" name="name" placeholder="Restaurant Name" required>
-                <div class="owner-title">Location</div>
-                <input type="text" name="location" placeholder="Location" required>
-                <div class="owner-title">Payment</div>
-                <input type="number" name="amount" placeholder="Payment" required>
-                <div class="owner-title">Owner Details</div>
-                <div class="owner-box">
-                    <div class="owner-info">
-                        Name:<br>
-                        Phone Number:<br>
-                        Email Id:
-                    </div>
-                    <button type="button">Add +</button>
-                </div>
-                <div class="owner-title">Payment</div>
-                <input type="number" name="owner_payment" placeholder="Payment" required>
-                <div class="owner-title">Date Joined</div>
-                <input type="date" name="date" required>
-                <button type="submit">Submit</button>
-            </form>
-        </section>
-
-        <section class="restaurant-list " id="restlist">
-            <div class="restaurent-heading">
-            <h2>Restaurants</h2>
+      <section class="restaurant-list" id="restlist">
+        <div class="restaurent-heading">
+          <h2>Restaurants</h2>
+        </div>
+        <% restaurants_list.forEach(restaurent => { %>
+        <div class="restaurant-card">
+          <div class="restaurant-info">
+            <div class="restaurant-column">
+              <p><strong>Restaurant Name:</strong> The Gourmet Spot</p>
+              <p><strong>Phone Number:</strong> +91 9876543210</p>
+              <p><strong>Email Id:</strong> gourmet@example.com</p>
+              <p><strong>Date Joined:</strong> Mon Apr 07 2025</p>
             </div>
-            <% restaurants_list.forEach(restaurent => { %>
-                <div class="restaurant-card">
-
-                    <div class="restaurant-info">
-
-                        <div class="restaurant-column">
-                            <p><strong>Restaurant Name:</strong> The Gourmet Spot</p>
-                            <p><strong>Phone Number:</strong> +91 9876543210</p>
-                            <p><strong>Email Id:</strong> gourmet@example.com</p>
-                            <p><strong>Date Joined:</strong> Mon Apr 07 2025</p>
-                        </div>
-                
-
-                        <div class="restaurant-column">
-                            <p><strong>Owner Username:</strong> gourmetowner</p>
-                            <p><strong>Owner Password:</strong> ********</p>
-                            <p><strong>Payment:</strong> Online</p>
-                        </div>
-                    </div>
-                
-
-                    <div class="edit-button-container ">
-                        <button class="edit-btn">✎ Edit</button>
-                    </div>
-                </div>
-                
-                
-            <% }) %>
-        </section>
-
-        <section class="statistics" id="stats">
-            <h2>Statistics</h2>
-            <div>
-                <div class="stat-box orange">
-                    <p>Total Users</p>
-                    <h1><%= total_user_count %></h1>
-                </div>
-                <div class="stat-box orange">
-                    <p>Total Restaurants</p>
-                    <h1><%= restaurants_list.length %></h1>
-                </div>
+            <div class="restaurant-column">
+              <p><strong>Owner Username:</strong> gourmetowner</p>
+              <p><strong>Owner Password:</strong> ********</p>
+              <p><strong>Payment:</strong> Online</p>
             </div>
-        </section>
+          </div>
+          <div class="edit-button-container">
+            <button class="edit-btn">✎ Edit</button>
+          </div>
+        </div>
+        <% }) %>
+      </section>
 
-        <section class="revenue" id="revenue">
-            <h2>Revenue</h2>
-            <div class="revenue-charts">
-                <img src="/images/revenue_graphs.png" alt="Revenue Charts">
+      <section class="statistics" id="stats">
+        <h2>Statistics</h2>
+        <div>
+          <div class="stat-box orange">
+            <p>Total Users</p>
+            <h1><%= total_user_count %></h1>
+          </div>
+          <div class="stat-box orange">
+            <p>Total Restaurants</p>
+            <h1><%= restaurants_list.length %></h1>
+          </div>
+        </div>
+      </section>
+
+      <section class="revenue" id="revenue">
+        <h2>Revenue</h2>
+        <div class="revenue-container">
+          <div class="revenue-card">
+            <h3>TOTAL RESTAURANTS</h3>
+            <div class="revenue-value"><span class="trend-up">▲</span> 129</div>
+            <div class="revenue-graph">
+              <div class="graph-bar" style="height: 30%"></div>
+              <div class="graph-bar" style="height: 65%"></div>
+              <div class="graph-bar" style="height: 85%"></div>
             </div>
-        </section>
+            <div class="graph-months">
+              <span>Jan</span>
+              <span>Feb</span>
+              <span>Mar</span>
+            </div>
+          </div>
+
+          <div class="revenue-card">
+            <h3>ACTIVE USERS</h3>
+            <div class="revenue-value">
+              <span class="trend-up">▲</span> 2,159
+            </div>
+            <div class="revenue-graph">
+              <div class="graph-bar" style="height: 40%"></div>
+              <div class="graph-bar" style="height: 70%"></div>
+              <div class="graph-bar" style="height: 100%"></div>
+            </div>
+            <div class="graph-months">
+              <span>Jan</span>
+              <span>Feb</span>
+              <span>Mar</span>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
-    <script src="/js/admin_dash_script.js"></script>
-</body>
+    <script src="/public/js/admin_dash_script.js"></script>
+  </body>
 </html>
