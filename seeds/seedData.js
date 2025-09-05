@@ -64,7 +64,7 @@ async function seed() {
     const restaurants = [
       {
         name: 'Tasty Bites',
-        image: 'tasty_bites.jpg',
+        image: '\images\Tasty_Bites.png',
         rating: 4.5,
         location: 'Chennai',
         amount: 100,
@@ -86,7 +86,7 @@ async function seed() {
       },
       {
         name: 'Spice Hub',
-        image: 'spice_hub.jpg',
+        image: '\images\SpiceHub.png',
         rating: 4.7,
         location: 'Tirupati',
         amount: 120,
@@ -108,7 +108,7 @@ async function seed() {
       },
       {
         name: 'South Delight',
-        image: 'south_delight.jpg',
+        image: '\images\SouthDelight.jpeg',
         rating: 4.3,
         location: 'Hyderabad',
         amount: 90,
@@ -130,7 +130,7 @@ async function seed() {
       },
       {
         name: 'Green Garden',
-        image: 'green_garden.jpg',
+        image: '\images\Green Garden.jpeg',
         rating: 4.6,
         location: 'Chennai',
         amount: 110,
@@ -152,7 +152,7 @@ async function seed() {
       },
       {
         name: 'Ocean Breeze',
-        image: 'ocean_breeze.jpg',
+        image: '\images\Ocean Breeze.jpeg',
         rating: 4.8,
         location: 'Tirupati',
         amount: 130,
@@ -174,7 +174,7 @@ async function seed() {
       },
       {
         name: 'Spicy Fiesta',
-        image: 'spicy_fiesta.jpg',
+        image: '\images\Spicy Fiesta.jpeg',
         rating: 4.4,
         location: 'Hyderabad',
         amount: 95,
@@ -194,7 +194,7 @@ async function seed() {
       },
       {
         name: 'Urban Eats',
-        image: 'urban_eats.jpg',
+        image: '\images\Urban Eats.jpeg',
         rating: 4.2,
         location: 'Chennai',
         amount: 105,
@@ -216,7 +216,7 @@ async function seed() {
       },
       {
         name: 'Cozy Corner',
-        image: 'cozy_corner.jpg',
+        image: '\images\Cozy Corner.jpeg',
         rating: 4.0,
         location: 'Tirupati',
         amount: 85,
@@ -235,7 +235,7 @@ async function seed() {
       },
       {
         name: 'The Spice Route',
-        image: 'spice_route.jpg',
+        image: '\images\Spicy Route.jpeg',
         rating: 4.5,
         location: 'Hyderabad',
         amount: 115,
@@ -254,7 +254,7 @@ async function seed() {
       },
       {
         name: 'Garden Fresh',
-        image: 'garden_fresh.jpg',
+        image: '\images\Garden Fresh.jpeg',
         rating: 4.3,
         location: 'Chennai',
         amount: 100,
@@ -273,7 +273,7 @@ async function seed() {
       },
       {
         name: 'Sunset Grill',
-        image: 'sunset_grill.jpg',
+        image: '\images\Sunset Grill.avif',
         rating: 4.6,
         location: 'Tirupati',
         amount: 125,
