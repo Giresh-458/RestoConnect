@@ -96,7 +96,7 @@
         <% arr.forEach(function(restaurant) { %>
             <a href="/menu/<%= restaurant._id %>">
                 <div class="restaurant">
-                    <img src="<%= restaurant.image %>" alt="<%= restaurant.name %>">
+                    <img src="<%= restaurant.image %>" alt="<%= restaurant.name %>" height="100" width="100">
                     <p class="restaurant-name"><%= restaurant.name %></p>
                     <p class="restaurant-rating">Rating: <%= restaurant.rating %> ⭐</p>
                 </div>
