@@ -62,9 +62,9 @@
         <div class="search-bar">
             <form action="/" method="get">
         <select class="location-dropdown" name="city_option_home">
-            <option>Tirupati</option>
-            <option>Chennai</option>
-            <option>Hyderabad</option>
+            <option value="Tirupati" <%= (typeof city_option_home !== 'undefined' && city_option_home === 'Tirupati') ? 'selected' : '' %>>Tirupati</option>
+            <option value="Chennai" <%= (typeof city_option_home !== 'undefined' && city_option_home === 'Chennai') ? 'selected' : '' %>>Chennai</option>
+            <option value="Hyderabad" <%= (typeof city_option_home !== 'undefined' && city_option_home === 'Hyderabad') ? 'selected' : '' %>>Hyderabad</option>
         </select>
         <input type="text" placeholder="Search for restaurant, cuisine, or dish" name="name_resaurent" required>
          <button class="comic-button">Search</button>

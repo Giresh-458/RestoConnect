@@ -1,61 +1,20 @@
-
-//const sqlite3 = require('sqlite3').verbose();
-
 const { Restaurant } = require("./Restaurents_model");
 
 let active_user_count = 34;
 let total_user_count = 200;
 
-/*let db = new sqlite3.Database(":memory:", (err) => {
-    if (err) {
-        console.error("Error opening database:", err.message);
-    } else {
-        db.run(
-            `CREATE TABLE userstats (
-                active_user_count INTEGER,
-                total_user_count INTEGER
-            )`,
-            (err) => {
-                if (err) console.error("Error creating table:", err.message);
-                else {
-                    
-                    db.run(
-                        `INSERT INTO userstats (active_user_count, total_user_count) VALUES (?, ?)`,
-                        [active_user_count, total_user_count],
-                        (err) => {
-                            // console.log("hello");
-                            if (err) console.error("Error inserting data:", err.message);
-                        }
-                    );
-                }
-            }
-        );
-    }
-});
-
-const getDb = (cb) => {
-    if (!db) {
-        console.error("Database not initialized!");
-        return;
-    }
-    cb(db);
-};*/
-
-let restaurants_list = [];
-
-
-Restaurant.findAll().then(restaurants => {
-    restaurants_list = restaurants.map(r1 => ({
+async function getRestaurantsList() {
+    const restaurants = await Restaurant.find();
+    return restaurants.map(r1 => ({
         name: r1.name,
         location: r1.location,
         amount: r1.amount,
         date: r1.date
     }));
-})
-
+}
 
 module.exports = {
     active_user_count,
     total_user_count,
-    restaurants_list,
+    getRestaurantsList,
 };

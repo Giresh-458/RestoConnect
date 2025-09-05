@@ -1,69 +1,31 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const ordersChartData = {
-        labels: ["Sandwich", "biryani", "pizza"],
-        values: [10, 20, 30]
-    };
+// Add event listener for remove reservation buttons
+document.addEventListener('DOMContentLoaded', () => {
+    const removeButtons = document.querySelectorAll('.remove-reservation-btn');
+    removeButtons.forEach(button => {
+        button.addEventListener('click', async (event) => {
+            const reservationId = event.target.getAttribute('data-reservation-id');
+            if (!reservationId) return;
 
-    const inventoryChartData = {
-        labels: ["tomato", "olives", "cucumber"],
-        values: [50, 40, 30]
-    };
-
-    new Chart(document.getElementById('ordersChart'), {
-        type: 'doughnut',
-        data: {
-            labels: ordersChartData.labels,
-            datasets: [{
-                data: ordersChartData.values,
-                backgroundColor: [
-                    'rgba(54, 162, 235, 0.8)',
-                    'rgba(255, 206, 86, 0.8)',
-                    'rgba(75, 192, 192, 0.8)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    position: 'bottom'
-                },
-                title: {
-                    display: true,
-                    text: 'Orders Processed'
-                }
+            if (!confirm('Are you sure you want to remove this reservation?')) {
+                return;
             }
-        }
-    });
 
-    new Chart(document.getElementById('inventoryChart'), {
-        type: 'doughnut',
-        data: {
-            labels: inventoryChartData.labels,
-            datasets: [{
-                data: inventoryChartData.values,
-                backgroundColor: [
-                    'rgba(75, 192, 192, 0.8)',
-                    'rgba(153, 102, 255, 0.8)',
-                    'rgba(255, 159, 64, 0.8)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    position: 'bottom'
-                },
-                title: {
-                    display: true,
-                    text: 'Inventory Levels'
+            try {
+                const response = await fetch(`/staff/Dashboard/remove-reservation/${reservationId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                if (response.ok) {
+                    window.location.reload();
+                } else {
+                    alert('Failed to remove reservation.');
                 }
+            } catch (error) {
+                console.error('Error removing reservation:', error);
+                alert('Error removing reservation.');
             }
-        }
+        });
     });
 });

@@ -12,6 +12,11 @@
     </div>
     
     <div class="login_container">
+        <% if (errorMessage) { %>
+            <div class="error-popup" style="color: red; margin-bottom: 10px; font-weight: bold;">
+                <%= errorMessage %>
+            </div>
+        <% } %>
         <form id="loginForm" action="/" method="POST" onsubmit="return handleSubmit(event)">
             <h2 class="sign-in"><%= title %></h2> 
             

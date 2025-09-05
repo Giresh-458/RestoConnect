@@ -162,7 +162,9 @@
     color: #e50914;
   }
   
-  
+  .none {
+    display: none !important;
+  }
   
   @media (max-width: 768px) {
     .dashboard {
@@ -188,4 +190,3 @@
       width: 100%;
     }
   }
-  

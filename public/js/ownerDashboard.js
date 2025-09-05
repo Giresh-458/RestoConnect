@@ -1,38 +1,55 @@
-document.getElementById("totalOrders").innerText = "120";
-document.getElementById("totalCustomers").innerText = "85";
-document.getElementById("totalRevenue").innerText = "$45,000";
+// Use variables passed from EJS directly without redeclaring
+console.log("yearlyRevenueLabels:", yearlyRevenueLabels);
+console.log("yearlyRevenueValues:", yearlyRevenueValues);
+console.log("monthlyRevenueLabels:", monthlyRevenueLabels);
+console.log("monthlyRevenueValues:", monthlyRevenueValues);
+console.log("totalOrders:", totalOrders);
+console.log("totalCustomers:", totalCustomers);
+console.log("totalRevenue:", totalRevenue);
 
-const overallRevenueChart = new Chart(
-  document.getElementById("overallRevenueChart"),
-  {
-    type: "line",
+document.getElementById("totalOrders").innerText = totalOrders;
+document.getElementById("totalCustomers").innerText = totalCustomers;
+document.getElementById("totalRevenue").innerText = "₹" + totalRevenue.toFixed(2);
+
+const overallRevenueCtx = document.getElementById('overallRevenueChart').getContext('2d');
+const monthlyRevenueCtx = document.getElementById('monthlyRevenueChart').getContext('2d');
+
+const overallRevenueChart = new Chart(overallRevenueCtx, {
+    type: 'line',
     data: {
-      labels: ["Week 1", "Week 2", "Week 3", "Week 4"],
-      datasets: [
-        {
-          label: "Overall Revenue ($)",
-          data: [8000, 12000, 15000, 5000],
-          borderColor: "orange",
-          backgroundColor: "rgba(255,165,0,0.3)",
-          fill: true,
-        },
-      ],
+        labels: yearlyRevenueLabels,
+        datasets: [{
+            label: 'Yearly Revenue (₹)',
+            data: yearlyRevenueValues,
+            borderColor: 'orange',
+            backgroundColor: 'rgba(255,165,0,0.3)',
+            fill: true,
+        }]
     },
-  }
-);
-const monthlyRevenueChart = new Chart(
-  document.getElementById("monthlyRevenueChart"),
-  {
-    type: "bar",
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+const monthlyRevenueChart = new Chart(monthlyRevenueCtx, {
+    type: 'bar',
     data: {
-      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-      datasets: [
-        {
-          label: "Monthly Revenue ($)",
-          data: [5000, 7000, 8000, 6500, 9000, 11000],
-          backgroundColor: "rgba(72, 209, 204, 0.7)",
-        },
-      ],
+        labels: monthlyRevenueLabels,
+        datasets: [{
+            label: 'Monthly Revenue (₹)',
+            data: monthlyRevenueValues,
+            backgroundColor: 'rgba(72, 209, 204, 0.7)',
+        }]
     },
-  }
-);
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});

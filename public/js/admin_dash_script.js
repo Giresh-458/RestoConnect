@@ -1,51 +1,23 @@
-let btn = document.querySelector("#naddashbtn");
+document.addEventListener('DOMContentLoaded', () => {
+  const editProfileBtn = document.getElementById('editProfileBtn');
+  const profileEditForm = document.getElementById('profileEditForm');
+  const profileDisplay = document.getElementById('profileDisplay');
+  const cancelEditBtn = document.getElementById('cancelEditBtn');
 
-let creatediv = () => {
-  let rev = document.createElement("div");
-  rev.classList.add("naddash-container");
+  if (editProfileBtn && profileEditForm && profileDisplay && cancelEditBtn) {
+    editProfileBtn.addEventListener('click', () => {
+      profileDisplay.style.display = 'none';
+      profileEditForm.style.display = 'block';
+    });
 
-  let innerDiv = document.createElement("div");
-  innerDiv.classList.add("naddash-details");
+    cancelEditBtn.addEventListener('click', () => {
+      profileEditForm.style.display = 'none';
+      profileDisplay.style.display = 'block';
+    });
+  }
 
-  let nameDiv = document.createElement("div");
-  nameDiv.classList.add("naddash-name");
+  // Function to update statistics dynamically
+  // Removed as per user request to not use any API for dynamic updates
 
-  let locationDiv = document.createElement("div");
-  locationDiv.classList.add("naddash-location");
-
-  let paymentDiv = document.createElement("div");
-  paymentDiv.classList.add("naddash-payment");
-
-  let dateDiv = document.createElement("div");
-  dateDiv.classList.add("naddash-date");
-
-  innerDiv.appendChild(nameDiv);
-  innerDiv.appendChild(locationDiv);
-  innerDiv.appendChild(paymentDiv);
-  innerDiv.appendChild(dateDiv);
-
-  rev.appendChild(innerDiv);
-  return rev;
-};
-
-btn.addEventListener("click", () => {
-  let di = document.querySelector(".nad.restaurents_list");
-  di.appendChild(creatediv());
-});
-
-
-document.addEventListener("DOMContentLoaded", function () {
-  const bars = document.querySelectorAll(".graph-bar");
-
-  bars.forEach((bar) => {
-  
-    const targetHeight = bar.style.height;
-    bar.style.height = "0%";
-
-    
-    setTimeout(() => {
-      bar.style.transition = "height 0.8s ease-out";
-      bar.style.height = targetHeight;
-    }, 100);
-  });
+  // Removed updateStatistics function and related calls
 });

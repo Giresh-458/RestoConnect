@@ -1,46 +1,42 @@
-
-let {getDb} = require('../util/database');
-let db = getDb();
+const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
+const userSchema = new mongoose.Schema({
+  username: { type: String, required: true, unique: true },
+  email: { type: String, unique: true },
+  role: { type: String, required: true },
+  restaurantName: { type: String, default: null },
+  rest_id: { type: String, default: null },
+  password: { type: String, required: true }
+});
 
-class User {
-    constructor(username, role, restaurantName = null, password,rest_id = null) {
-        this.username = username;
-        this.role = role;
-        this.restaurantName = role !== 'customer' || 'admin' ? restaurantName : null;
-        this.rest_id = role !== 'customer' || 'admin' ? rest_id : null;
-        this.password =bcrypt.hashSync(password,10);
-    }
+// Pre-save hook to hash password
+userSchema.pre('save', function(next) {
+  if (this.isModified('password')) {
+    this.password = bcrypt.hashSync(this.password, 10);
+  }
+  next();
+});
 
-    static async  findByname(name){
+// Static method to find by username
+userSchema.statics.findByname = async function(username) {
+  return this.findOne({ username });
+};
 
-        return await db.collection('User').findOne({username:name});
-    }
+// Static method to update user
+userSchema.statics.modify = async function(username, updateData) {
+  return this.updateOne({ username }, { $set: updateData });
+};
 
-    async saveUser(){
+// Instance method to get user info
+userSchema.methods.getUserInfo = function() {
+  return {
+    username: this.username,
+    role: this.role,
+    restaurantName: this.restaurantName
+  };
+};
 
-        await db.collection('User').insertOne(this);
-        return;
-    }
+const User = mongoose.model('User', userSchema);
 
-
-    static async  modify(obj){
-        await db.collection('User').updateOne({username:obj.username},{$set:obj});
-    }
-
-    
-    getUserInfo() {
-        return {
-            username: this.username,
-            role: this.role,
-            restaurantName: this.restaurantName
-        };
-    }
-}
-
-
-
-
-
-exports.User = User;
+module.exports = { User };

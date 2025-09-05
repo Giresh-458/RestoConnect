@@ -12,23 +12,63 @@ function createPieChart(canvasId, data, colors, labels) {
   });
 }
 
-const data1 = [10, 20, 30, 40];
-const colors1 = ["blue", "green", "red", "orange"];
-const labels1 = ["Biryani"];
+// Generate colors dynamically for the charts
+function generateColors(count) {
+  const baseColors = ["blue", "green", "red", "orange", "purple", "yellow", "pink", "brown", "cyan", "magenta"];
+  let colors = [];
+  for(let i=0; i<count; i++) {
+    colors.push(baseColors[i % baseColors.length]);
+  }
+  return colors;
+}
 
-const data2 = [3, 7, 2, 4];
-const colors2 = ["purple", "yellow", "pink", "brown"];
-const labels2 = ["The Gourmet Spot "];
+// Use dynamic data passed from server
+const data1 = item_counts || [];
+const labels1 = item_list || [];
+const colors1 = generateColors(data1.length);
+
+const data2 = restaurent_counts || [];
+const labels2 = restaurent_list || [];
+const colors2 = generateColors(data2.length);
 
 createPieChart("pichart1", data1, colors1, labels1);
 createPieChart("pichart2", data2, colors2, labels2);
 
-let chg_pass = document.querySelector("#chg_pass");
-chg_pass.addEventListener("click", function () {
-  document.querySelector(".ncusdasheditform").classList.remove("none");
-});
+window.addEventListener('DOMContentLoaded', () => {
+  let chg_pass = document.querySelector("#chg_pass");
+  if(chg_pass) {
+    chg_pass.addEventListener("click", function () {
+      document.querySelector("#editProfileForm").classList.remove("none");
+    });
+  }
 
-let close_btn = document.querySelector(".close-btn");
-close_btn.addEventListener("click", function () {
-  document.querySelector(".ncusdasheditform").classList.add("none");
+  let close_btn = document.querySelector(".close-btn");
+  if(close_btn) {
+    close_btn.addEventListener("click", function () {
+      document.querySelector(".ncusdasheditform").classList.add("none");
+    });
+  }
+
+  // Automatically show change password form if there is an error or success message
+  const changePasswordError = document.querySelector('.error-message');
+  const changePasswordSuccess = document.querySelector('.success-message');
+  if (changePasswordError || changePasswordSuccess) {
+    document.querySelector("#editProfileForm").classList.remove("none");
+  }
+
+  // Add event listener to show edit profile form
+  let editProfileBtn = document.querySelector("#editProfileBtn");
+  let editProfileForm = document.querySelector("#editProfileForm");
+  let closeBtnEdit = document.querySelector(".close-btn-edit");
+
+  if(editProfileBtn && editProfileForm && closeBtnEdit) {
+    editProfileBtn.addEventListener("click", function() {
+      editProfileForm.classList.remove("none");
+    });
+
+    closeBtnEdit.addEventListener("click", function(event) {
+      event.preventDefault();
+      editProfileForm.classList.add("none");
+    });
+  }
 });

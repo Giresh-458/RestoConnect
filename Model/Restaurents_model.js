@@ -1,76 +1,106 @@
-
-
-let {getDb} = require('../util/database');
-let db = getDb();
-
-
+const mongoose = require('mongoose');
 const shortid = require('shortid');
-class Restaurant {
-    constructor(name, image, rating, location,amount,date) {
-        this.name = name;
-        this.image = image;
-        this.rating = rating;
-        this.location = location;
-        this.amount=amount;
-        this.date = date || new Date();
-        this.dishes = []; // Empty array to store dishes
-        this._id = shortid.generate();
-        
-        //added now can be deleted
-        this.orders = [];
-        this.reservations = [];
-        this.tables=[];
-        this.inventory = [];
-        this.orderData = {
-            labels:[],
-            values:[]
-        };
-        this.inventoryData={
-            labels:[],
-            values:[]
-        };
-        this.tasks = [];
+
+const restaurantSchema = new mongoose.Schema({
+  _id: {
+    type: String,
+    default: shortid.generate
+  },
+  name: {
+    type: String,
+    required: true
+  },
+  image: String,
+  rating: Number,
+  location: String,
+  amount: Number,
+  date: {
+    type: Date,
+    default: Date.now
+  },
+  dishes: [{
+    type: String,
+    ref: 'Dish'
+  }],
+  orders: [{
+    type: String,
+    ref: 'Order'
+  }],
+  reservations: [{
+    id: String,
+    name: String,
+    guests: Number,
+    date: String,
+    time: String,
+    tables: [String],
+    allocated: {
+      type: Boolean,
+      default: false
     }
-
-
-
-    async add_Restaurant(){
-        await db.collection('Restaurant').insertOne(this);
+  }],
+  tables: [{
+    number: String,
+    status: String,
+    seats: Number
+  }],
+  totalTables: {
+    type: Number,
+    default: 0
+  },
+  inventory: [String],
+  orderData: {
+    labels: [String],
+    values: [Number]
+  },
+  inventoryData: {
+    labels: [String],
+    values: [Number]
+  },
+  tasks: [{
+    id: Number,
+    name: String
+  }],
+  payments: [{
+    amount: Number,
+    date: {
+      type: Date,
+      default: Date.now
     }
+  }]
+});
 
-    static async find_by_id(rest_id){
+// Instance method to add restaurant
+restaurantSchema.methods.addRestaurant = async function() {
+  return this.save();
+};
 
-        let ret = await db.collection('Restaurant').findOne({_id:rest_id});
-        return ret;
-    }
-    
-    static async findAll(){
+// Static method to find by ID
+restaurantSchema.statics.find_by_id = function(rest_id) {
+  return this.findOne({ _id: rest_id });
+};
 
-        let ret = await db.collection('Restaurant').find({}).toArray();
-        return ret;
+// Static method to find all restaurants
+restaurantSchema.statics.findAll = function() {
+  return this.find({});
+};
 
-    }
+// Static method to update specific field
+restaurantSchema.statics.updateField = function(id, field, value) {
+  return this.updateOne(
+    { _id: id },
+    { $push: { [field]: value } }
+  );
+};
 
-    static async update(id, field, value) {
-         await db.collection("Restaurant").updateOne(
-          { _id: id },
-          { $push: { [field]: value } }
-        );
-      }
+// Static method to update full document
+restaurantSchema.statics.updateFull = function(obj) {
+  const { _id, ...updateData } = obj;
+  return this.updateOne(
+    { _id },
+    { $set: updateData }
+  );
+};
 
-      static async update_full(obj){
-        const { _id:id, ...updateData } = obj;  
-        await db.collection("Restaurant").updateOne({ _id: id }, { $set: updateData });        
-      }
+const Restaurant = mongoose.model('Restaurant', restaurantSchema);
 
-
-}
-
-
-
-
-
-
-
-
-exports.Restaurant =Restaurant;
+module.exports = { Restaurant };

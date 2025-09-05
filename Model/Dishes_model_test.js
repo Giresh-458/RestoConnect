@@ -1,65 +1,61 @@
+const mongoose = require('mongoose');
 const shortid = require('shortid');
-const getDb = require('../util/database').getDb;
 
-class Dish {
-    constructor(name, price, description, image) {
-        this.name = name;
-        this.price = price;
-        this.description = description;
-        this.image = image;
-        this._id = shortid.generate();
-    }
+const dishSchema = new mongoose.Schema({
+  _id: {
+    type: String,
+    default: shortid.generate
+  },
+  name: {
+    type: String,
+    required: true
+  },
+  price: {
+    type: Number,
+    required: true
+  },
+  description: String,
+  image: String
+});
 
+// Add dish to restaurant
+dishSchema.methods.addDish = async function(rest_id) {
+  await mongoose.model('Restaurant').updateOne(
+    { _id: rest_id },
+    { $push: { dishes: this._id } }
+  );
+  return this.save();
+};
 
+// Static method to remove dish
+dishSchema.statics.removeDish = async function(rest_id, dish_id) {
+  await mongoose.model('Restaurant').updateOne(
+    { _id: rest_id },
+    { $pull: { dishes: dish_id } }
+  );
+  return this.deleteOne({ _id: dish_id });
+};
 
-  async  add_Dish(rest_id){
-        let db = getDb();
-        
-       let a = await db.collection('Restaurant').updateOne({_id:rest_id},{$push: { dishes: this._id } })
-       await db.collection('Dish').insertOne(this);
-    }
+// Instance method to update dish
+dishSchema.methods.updateDish = async function() {
+  return this.save();
+};
 
-   static async remove_Dish(rest_id,dish_id){
+// Static method to find all dishes
+dishSchema.statics.findAll = function() {
+  return this.find({});
+};
 
-        let db = getDb();
-        await db.collection('Restaurant').updateOne({_id:rest_id},{ $pull: { dishes: dish_id } });
-        await db.collection('Dish').deleteOne({ _id: dish_id });
-    }
+// Static method to find dish by ID
+dishSchema.statics.find_by_id = function(d_id) {
+  return this.findOne({ _id: d_id });
+};
 
+// Static method to find dish by name
+dishSchema.statics.findByName = function(fname) {
+  return this.findOne({ name: fname });
+};
 
-    async  Update_Dish(dish_id){
+const Dish = mongoose.model('Dish', dishSchema);
 
-        let db = getDb();
-        await db.collection('Dish').updateOne({_id:dish_id},{$set:this});
-    }
-
-    static async find_all(){
-        let db = getDb();
-        let dishes = await db.collection('Dish').find({}).toArray();
-
-        return dishes;
-    }
-
-    static async find_by_id(d_id){
-        let db = getDb();
-        let ret = await db.collection('Dish').findOne({_id:d_id});
-        return ret;
-    }
-
-    static async find_my_name(fname){
-        let db = getDb();
-        let ret = await db.collection('Dish').findOne({name:fname});
-
-        return ret;
-    } 
-
-
-
-}
-
-
-
-
-
-
-exports.Dish = Dish;
+module.exports = { Dish };

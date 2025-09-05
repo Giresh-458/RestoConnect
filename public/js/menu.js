@@ -1,4 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize counters based on cart data passed from server
+    const cart = window.cartData || [];
+
+    cart.forEach(item => {
+        const counters = document.querySelectorAll(`.counter[data-dish="${item.dish}"]`);
+        counters.forEach(counter => {
+            const index = counter.getAttribute('data-index');
+            const cartButton = document.querySelector(`.cart_button[data-index="${index}"]`);
+            const itemCount = counter.querySelector('.item_count');
+            if(cartButton && counter && itemCount){
+                cartButton.style.display = 'none';
+                counter.style.display = 'flex';
+                itemCount.textContent = item.quantity;
+                counter.classList.add('active');
+            }
+        });
+    });
+
     document.getElementById('menu').addEventListener('click', function(event) {
         const target = event.target;
         const index = target.dataset.index;
@@ -31,27 +49,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    document.querySelector('.btn2').addEventListener('click', () => {
-        const restaurantName = document.getElementById('restaurant_name').innerText;
-        const order = [];
-
-        document.querySelectorAll('.counter').forEach(counter => {
-            const dishName = counter.dataset.dish;
-            const quantity = parseInt(counter.querySelector('.item_count').textContent);
-            
-            
-            if (quantity > 0) {
-                order.push({ dish: dishName, quantity });
-            }
-        });
-
-        if (order.length === 0) {
-            alert('No items selected!');
-            return;
-        }
-
-        document.getElementById('restaurantInput').value = restaurantName;
-        document.getElementById('orderInput').value = JSON.stringify(order);
-        document.getElementById('orderForm').submit();
-    });
+    // The order button submits the hidden form to /customer/cart/order
 });

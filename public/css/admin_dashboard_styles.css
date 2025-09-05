@@ -303,3 +303,84 @@ body {
   font-size: 16px;
   margin-bottom: 10px;
 }
+
+
+
+user-list {
+  margin: 20px 0;
+  }
+  
+  .user-heading h2 {
+  margin-bottom: 10px;
+  }
+  
+  .user-card {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f9f9f9;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  }
+  
+  .user-info {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  }
+  
+  .user-column {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  }
+  
+  .user-column label {
+  font-weight: bold;
+  font-size: 0.9em;
+  }
+  
+  .user-column input {
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  }
+  
+  .edit-btn, .delete-btn {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  margin-top: 20px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-size: 0.9em;
+  }
+  
+  .delete-btn {
+  background-color: #dc3545;
+  margin-left: 10px;
+  }
+  
+  .edit-btn:hover {
+  background-color: #0056b3;
+  }
+  
+  .delete-btn:hover {
+  background-color: #c82333;
+  }
+  
+  @media (max-width: 768px) {
+  .user-card {
+  flex-direction: column;
+  }
+  .user-column {
+  width: 100%;
+  }
+  .edit-btn, .delete-btn {
+  width: 100%;
+  margin: 5px 0;
+  }
+  }
