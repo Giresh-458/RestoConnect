@@ -66,8 +66,8 @@
             <option value="Chennai" <%= (typeof city_option_home !== 'undefined' && city_option_home === 'Chennai') ? 'selected' : '' %>>Chennai</option>
             <option value="Hyderabad" <%= (typeof city_option_home !== 'undefined' && city_option_home === 'Hyderabad') ? 'selected' : '' %>>Hyderabad</option>
         </select>
-        <input type="text" placeholder="Search for restaurant, cuisine, or dish" name="name_resaurent" required>
-         <button class="comic-button">Search</button>
+        <input type="text" placeholder="Search for restaurant, cuisine, or dish" id="search-input" name="name_resaurent" required>
+         <button type="button" class="comic-button" id="clear-search">Clear</button>
 
             </form>
     </div>
@@ -114,6 +114,28 @@
         document.querySelector(".menu-toggle").addEventListener("click", function() {
             document.querySelector(".nav-links").classList.toggle("active");
         });
+
+        const searchInput = document.getElementById('search-input');
+const clearButton = document.getElementById('clear-search');
+const restaurantLinks = document.querySelectorAll('.restaurants a');
+
+searchInput.addEventListener('input', function() {
+    const query = searchInput.value.toLowerCase().trim();
+
+    restaurantLinks.forEach(link => {
+        const name = link.querySelector('.restaurant-name').innerText.toLowerCase();
+        if (name.includes(query)) {
+            link.style.display = 'block';
+        } else {
+            link.style.display = 'none';
+        }
+    });
+});
+
+clearButton.addEventListener('click', function() {
+    searchInput.value = '';
+    restaurantLinks.forEach(link => link.style.display = 'block');
+});
     </script>
 </body>
 </html>
