@@ -2,7 +2,8 @@ const path = require('path');
 const { active_user_count, total_user_count, restaurants_list } = require('../Model/admin_model');
 const { Restaurant } = require('../Model/Restaurents_model');
 const { Dish } = require('../Model/Dishes_model_test');
-const {RestaurantRequest} = require("../Model/restaurent_request_model")
+const RestaurantRequest = require("../Model/restaurent_request_model");
+
 
 exports.getAdminDashboard = async (req, res) => {
     try {
