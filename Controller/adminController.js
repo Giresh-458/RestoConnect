@@ -2,11 +2,12 @@ const path = require('path');
 const { active_user_count, total_user_count, restaurants_list } = require('../Model/admin_model');
 const { Restaurant } = require('../Model/Restaurents_model');
 const { Dish } = require('../Model/Dishes_model_test');
-
+const {RestaurantRequest} = require("../Model/restaurent_request_model")
 
 exports.getAdminDashboard = async (req, res) => {
     try {
-        console.log("req.user:", req.user);
+
+       
         // Fetch fresh restaurants list to ensure up-to-dinate data
         const restaurants = await Restaurant.findAll();
         console.log("Fetched restaurants:", restaurants);
@@ -60,8 +61,9 @@ exports.getAdminDashboard = async (req, res) => {
         res.render(path.join(__dirname, '..', 'views', 'Admin_Dashboard'), { 
             active_user_count,
             total_user_count: totalUserCount,
-            restaurants_list: formattedRestaurants,
-            users_list: users,
+           // restaurants_list: formattedRestaurants,
+           // users_list: users,
+          
             current_admin: currentAdminProfile,
             totalRevenue
         });
@@ -253,3 +255,85 @@ exports.postDeleteRestaurent = async (req, res) => {
         res.status(500).send("Internal Server Error");
     }
 };
+
+exports.getAllRestaurants = async (req, res) => {
+    try {
+        const restaurants = await Restaurant.findAll();
+        res.json(restaurants);
+    } catch (error) {
+        console.error("Error fetching restaurants:", error);
+        res.status(500).send("Internal Server Error");
+    }
+};
+
+
+
+
+exports.getaceptreq = async (req,res) =>{
+try{
+const ownername= req.params.owner_username;
+const request = await RestaurantRequest.findOne({owner_username:ownername});
+
+if (!request) {
+    return res.status(404).json({ error: "Request not found" });
+}
+
+const newRestaurant = new Restaurant({
+      name: request.name,
+      location: request.location,
+      amount: request.amount,
+      date: request.date_joined,
+      created_at: new Date()
+    });
+    await newRestaurant.save();
+
+    const newOwner = new User({
+      username: request.owner_username,
+      password: request.owner_password,
+      role: "owner",
+      restaurantName: request.name,
+      rest_id: newRestaurant._id
+    });
+    await newOwner.save();
+
+await RestaurantRequest.deleteOne({ _id: request._id });
+
+res.json({ message: "Request accepted successfully" });
+}
+catch(err){
+console.error("Error accepting request:", err);
+res.status(500).json({ error: "Internal Server Error" });
+}
+
+}
+
+
+exports.getrejectreq=async (req,res)=>{
+try{
+const ownername= req.params.owner_username;
+const request = await RestaurantRequest.findOne({owner_username:ownername});
+
+if (!request) {
+    return res.status(404).json({ error: "Request not found" });
+}
+
+await RestaurantRequest.deleteOne({ _id: request._id });
+
+res.json({ message: "Request rejected successfully" });
+}
+catch(err){
+console.error("Error rejecting request:", err);
+res.status(500).json({ error: "Internal Server Error" });
+}
+
+}
+
+
+
+exports.getAllRequests = async (req,res)=>{
+
+const requests = await RestaurantRequest.find();
+res.json(requests);
+
+
+}

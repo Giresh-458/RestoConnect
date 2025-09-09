@@ -32,6 +32,10 @@ const staffRouter = require('./routes/staffRouter.js');
 const authentication = require('./authenticationMiddleWare.js');
 const validation = require('./passwordAuth.js');
 
+
+const restaurantReq = require("./Model/restaurent_request_model.js");
+
+
 // Connect to MongoDB using Mongoose
 connectDB();
 
@@ -54,6 +58,16 @@ app.use('/customer', authentication('customer'), customer);
 app.use('/admin', authentication('admin'), admin);
 app.use('/owner', authentication('owner'), ownerRouter);
 app.use('/staff', authentication('staff'), staffRouter);
+
+app.post("/create",async (req,res)=>{
+
+ const { name, location, amount, owner_username, owner_password, date_joined } = req.body;
+ let restreq = new restaurantReq({name, location, amount, owner_username, owner_password, date_joined});
+ restreq.save();
+
+res.redirect("/");
+});
+
 
 app.listen(3000, () => {
     console.log('http://localhost:3000');
