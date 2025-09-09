@@ -58,14 +58,18 @@ app.use('/customer', authentication('customer'), customer);
 app.use('/admin', authentication('admin'), admin);
 app.use('/owner', authentication('owner'), ownerRouter);
 app.use('/staff', authentication('staff'), staffRouter);
+app.get("/create", (req, res) => {
+    res.render("restaurantRequest");
+});
 
-app.post("/create",async (req,res)=>{
+
+app.post("/request",async (req,res)=>{
 
  const { name, location, amount, owner_username, owner_password, date_joined } = req.body;
  let restreq = new restaurantReq({name, location, amount, owner_username, owner_password, date_joined});
- restreq.save();
+ await restreq.save();
 
-res.redirect("/");
+res.redirect("/loginPage");
 });
 
 

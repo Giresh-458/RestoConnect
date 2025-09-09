@@ -212,14 +212,14 @@ function getAllReq(){
 
 let xhr = new XMLHttpRequest();
 
- xhr.open("POST", "http://localhost:3000/admin/requests" + rest._id, true);
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.send();
+ xhr.open("GET", "http://localhost:3000/admin/requests", true);
+ xhr.send();
 
     xhr.onload = function () {
       if (xhr.status == 200) {
-      
+
         const reqs = JSON.parse(this.response);
+        document.getElementById("requestslist").innerHTML = ""; // Clear previous content
         for(let i=0;i<reqs.length;i++){
           let doc = reqs[i];
             let di = document.createElement("div");
@@ -236,7 +236,7 @@ let xhr = new XMLHttpRequest();
   <button onclick="rejectRequest('${doc.owner_username}')">Reject</button>
 
             `
-          document.getElementById("requestslist").append("di");
+          document.getElementById("requestslist").appendChild(di);
         }
 
 
@@ -244,18 +244,20 @@ let xhr = new XMLHttpRequest();
     };
 
 
-    function acceptRequest(username) {
+}
+
+function acceptRequest(username) {
   let xhr = new XMLHttpRequest();
-  xhr.open("GET", `/accept_request/${username}`, true);
+  xhr.open("GET", `http://localhost:3000/admin/accept_request/${username}`, true);
   xhr.onload = function () {
     getAllReq();
   };
   xhr.send();
 }
-  
+
 function rejectRequest(username) {
   let xhr = new XMLHttpRequest();
-  xhr.open("GET", `/reject_request/${username}`, true);
+  xhr.open("GET", `http://localhost:3000/admin/reject_request/${username}`, true);
   xhr.onload = function () {
     if (this.status === 200) {
       getAllReq();
@@ -264,8 +266,4 @@ function rejectRequest(username) {
   xhr.send();
 }
 
-
-
-
-}
-
+getAllReq();
