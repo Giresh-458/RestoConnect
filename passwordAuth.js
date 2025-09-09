@@ -4,9 +4,10 @@ const bcrypt = require('bcrypt');
 
 let validate = async (req, res, next) => {
     let { username, email, password, fullName } = req.body;
-
+    console.log(fullName)
     if (fullName) {
         let chk = await User.findOne({ $or: [ { username: username }, { email: email } ] });
+        console.log(chk)
         if (chk != null) {
             res.send('error');
             return;

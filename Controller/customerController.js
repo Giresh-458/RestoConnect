@@ -325,7 +325,7 @@ const { User } = require('../Model/userRoleModel');
 exports.postEditProfile = async (req, res) => {
     try {
         const currentUsername = req.session.username;
-        const { name, email, phone, address, img_url, newPassword, confirmPassword } = req.body;
+        const { name, email, phone, img_url, newPassword, confirmPassword } = req.body;
 
         const userRole = await User.findOne({ username: currentUsername });
         if (!userRole) {
@@ -368,7 +368,6 @@ exports.postEditProfile = async (req, res) => {
         user.name = name || user.name;
         user.email = email || user.email;
         user.phone = phone || user.phone;
-        user.address = address || user.address;
         user.img_url = img_url || user.img_url;
 
         // Save Person model

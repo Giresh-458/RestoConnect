@@ -12,7 +12,6 @@ const personSchema = new Schema({
   img_url: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   phone: { type: String, default: '' },
-  address: { type: String, default: '' },
   prev_orders: [orderSchema],
   top_dishes: { type: Map, of: Number, default: {} },
   top_restaurent: { type: Map, of: Number, default: {} },
