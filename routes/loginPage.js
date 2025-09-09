@@ -24,7 +24,6 @@ router.post('/', async (req, res) => {
     
     if (fullName && email && mobile) {
         // Handle sign-up logic
-        console.log('Sign-up:', { username, fullName, email, mobile });
         // Implement sign-up logic here if needed
         return res.send('Sign-up successful!');
     } else {

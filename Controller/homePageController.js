@@ -1,7 +1,6 @@
 const path = require('path');
 const Restaurant = require('../Model/Restaurents_model').Restaurant;
 const { User } = require('../Model/userRoleModel');
-const { active_user_count, total_user_count, getRestaurantsList } = require('../Model/admin_model');
 
 exports.getHomePage = async (req, res) => {
     let login = req.session?.username ? true : false;
