@@ -6,8 +6,10 @@
     <title>Resto Connect</title>
     <link rel="stylesheet" href="/css/home_page_styles.css">
 
-
     <style>
+
+
+
         .none{
             display: none;
         }
@@ -18,8 +20,8 @@
         .visibilityHidden{
             visibility: hidden;
         }
-    </style>
 
+    </style>
 </head>
 <body>
     <% if(!login) { %>
@@ -56,46 +58,44 @@
 </div>
 <% } else { %>
 
-
-   
     <nav class="nav-bar" style="position: sticky; top: 0px; z-index: 1000; background-color: black;">
-
         <div class="logo">Resto <span>Connect</span></div>
         <div class="search-bar">
             <form action="/" method="get">
-        <select class="location-dropdown" id="l1" >
-            <option value="All" >All</option>
-            <option value="Tirupati">Tirupati</option>
-            <option value="Chennai">Chennai</option>
-            <option value="Hyderabad">Hyderabad</option>
-        </select>
-        <input type="text" placeholder="Search for restaurant, cuisine, or dish" id="search-input" name="name_resaurent" required>
-         <button type="button" class="comic-button" id="clear-search">Clear</button>
-
+                <select class="location-dropdown" name="city_option_home">
+                    <option value="Tirupati" <%= (typeof city_option_home !== 'undefined' && city_option_home === 'Tirupati') ? 'selected' : '' %>>Tirupati</option>
+                    <option value="Chennai" <%= (typeof city_option_home !== 'undefined' && city_option_home === 'Chennai') ? 'selected' : '' %>>Chennai</option>
+                    <option value="Hyderabad" <%= (typeof city_option_home !== 'undefined' && city_option_home === 'Hyderabad') ? 'selected' : '' %>>Hyderabad</option>
+                </select>
+                <input type="text" placeholder="Search for restaurant, cuisine, or dish" id="search-input" name="name_resaurent" required>
+                <button type="button" class="comic-button" id="clear-search">Clear</button>
             </form>
-    </div>
-
+        </div>
 
         <ul class="nav-links" >
-                <% if (user === 'customer') { %>
-                    <li><a href="/customer/customerDashboard">Dashboard</a></li>
-                <% } else if (user === 'staff') { %>
-                    <li><a href="/staff/dashboard">Dashboard</a></li>
-                <% } else if (user === 'admin') { %>
-                    <li><a href="/admin/dashboard">Dashboard</a></li>
-                <% } else if (user === 'owner') { %>
-                    <li><a href="/owner/dashboard">Dashboard</a></li>
-                <% } %> 
-                <li><a href="/logout">logout</a></li>             
+            <% if (user === 'customer') { %>
+                <li><a href="/customer/customerDashboard">Dashboard</a></li>
+            <% } else if (user === 'staff') { %>
+                <li><a href="/staff/dashboard">Dashboard</a></li>
+            <% } else if (user === 'admin') { %>
+                <li><a href="/admin/dashboard">Dashboard</a></li>
+            <% } else if (user === 'owner') { %>
+                <li><a href="/owner/dashboard">Dashboard</a></li>
+            <% } %> 
+            <li><a href="/logout">logout</a></li>             
         </ul>
         <div class="menu-toggle">&#9776;</div>
-
-
     </nav>
     
+    <!-- Restaurants injected here by AJAX -->
+    <!-- <div class="restaurants" id="restaurants-container">
+        <p>Loading restaurants...</p>
+    </div> -->
 
-
-    <div class="restaurants" id="rest1">
+    <div id="restaurants-container" class="restaurants">
+    <% if(arr.length === 0) { %>
+        <p>Loading restaurants...</p>
+    <% } else { %>
         <% arr.forEach(function(restaurant) { %>
             <a href="/menu/<%= restaurant._id %>">
                 <div class="restaurant">
@@ -105,59 +105,103 @@
                 </div>
             </a>
         <% }); %>
-    </div>
-    
-
     <% } %>
-    <footer>
-        <p>&copy; 2025 Resto Connect. All rights reserved.</p>
-    </footer>
+</div>
+
+<% } %>
+
+<footer>
+    <p>&copy; 2025 Resto Connect. All rights reserved.</p>
+</footer>
     
-    <script>
-        document.getElementById("l1").addEventListener("change",()=>{
-            const rest_location=document.getElementById("l1").value
-            const rest1=document.getElementById("rest1")
-            if(rest_location === "All"){
-                rest1.innerHTML=`<% arr.forEach(function(restaurant) { %>
-            <a href="/menu/<%= restaurant._id %>">
-                <div class="restaurant">
-                    <img src="<%= restaurant.image %>" alt="<%= restaurant.name %>" height="100" width="100">
-                    <p class="restaurant-name"><%= restaurant.name %></p>
-                    <p class="restaurant-rating">Rating: <%= restaurant.rating %> ⭐</p>
-                </div>
-            </a>
-        <% }); %>`
-            }
-
-        })
-    
-        document.querySelector(".menu-toggle").addEventListener("click", function() {
-            document.querySelector(".nav-links").classList.toggle("active");
-        });
-
-        const searchInput = document.getElementById('search-input');
-const clearButton = document.getElementById('clear-search');
-const restaurantLinks = document.querySelectorAll('.restaurants a');
 
 
-
-searchInput.addEventListener('input', function() {
-    const query = searchInput.value.toLowerCase().trim();
-
-    restaurantLinks.forEach(link => {
-        const name = link.querySelector('.restaurant-name').innerText.toLowerCase();
-        if (name.includes(query)) {
-            link.style.display = 'block';
-        } else {
-            link.style.display = 'none';
-        }
+<script>
+    // Menu toggle
+    document.querySelector(".menu-toggle").addEventListener("click", function() {
+        document.querySelector(".nav-links").classList.toggle("active");
     });
-});
 
-clearButton.addEventListener('click', function() {
-    searchInput.value = '';
-    restaurantLinks.forEach(link => link.style.display = 'block');
-});
-    </script>
+    const searchInput = document.getElementById('search-input');
+    const clearButton = document.getElementById('clear-search');
+    const container = document.getElementById("restaurants-container");
+
+    // Add class 'restaurant-link' to server-rendered restaurants for search
+    const serverRestaurants = container.querySelectorAll('a');
+    serverRestaurants.forEach(link => link.classList.add('restaurant-link'));
+
+    // Function to filter restaurants
+    function applySearch() {
+        const query = searchInput.value.toLowerCase().trim();
+        const restaurantLinks = container.querySelectorAll('.restaurant-link');
+
+        restaurantLinks.forEach(link => {
+            const name = link.querySelector('.restaurant-name').innerText.toLowerCase();
+            link.style.display = name.includes(query) ? 'block' : 'none';
+        });
+    }
+
+    if (searchInput) searchInput.addEventListener('input', applySearch);
+    if (clearButton) {
+        clearButton.addEventListener('click', function() {
+            searchInput.value = '';
+            applySearch();
+        });
+    }
+
+    // Fetch restaurants via XMLHttpRequest if logged in
+    const isLoggedIn = "<%= login ? 'true' : 'false' %>";
+    if (isLoggedIn === "true") {
+        function loadRestaurants() {
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", "/api/restaurants", true);
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) { // request finished
+                    if (xhr.status === 200) {
+                        try {
+                            const restaurants = JSON.parse(xhr.responseText);
+
+                            // Clear container first
+                            container.innerHTML = "";
+                            if (restaurants.length === 0) {
+                                container.innerHTML = "<p>No restaurants found.</p>";
+                                return;
+                            }
+
+                            restaurants.forEach(r => {
+                                const link = document.createElement("a");
+                                link.href = `/menu/${r._id}`;
+                                link.classList.add("restaurant-link");
+                                link.innerHTML = `
+                                    <div class="restaurant">
+                                        <img src="${r.image || 'https://via.placeholder.com/100'}" alt="${r.name}" height="100" width="100">
+                                        <p class="restaurant-name">${r.name}</p>
+                                        <p class="restaurant-rating">Rating: ${r.rating || 'N/A'} ⭐</p>
+                                    </div>
+                                `;
+                                container.appendChild(link);
+                            });
+
+                            applySearch(); // apply search immediately
+                        } catch (error) {
+                            console.error("Error parsing restaurants:", error);
+                            container.innerHTML = "<p>Error loading restaurants.</p>";
+                        }
+                    } else {
+                        console.error("Failed to fetch restaurants. Status:", xhr.status);
+                        container.innerHTML = "<p>Error loading restaurants.</p>";
+                    }
+                }
+            };
+
+            xhr.send();
+        }
+
+        window.addEventListener("DOMContentLoaded", loadRestaurants);
+    }
+</script>
+
+
 </body>
 </html>
