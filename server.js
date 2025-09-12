@@ -31,6 +31,7 @@ const ownerRouter = require('./routes/ownerRoutes.js');
 const staffRouter = require('./routes/staffRouter.js');
 const authentication = require('./authenticationMiddleWare.js');
 const validation = require('./passwordAuth.js');
+const res_req=require(path.join(__dirname,'routes','customer.js'))
 
 
 const restaurantReq = require("./Model/restaurent_request_model.js");
@@ -51,6 +52,7 @@ app.get('/logout', (req, res) => {
 });
 
 app.use('/loginPage', loginPage);
+app.use('/res_req',res_req)
 app.get('/', homepageController.getHomePage);
 app.post('/', validation, homepageController.putHomePage);
 app.get('/menu/:restid', authentication('customer'), menuController.getMenu);
@@ -62,15 +64,11 @@ app.get("/create", (req, res) => {
     res.render("restaurantRequest");
 });
 
+app.get('/req_res',homepageController.getRestReq)
+app.post('/req_res',homepageController.postRestReq)
 
-app.post("/request",async (req,res)=>{
 
- const { name, location, amount, owner_username, owner_password, date_joined } = req.body;
- let restreq = new restaurantReq({name, location, amount, owner_username, owner_password, date_joined});
- await restreq.save();
 
-res.redirect("/loginPage");
-});
 
 
 app.listen(3000, () => {

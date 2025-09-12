@@ -29,6 +29,19 @@ exports.getHomePage = async (req, res) => {
     });
 };
 
+exports.getRestReq=async (req,res)=>{
+    res.render("restaurantRequest")
+}
+
+exports.postRestReq=async (req,res)=>{
+
+ const { name, location, amount, owner_username, owner_password, date_joined } = req.body;
+ let restreq = new restaurantReq({name, location, amount, owner_username, owner_password, date_joined});
+ await restreq.save();
+
+res.redirect("/loginPage");
+};
+
 exports.putHomePage = async (req, res) => {
     const user = await User.findOne({ username: req.session?.username });
     if (!user) {
