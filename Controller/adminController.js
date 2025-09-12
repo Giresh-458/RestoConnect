@@ -1,17 +1,15 @@
+// Controller/adminController.js
 const path = require('path');
-const { active_user_count, total_user_count, restaurants_list } = require('../Model/admin_model');
-const { Restaurant } = require('../Model/Restaurents_model');
+const bcrypt = require('bcrypt');
+const { User } = require('../Model/userRoleModel');
+const { Restaurant } = require('../Model/Restaurents_model'); // ✅ Correct spelling
+const RestaurantRequest = require('../Model/restaurent_request_model'); // ✅ Correct spelling
 const { Dish } = require('../Model/Dishes_model_test');
-const RestaurantRequest = require("../Model/restaurent_request_model");
 
-
+// Admin Dashboard
 exports.getAdminDashboard = async (req, res) => {
     try {
-
-       
-        // Fetch fresh restaurants list to ensure up-to-dinate data
         const restaurants = await Restaurant.findAll();
-        console.log("Fetched restaurants:", restaurants);
         const formattedRestaurants = restaurants.map(r => ({
             name: r.name,
             location: r.location,
@@ -20,10 +18,11 @@ exports.getAdminDashboard = async (req, res) => {
             _id: r._id,
             image: r.image,
         }));
-        // Calculate total revenue for restaurants joined in the current month
+
         const now = new Date();
         const currentMonth = now.getMonth();
         const currentYear = now.getFullYear();
+
         const totalRevenue = restaurants.reduce((sum, r) => {
             const joinDate = new Date(r.date);
             if (joinDate.getMonth() === currentMonth && joinDate.getFullYear() === currentYear) {
@@ -32,15 +31,12 @@ exports.getAdminDashboard = async (req, res) => {
             return sum;
         }, 0);
 
-        // Fetch current admin profile
         const currentAdminUsername = req.user ? req.user.username : null;
-        console.log("currentAdminUsername:", currentAdminUsername);
         let currentAdminProfile = null;
         if (currentAdminUsername) {
             currentAdminProfile = await User.findOne({ username: currentAdminUsername });
         }
 
-        // Fetch all users except the current admin
         let users = [];
         if (currentAdminUsername) {
             users = await User.find({ username: { $ne: currentAdminUsername } });
@@ -48,25 +44,20 @@ exports.getAdminDashboard = async (req, res) => {
             users = await User.find({});
         }
 
-        // Clear restaurantName for users with role 'customer'
         users = users.map(user => {
-            if (user.role === 'customer') {
-                user.restaurantName = '';
-            }
+            if (user.role === 'customer') user.restaurantName = '';
             return user;
         });
 
-        // Get dynamic total user count from database
         const totalUserCount = await User.countDocuments();
 
         res.render(path.join(__dirname, '..', 'views', 'Admin_Dashboard'), { 
-            active_user_count,
+            active_user_count: 0, // You can calculate active users if needed
             total_user_count: totalUserCount,
-           // restaurants_list: formattedRestaurants,
-           // users_list: users,
-          
             current_admin: currentAdminProfile,
-            totalRevenue
+            totalRevenue,
+            restaurants_list: formattedRestaurants,
+            users_list: users
         });
     } catch (error) {
         console.error("Error in getAdminDashboard:", error);
@@ -74,9 +65,7 @@ exports.getAdminDashboard = async (req, res) => {
     }
 };
 
-const { User } = require('../Model/userRoleModel');
-const bcrypt = require('bcrypt');
-
+// Get all users
 exports.getAllUsers = async (req, res) => {
     try {
         const currentAdminUsername = req.user ? req.user.username : null;
@@ -93,24 +82,21 @@ exports.getAllUsers = async (req, res) => {
     }
 };
 
+// Get statistics
 exports.getStatistics = async (req, res) => {
     try {
         const totalUsers = await User.countDocuments();
-        const Restaurant = require('../Model/Restaurents_model').Restaurant;
         const totalRestaurants = await Restaurant.countDocuments();
-        const restaurants = await Restaurant.find({});
+        const restaurants = await Restaurant.findAll();
         const totalRevenue = restaurants.reduce((sum, r) => sum + (r.amount || 0), 0);
-        res.json({
-            totalUsers,
-            totalRestaurants,
-            totalRevenue
-        });
+        res.json({ totalUsers, totalRestaurants, totalRevenue });
     } catch (error) {
         console.error("Error in getStatistics:", error);
         res.status(500).send("Internal Server Error");
     }
 };
 
+// Delete user
 exports.deleteUser = async (req, res) => {
     try {
         const userId = req.params.id;
@@ -122,25 +108,19 @@ exports.deleteUser = async (req, res) => {
     }
 };
 
+// Edit user
 exports.editUser = async (req, res) => {
     try {
         const userId = req.params.id;
         const { username, email, role, restaurantName, password } = req.body;
-        if (!username || !role) {
-            return res.status(400).json({ error: "Missing required fields!" });
-        }
+        if (!username || !role) return res.status(400).json({ error: "Missing required fields!" });
 
-        let updateData = { username, email, role, restaurantName };
-
+        const updateData = { username, email, role, restaurantName };
         if (password && password.trim() !== '') {
-            const hashedPassword = await bcrypt.hash(password.trim(), 10);
-            updateData.password = hashedPassword;
+            updateData.password = await bcrypt.hash(password.trim(), 10);
         }
 
-        await User.updateOne(
-            { _id: userId },
-            { $set: updateData }
-        );
+        await User.updateOne({ _id: userId }, { $set: updateData });
         res.redirect('/admin/dashboard');
     } catch (error) {
         console.error("Error in editUser:", error);
@@ -148,35 +128,22 @@ exports.editUser = async (req, res) => {
     }
 };
 
+// Edit admin profile
 exports.editProfile = async (req, res) => {
     try {
         const currentAdminUsername = req.user ? req.user.username : null;
-        if (!currentAdminUsername) {
-            return res.redirect('/loginPage');
-        }
+        if (!currentAdminUsername) return res.redirect('/loginPage');
 
         const { username, email, password } = req.body;
-        if (!username || !email) {
-            return res.status(400).send("Missing required fields");
-        }
+        if (!username || !email) return res.status(400).send("Missing required fields");
 
-        let updateData = { username, email };
-
+        const updateData = { username, email };
         if (password && password.trim() !== '') {
-            const bcrypt = require('bcrypt');
-            const hashedPassword = await bcrypt.hash(password.trim(), 10);
-            updateData.password = hashedPassword;
+            updateData.password = await bcrypt.hash(password.trim(), 10);
         }
 
-        await User.updateOne(
-            { username: currentAdminUsername },
-            { $set: updateData }
-        );
-
-        // Update session username if changed
-        if (username !== currentAdminUsername) {
-            req.session.username = username;
-        }
+        await User.updateOne({ username: currentAdminUsername }, { $set: updateData });
+        if (username !== currentAdminUsername) req.session.username = username;
 
         res.redirect('/admin/dashboard');
     } catch (error) {
@@ -185,34 +152,24 @@ exports.editProfile = async (req, res) => {
     }
 };
 
+// Add restaurant
 exports.postAddRestaurent = async (req, res) => {
     try {
-        if (!req.body.name || !req.body.location || !req.body.amount) {
-            return res.status(400).json({ error: "Missing required fields!" });
-        }
-        const newRestaurant = new Restaurant({
-            name: req.body.name,
-            image: '',
-            rating: 4,
-            location: req.body.location,
-            amount: req.body.amount,
-            date: new Date()
-        });
+        const { name, location, amount, owner_username, owner_password, owner_email } = req.body;
+        if (!name || !location || !amount) return res.status(400).json({ error: "Missing required fields!" });
+
+        const newRestaurant = new Restaurant({ name, location, amount, date: new Date(), image: '', rating: 4 });
         await newRestaurant.save();
 
-        // Create owner user for the restaurant
-        const ownerUsername = req.body.owner_username || req.body.name.toLowerCase().replace(/\s/g, '') + '_owner';
-        const ownerPassword = req.body.owner_password || 'defaultpassword'; // Should be changed later securely
-
-        const newUser = new User({
-            username: ownerUsername,
-            email: req.body.owner_email || '',
+        const ownerUser = new User({
+            username: owner_username || `${name.toLowerCase().replace(/\s/g, '')}_owner`,
+            password: owner_password || 'defaultpassword',
+            email: owner_email || '',
             role: 'owner',
-            restaurantName: req.body.name,
-            rest_id: newRestaurant._id,
-            password: ownerPassword
+            restaurantName: name,
+            rest_id: newRestaurant._id
         });
-        await newUser.save();
+        await ownerUser.save();
 
         res.redirect('/admin/dashboard');
     } catch (error) {
@@ -221,14 +178,13 @@ exports.postAddRestaurent = async (req, res) => {
     }
 };
 
+// Edit restaurant
 exports.postEditRestaurent = async (req, res) => {
-    
     try {
         const id = req.params.id;
         const { name, location, amount } = req.body;
-        if (!name || !location || !amount) {
-            return res.status(400).json({ error: "Missing required fields!" });
-        }
+        if (!name || !location || !amount) return res.status(400).json({ error: "Missing required fields!" });
+
         await Restaurant.updateFull({ _id: id, name, location, amount });
         res.redirect('/admin/dashboard');
     } catch (error) {
@@ -237,18 +193,15 @@ exports.postEditRestaurent = async (req, res) => {
     }
 };
 
+// Delete restaurant
 exports.postDeleteRestaurent = async (req, res) => {
     try {
         const id = req.params.id;
-        // Find the restaurant to get related dishes
         const restaurant = await Restaurant.find_by_id(id);
         if (restaurant) {
-            // Delete all related dishes
             await Dish.deleteMany({ _id: { $in: restaurant.dishes } });
-            // Delete all users (staff and owners) linked to this restaurant
             await User.deleteMany({ rest_id: id });
         }
-        // Delete the restaurant
         await Restaurant.deleteOne({ _id: id });
         res.redirect('/admin/dashboard');
     } catch (error) {
@@ -257,6 +210,7 @@ exports.postDeleteRestaurent = async (req, res) => {
     }
 };
 
+// Get all restaurants
 exports.getAllRestaurants = async (req, res) => {
     try {
         const restaurants = await Restaurant.findAll();
@@ -267,74 +221,75 @@ exports.getAllRestaurants = async (req, res) => {
     }
 };
 
+// Accept restaurant request
+exports.getaceptreq = async (req, res) => {
+    try {
+        const ownername = req.params.owner_username;
+        const request = await RestaurantRequest.findOne({ owner_username: ownername });
+        if (!request) return res.status(404).json({ error: "Request not found" });
+
+        const newRestaurant = new Restaurant({
+            name: request.name,
+            location: request.location,
+            amount: request.amount,
+            date: request.date_joined,
+            created_at: new Date()
+        });
+        await newRestaurant.save();
+
+        const newOwner = new User({
+            username: request.owner_username,
+            password: request.owner_password,
+            role: "owner",
+            restaurantName: request.name,
+            rest_id: newRestaurant._id
+        });
+        await newOwner.save();
+
+        await RestaurantRequest.deleteOne({ _id: request._id });
+
+        res.json({ message: "Request accepted successfully" });
+    } catch (err) {
+        console.error("Error accepting request:", err);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+};
+
+// Reject restaurant request
+exports.getrejectreq = async (req, res) => {
+    try {
+        const ownername = req.params.owner_username;
+        const request = await RestaurantRequest.findOne({ owner_username: ownername });
+        if (!request) return res.status(404).json({ error: "Request not found" });
+
+        await RestaurantRequest.deleteOne({ _id: request._id });
+        res.json({ message: "Request rejected successfully" });
+    } catch (err) {
+        console.error("Error rejecting request:", err);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+};
+
+// Get all requests
+exports.getAllRequests = async (req, res) => {
+    try {
+        const requests = await RestaurantRequest.find();
+        res.json(requests);
+    } catch (err) {
+        console.error("Error fetching requests:", err);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+};
 
 
 
-exports.getaceptreq = async (req,res) =>{
-try{
-const ownername= req.params.owner_username;
-const request = await RestaurantRequest.findOne({owner_username:ownername});
-
-if (!request) {
-    return res.status(404).json({ error: "Request not found" });
-}
-
-const newRestaurant = new Restaurant({
-      name: request.name,
-      location: request.location,
-      amount: request.amount,
-      date: request.date_joined,
-      created_at: new Date()
-    });
-    await newRestaurant.save();
-
-    const newOwner = new User({
-      username: request.owner_username,
-      password: request.owner_password,
-      role: "owner",
-      restaurantName: request.name,
-      rest_id: newRestaurant._id
-    });
-    await newOwner.save();
-
-await RestaurantRequest.deleteOne({ _id: request._id });
-
-res.json({ message: "Request accepted successfully" });
-}
-catch(err){
-console.error("Error accepting request:", err);
-res.status(500).json({ error: "Internal Server Error" });
-}
-
-}
-
-
-exports.getrejectreq=async (req,res)=>{
-try{
-const ownername= req.params.owner_username;
-const request = await RestaurantRequest.findOne({owner_username:ownername});
-
-if (!request) {
-    return res.status(404).json({ error: "Request not found" });
-}
-
-await RestaurantRequest.deleteOne({ _id: request._id });
-
-res.json({ message: "Request rejected successfully" });
-}
-catch(err){
-console.error("Error rejecting request:", err);
-res.status(500).json({ error: "Internal Server Error" });
-}
-
-}
-
-
-
-exports.getAllRequests = async (req,res)=>{
-
-const requests = await RestaurantRequest.find();
-res.json(requests);
-
-
-}
+// ✅ Public API for homepage (fetch restaurants via AJAX)
+exports.getPublicRestaurants = async (req, res) => {
+    try {
+        const restaurants = await Restaurant.findAll(); // fetch all restaurants
+        res.json(restaurants); // send as JSON
+    } catch (error) {
+        console.error("Error fetching public restaurants:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+};
