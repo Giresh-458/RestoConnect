@@ -23,4 +23,6 @@ router.post('/tables/delete/:number', ownerController.deleteTable);
 
 router.delete('/restaurant/delete/:id', ownerController.deleteRestaurant);
 
+router.get("/staffManagement/task", ownerController.getTasks);
+
 module.exports = router;
