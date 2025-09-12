@@ -249,7 +249,6 @@ form input {
   margin-top: auto; 
 }
 
-
 .staff-card form[action*="delete"] {
   justify-content: flex-end; 
 }
