@@ -27,7 +27,6 @@
     "nodemon": "^3.1.10"
   },
   "keywords": [],
-  "description": "",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Giresh-458/RestoConnect.git"
@@ -35,5 +34,6 @@
   "bugs": {
     "url": "https://github.com/Giresh-458/RestoConnect/issues"
   },
-  "homepage": "https://github.com/Giresh-458/RestoConnect#readme"
+  "homepage": "https://github.com/Giresh-458/RestoConnect#readme",
+  "description": ""
 }
