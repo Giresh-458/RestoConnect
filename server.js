@@ -1,4 +1,3 @@
-
 // server.js
 const express = require('express');
 const path = require('path');
@@ -39,6 +38,7 @@ const homepageController = require('./Controller/homePageController.js');
 const menuController = require('./Controller/menuController.js');
 const authentication = require('./authenticationMiddleWare.js');
 const validation = require('./passwordAuth.js');
+const res_req = require(path.join(__dirname,'routes','customer.js'));
 
 // Connect to MongoDB
 connectDB();
@@ -59,6 +59,7 @@ app.use('/owner', authentication('owner'), ownerRouter);
 app.use('/staff', authentication('staff'), staffRouter);
 
 // Home page
+app.use('/res_req', res_req);
 app.get('/', homepageController.getHomePage);
 app.post('/', validation, homepageController.putHomePage);
 
@@ -70,29 +71,33 @@ app.get("/create", (req, res) => {
     res.render("restaurantRequest");
 });
 
-app.post("/request", async (req, res) => {
+app.get('/req_res', homepageController.getRestReq);
+app.post('/req_res', homepageController.postRestReq);
+
+// ===================== API ROUTES =====================
+// API: fetch restaurants (used by AJAX in homepage.ejs)
+app.get('/api/restaurants', async (req, res) => {
     try {
-        const { name, location, amount, owner_username, owner_password, date_joined, image, rating } = req.body;
-        const restReq = new RestaurantRequest({ name, location, amount, owner_username, owner_password, date_joined, image, rating });
-        await restReq.save();
-        res.redirect("/loginPage");
+        const { city_option_home: loco, name_resaurent: name2 } = req.query;
+
+        let query = {};
+        if (loco) query.location = { $regex: new RegExp(loco.trim(), 'i') };
+        if (name2) query.name = { $regex: new RegExp(name2.trim(), 'i') };
+
+        let restaurants = await Restaurant.find(query);
+
+        if (restaurants.length === 0) {
+            restaurants = await Restaurant.find(); // fallback
+        }
+
+        res.json(restaurants);
     } catch (err) {
-        console.error("Error saving restaurant request:", err);
-        res.status(500).send("Internal Server Error");
+        console.error("Error fetching restaurants:", err);
+        res.status(500).json({ error: "Failed to fetch restaurants" });
     }
 });
 
-// API to get restaurant requests (for AJAX)
-app.get('/api/restaurants', async (req, res) => {
-  try {
-    const restaurants = await Restaurant.find();
-    res.json(restaurants); // must be JSON
-  } catch (err) {
-    res.status(500).json({ error: "Failed to fetch restaurants" });
-  }
-});
-
-// Start server
+// ===================== START SERVER =====================
 app.listen(3000, () => {
     console.log('Server running at http://localhost:3000');
 });

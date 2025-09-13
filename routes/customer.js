@@ -4,6 +4,7 @@ const path  =require('path');
 
 const customerController = require('../Controller/customerController');
 const menuController = require('../Controller/menuController');
+const homePageController = require("../Controller/homePageController")
 
 
 
@@ -30,6 +31,8 @@ router.get('/menu/:restid', menuController.getMenu);
 router.post('/cart/add', menuController.addDishToCart);
 router.post('/cart/increase', menuController.increaseDishQuantity);
 router.post('/cart/decrease', menuController.decreaseDishQuantity);
+
+
 
 // Order cart
 router.post('/cart/order', menuController.orderCart);
