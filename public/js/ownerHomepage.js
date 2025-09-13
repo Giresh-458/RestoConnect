@@ -13,8 +13,9 @@ window.onload = function () {
 
 
 function deleteStaff(id) {
+  console.log("to delte");
   const xhr = new XMLHttpRequest();
-  xhr.open("POST", `/staffManagement/delete/${id}`, true);
+  xhr.open("POST", `/owner/staffManagement/delete/${id}`, true);
   xhr.setRequestHeader("Content-Type", "application/json");
 
   xhr.onreadystatechange = function () {
@@ -39,7 +40,7 @@ function editStaff(id) {
   };
 
   const xhr = new XMLHttpRequest();
-  xhr.open("POST", `/staffManagement/edit/${id}`, true);
+  xhr.open("POST", `/owner/staffManagement/edit/${id}`, true);
   xhr.setRequestHeader("Content-Type", "application/json");
 
   xhr.onreadystatechange = function () {
@@ -59,6 +60,7 @@ function editStaff(id) {
 
 
 function callAllStaff(){
+  document.getElementById("staff").innerHTML=``;
 const xhr = new XMLHttpRequest();
 
 document.getElementById("staff").innerHTML=``;
@@ -67,6 +69,7 @@ if(this.status==200){
 
 let responce = JSON.parse(this.response);
 
+
 for(let i=0;i<responce.length;i++){
   let staff = document.createElement("div");
 
@@ -74,9 +77,11 @@ for(let i=0;i<responce.length;i++){
   <input type="text" id="username-${responce[i]._id}" value="${responce[i].username}">
   <input type="password" id="password-${responce[i]._id}" value="${responce[i].password || ''}">
 
-  <button onclick="editStaff(${responce[i]._id})">Edit</button>
-  <button onclick="deleteStaff(${responce[i]._id})">Delete</button>
+ <button onclick="editStaff('${responce[i]._id}')">Edit</button>
+<button onclick="deleteStaff('${responce[i]._id}')">Delete</button>
+
 `;
+
 
 document.getElementById("staff").append(staff);
 }
@@ -139,7 +144,9 @@ document.getElementById("addStaffForm").addEventListener("submit", function (e) 
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
          
-          document.getElementById("addTableForm").reset(); // clear form
+          document.getElementById("addTableForm").reset();
+          loadTables();
+          // clear form
         } else {
           alert("Error adding table: " + xhr.responseText);
         }
@@ -228,6 +235,9 @@ document.getElementById("tasks").innerHTML=``;
 
 
   function loadTables() {
+
+    document.getElementById("tables").innerHTML=``;
+
   const xhr = new XMLHttpRequest();
   xhr.open("GET", "/owner/tables", true);
   xhr.withCredentials = true;
