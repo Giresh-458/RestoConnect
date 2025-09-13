@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <h1>RestoConnect - Manager Home</h1>
+        <h1>RestoConnect - owner Home</h1>
     </header>
     <main>
         <div class="container">
@@ -35,63 +35,49 @@
           
                 <section class="add-staff-form">
                   <h3>Add Staff</h3>
-                  <form action="/owner/staffManagement/add" method="POST">
+                  <form  method="POST" id="addStaffForm">
                     <label for="username">Username:</label>
                     <input type="text" name="username" id="username" required />
                     <label for="restaurantName">Restaurant:</label>
                     <input type="text" name="restaurantName" id="restaurantName" value="<%= restaurant %>" readonly />
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email">
                     <label for="password">Password:</label>
                     <input type="password" name="password" id="password" required />
                     <button type="submit">Add Staff</button>
                   </form>
                 </section>
           
-                <section class="staff-list">
-                  <h3>Staff List</h3>
-                  <% if (staffList && staffList.length > 0) { %>
-                    <% staffList.forEach(staff => { %>
-                      <div class="staff-card">
-                        <form action="/owner/staffManagement/edit/<%= staff._id %>" method="POST" class="staff-info">
-                          <label>Username:</label>
-                          <input type="text" name="username" value="<%= staff.username %>" required />
-                          <label>Password:</label>
-                          <input type="password" name="password" placeholder="New Password (leave blank to keep current)" />
-                          <button type="submit" class="edit-btn">Save</button>
-                        </form>
-                        <form action="/owner/staffManagement/delete/<%= staff._id %>" method="POST" onsubmit="return confirm('Are you sure you want to delete this staff member?');">
-                          <button type="submit" class="delete-btn">Delete</button>
-                        </form>
-                      </div>
-                    <% }) %>
-                  <% } else { %>
-                    <p>No staff members found.</p>
-                  <% } %>
-                </section>
-                <section class="task-list">
-                  <h3>Tasks</h3>
-                  <% if (tasks && tasks.length > 0) { %>
-                    <ul>
-                      <% tasks.forEach(task => { %>
-                        <li>
-                          <%= task.name %>
-                          <form action="/owner/staffManagement/task/delete/<%= task.id %>" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this task?');">
-                            <button type="submit" class="delete-btn">Delete</button>
-                          </form>
-                        </li>
-                      <% }) %>
-                    </ul>
-                  <% } else { %>
-                    <p>No tasks found.</p>
-                  <% } %>
-                </section>
+
+
+               <section id="class-list">
+                  <div id="staff">
+
+
+
+                  </div>
+               </section>
+
+
+               
+
+              <section class="task-list">
+                <div id="tasks">
+
+
+
+                </div>
+
               </section>
+
+
 
               <section class="table-management">
                 <h2>Table Management</h2>
 
                 <section class="add-table-form">
                   <h3>Add Table</h3>
-                  <form action="/owner/tables/add" method="POST">
+                  <form  method="POST" id="addTableForm">
                     <label for="tableNumber">Table Number:</label>
                     <input type="text" name="number" id="tableNumber" required />
                     <label for="seats">Number of Seats:</label>
@@ -100,29 +86,18 @@
                   </form>
                 </section>
 
-                <section class="table-list">
-                  <h3>Current Tables</h3>
-                  <% if (tables && tables.length > 0) { %>
-                    <ul>
-                      <% tables.forEach(table => { %>
-                        <li>
-                          Table <%= table.number %> - Seats: <%= table.seats %> - Status: <%= table.status %>
-                          <form action="/owner/tables/delete/<%= table.number %>" method="POST" onsubmit="return confirm('Are you sure you want to delete this table?');" style="display:inline;">
-                            <button type="submit" class="delete-btn">Delete</button>
-                          </form>
-                        </li>
-                      <% }) %>
-                    </ul>
-                  <% } else { %>
-                    <p>No tables found.</p>
-                  <% } %>
-                </section>
-              </section>
-          </main>
-          <script src="/js/ownerHomepage.js"></script>
+
+
+           <section class="table-list">
+  <h3>Current Tables</h3>
+  <div id="tables"></div>
+</section>
+         
           
+
+
         </div>
-    </main>
-    <script src="/js/ownerHomepage.js"></script>
+   </main>
+         <script src="/js/ownerHomepage.js"></script>
 </body>
 </html>

@@ -41,7 +41,8 @@ exports.getTables = async (req, res) => {
             return res.status(404).send("Restaurant not found");
         }
         const restPopulated = await Restaurant.findById(user.rest_id).populate('dishes').populate('orders');
-        res.render('ownerTables', { tables: restPopulated.tables });
+       // res.render('ownerTables', { tables: restPopulated.tables });
+       res.json({ tables: restPopulated.tables });
     } catch (error) {
         console.error("Error in getTables:", error);
         res.status(500).send("Internal Server Error");
@@ -237,13 +238,14 @@ exports.getStaffList = async (req, res) => {
         const rest_id = req.session.rest_id;
         const staffList = await User.find({ rest_id: rest_id, role: 'staff' });
         // Also fetch restaurant name to pass to view
-        const user = await User.findByname(req.session.username);
+      /*  const user = await User.findByname(req.session.username);
         const restaurant = user ? user.restaurantName : null;
         const rest = await Restaurant.find_by_id(rest_id);
         const tables = rest ? rest.tables : [];
         const tasks = rest ? rest.tasks || [] : [];
         const restPopulated = await Restaurant.findById(rest_id).populate('dishes').populate('orders');
-        res.render('ownerHomepage', { staffList, restaurant, tables, tasks, orders: restPopulated.orders, dishes: restPopulated.dishes });
+        res.render('ownerHomepage', { staffList, restaurant, tables, tasks, orders: restPopulated.orders, dishes: restPopulated.dishes });*/
+        res.json(staffList);
     } catch (error) {
         console.error("Error in getStaffList:", error);
         res.status(500).send("Internal Server Error");
@@ -253,7 +255,7 @@ exports.getStaffList = async (req, res) => {
 exports.addStaff = async (req, res) => {
     try {
         const rest_id = req.session.rest_id;
-        const { username, password, restaurantName } = req.body;
+        const { username, password, restaurantName,email } = req.body;
         if (!username || !password) {
             return res.status(400).send("Missing required fields");
         }
@@ -262,7 +264,8 @@ exports.addStaff = async (req, res) => {
             password,
             role: 'staff',
             rest_id,
-            restaurantName
+            restaurantName,
+            email
         });
         await newStaff.save();
         res.redirect('/owner/staffManagement');
@@ -301,6 +304,18 @@ exports.deleteStaff = async (req, res) => {
         res.status(500).send("Internal Server Error");
     }
 };
+
+
+exports.getTasks = async (req,res)=>{
+
+const rest_id = req.session.rest_id;
+
+const rest = await Restaurant.findById(rest_id).select("tasks")
+
+res.json({ tasks: rest.tasks });
+}
+
+
 
 exports.deleteTask = async (req, res) => {
     try {
