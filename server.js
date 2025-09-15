@@ -5,7 +5,7 @@ const bodyparser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const { connectDB } = require('./util/database');
-
+const cors = require("cors");
 // Models
 const RestaurantRequest = require('./Model/restaurent_request_model.js'); // ✅ Correct spelling
 const { Restaurant } = require('./Model/Restaurents_model.js'); // ✅ Correct spelling
@@ -17,9 +17,14 @@ app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 app.set('views', 'views');
+
 
 app.use(session({
     secret: 'session',
@@ -27,6 +32,7 @@ app.use(session({
     saveUninitialized: true,
     cookie: { maxAge: 1000 * 60 * 30 }
 }));
+
 
 // Routes & Controllers
 const loginPage = require('./routes/loginPage.js');
