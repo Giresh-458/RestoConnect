@@ -20,7 +20,8 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    const { username, password, fullName, email, mobile } = req.body;
+    // const { username, password, fullName, email, mobile } = req.body;
+    console.log(req.body);
     
     if (fullName && email && mobile) {
         // Handle sign-up logic

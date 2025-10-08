@@ -2,12 +2,10 @@
 const express = require('express');
 const path = require('path');
 const bodyparser = require('body-parser');
-const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const { connectDB } = require('./util/database');
 
 // Models
-const RestaurantRequest = require('./Model/restaurent_request_model.js'); // ✅ Correct spelling
 const { Restaurant } = require('./Model/Restaurents_model.js'); // ✅ Correct spelling
 
 const app = express();
@@ -16,7 +14,6 @@ const app = express();
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
 app.use(express.json());
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 app.set('views', 'views');
@@ -38,7 +35,6 @@ const homepageController = require('./Controller/homePageController.js');
 const menuController = require('./Controller/menuController.js');
 const authentication = require('./authenticationMiddleWare.js');
 const validation = require('./passwordAuth.js');
-const res_req = require(path.join(__dirname,'routes','customer.js'));
 
 // Connect to MongoDB
 connectDB();
@@ -59,7 +55,6 @@ app.use('/owner', authentication('owner'), ownerRouter);
 app.use('/staff', authentication('staff'), staffRouter);
 
 // Home page
-app.use('/res_req', res_req);
 app.get('/', homepageController.getHomePage);
 app.post('/', validation, homepageController.putHomePage);
 
