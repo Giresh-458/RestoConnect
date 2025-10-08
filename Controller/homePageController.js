@@ -51,8 +51,8 @@ exports.getRestReq=async (req,res)=>{
 
 exports.postRestReq=async (req,res)=>{
 
- const { name, location, amount, owner_username, owner_password, date_joined } = req.body;
- let restreq = new restaurantReq({name, location, amount, owner_username, owner_password, date_joined});
+ const { name, location, amount, owner_username, owner_password, date_joined,email } = req.body;
+ let restreq = new restaurantReq({name, location, amount, owner_username, owner_password, date_joined,email});
  await restreq.save();
 
 res.redirect("/loginPage");

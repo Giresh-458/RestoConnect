@@ -25,6 +25,10 @@ const restaurantSchema = new mongoose.Schema({
     type: String,
     required: true, 
   },
+  email:{
+    type:String,
+    required:true
+  },
   date_joined: {
     type: Date,
     required: true,
