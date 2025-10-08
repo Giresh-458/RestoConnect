@@ -4,7 +4,7 @@ const path = require('path');
 const bodyparser = require('body-parser');
 const session = require('express-session');
 const { connectDB } = require('./util/database');
-
+const cors = require("cors");
 // Models
 const { Restaurant } = require('./Model/Restaurents_model.js'); // ✅ Correct spelling
 
@@ -14,9 +14,18 @@ const app = express();
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
 app.use(express.json());
+<<<<<<< HEAD
+=======
+app.use(cookieParser());
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true
+}));
+>>>>>>> fd06c585409cdd5c408dcc992528039508f6f84d
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 app.set('views', 'views');
+
 
 app.use(session({
     secret: 'session',
@@ -24,6 +33,7 @@ app.use(session({
     saveUninitialized: true,
     cookie: { maxAge: 1000 * 60 * 30 }
 }));
+
 
 // Routes & Controllers
 const loginPage = require('./routes/loginPage.js');
