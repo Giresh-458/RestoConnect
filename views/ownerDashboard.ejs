@@ -31,20 +31,20 @@
 
       <div class="charts-container">
         <div class="chart-box">
-          <h3>Overall Revenue</h3>
-          <canvas id="overallRevenueChart"></canvas>
+          <h3>Weekly Revenue</h3>
+          <canvas id="weeklyRevenueChart"></canvas>
         </div>
         <div class="chart-box">
-          <h3>Monthly Revenue</h3>
-          <canvas id="monthlyRevenueChart"></canvas>
+          <h3>Daily Revenue</h3>
+          <canvas id="dailyRevenueChart"></canvas>
         </div>
       </div>
     </main>
     <script>
-      const yearlyRevenueLabels = <%- JSON.stringify(yearlyRevenueLabels) %>;
-      const yearlyRevenueValues = <%- JSON.stringify(yearlyRevenueValues) %>;
-      const monthlyRevenueLabels = <%- JSON.stringify(monthlyRevenueLabels) %>;
-      const monthlyRevenueValues = <%- JSON.stringify(monthlyRevenueValues) %>;
+         const weeklyRevenueLabels = <%- JSON.stringify(weeklyRevenueLabels) %>;
+      const weeklyRevenueValues = <%- JSON.stringify(weeklyRevenueValues) %>;
+      const dailyRevenueLabels = <%- JSON.stringify(dailyRevenueLabels) %>;
+      const dailyRevenueValues = <%- JSON.stringify(dailyRevenueValues) %>;
       const totalOrders = <%= totalOrders %>;
       const totalCustomers = <%= totalCustomers %>;
       const totalRevenue = <%= totalRevenue.toFixed(2) %>;
