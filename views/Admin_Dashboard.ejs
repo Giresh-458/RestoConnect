@@ -10,8 +10,6 @@
     <header class="topnav">
       <div class="logo">RESTO <span style="color: orange">CONNECT</span></div>
       <nav>
-        <a href="#">Home</a>
-        <a href="#restlist">Restaurants</a>
         <a href="#stats">User Statistics</a>
         <a href="#revenue">Revenue</a>
         <a href="/logout">LogOut</a>
@@ -21,7 +19,6 @@
     <main>
       <section class="profile-section">
         <div class="profile-card">
-          <div class="profile-pic"></div>
           <div class="profile-info" id="profileDisplay">
             <p><strong>Name:</strong> <%= current_admin ? current_admin.username : 'N/A' %></p>
             <p><strong>Email Id:</strong> <%= current_admin ? current_admin.email : 'N/A' %></p>

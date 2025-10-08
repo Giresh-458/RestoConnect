@@ -35,7 +35,8 @@
             <p id="toggleLink">
                 <a class="toggle_color" href="#" onclick="toggleForm(); return false;"><%= toggleText %></a> 
             </p>
-        </form>
+        </form> <br>
+        <a href="/req_res" class="log_button" style="text-decoration: none;">Own a Restaurant? Add It Here!</a>
     </div>
 
     <script>
@@ -52,9 +53,6 @@
                 extraFieldsDiv.innerHTML = `
                     <div class="extra-input">
                         <input class="log_input" type="text" id="fullName" placeholder="Full Name" name="fullName" hidden="true" value="1">
-                    </div>
-                     <div class="extra-input">
-                        <input class="log_input" type="file" id="img_url" name="img_url" required>
                     </div>
                     <div class="extra-input">
                         <input class="log_input" type="email" id="email" placeholder="Email" name="email" required>

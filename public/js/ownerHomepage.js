@@ -36,7 +36,7 @@ function editStaff(id) {
   const staff = {
     id,
     username: document.getElementById(`username-${id}`).value,
-    password: document.getElementById(`password-${id}`).value,
+    email: document.getElementById(`email-${id}`).value,
   };
 
   const xhr = new XMLHttpRequest();
@@ -74,10 +74,12 @@ for(let i=0;i<responce.length;i++){
   let staff = document.createElement("div");
 
   staff.innerHTML = `
+  <label>Username: <label>
   <input type="text" id="username-${responce[i]._id}" value="${responce[i].username}">
-  <input type="password" id="password-${responce[i]._id}" value="${responce[i].password || ''}">
+  <label>Email: <label>
+  <input type="text" id="email-${responce[i]._id}" value="${responce[i].email }">
 
- <button onclick="editStaff('${responce[i]._id}')">Edit</button>
+ <button onclick="editStaff('${responce[i]._id}')">Ok</button>
 <button onclick="deleteStaff('${responce[i]._id}')">Delete</button>
 
 `;
@@ -244,9 +246,8 @@ document.getElementById("tasks").innerHTML=``;
 
   xhr.onload = function () {
     if (xhr.status === 200) {
-      const response = JSON.parse(this.response); // response = { tables: [...] }
-      const tables = response.tables;             // extract actual array
-
+      const response = JSON.parse(this.response); 
+      const tables = response.tables;      
       const container = document.getElementById("tables");
       container.innerHTML = "";
 
@@ -257,7 +258,6 @@ document.getElementById("tasks").innerHTML=``;
 
       const ul = document.createElement("ul");
 
-      // ✅ Using classic for loop
       for (let i = 0; i < tables.length; i++) {
         const li = document.createElement("li");
         li.id = `table-${tables[i].number}`;
