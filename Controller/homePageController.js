@@ -68,8 +68,16 @@ exports.putHomePage = async (req, res) => {
 
         if (user.role === "admin") return res.redirect('/admin/dashboard');
 
+        // For customer, render homepage with all restaurants
         const rest = await Restaurant.find();
-        res.render('home_page', { arr: rest, login: true, user: user.role });
+
+        res.render('home_page', { 
+            arr: rest, 
+            login: true, 
+            user: user.role, 
+            city_option_home: 'All',  
+            name_resaurent: ''         
+        });
     } catch (err) {
         console.error("Error in putHomePage:", err);
         res.status(500).send("Internal Server Error");
