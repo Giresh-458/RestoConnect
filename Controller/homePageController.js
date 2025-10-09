@@ -8,11 +8,8 @@ const restaurantReq = require("../Model/restaurent_request_model")
 exports.getHomePage = async (req, res) => {
     try {
         let login = req.session?.username ? true : false;
-
-        // Extract query params
         const { city_option_home: loco, name_resaurent: name2 } = req.query;
 
-        // Initialize query object
         let query = {};
 
         if (loco) {
@@ -22,13 +19,9 @@ exports.getHomePage = async (req, res) => {
             query.name = { $regex: new RegExp(name2.trim(), 'i') };
         }
 
-        // Fetch restaurants based on query
         let arr = await Restaurant.find(query);
-        console.log("Restaurants fetched:", arr);
-
         if (arr.length === 0) {
             arr = await Restaurant.find();
-            console.log("All restaurants fetched (fallback):", arr);
         }
 
         let userRole = await User.findOne({ username: req.session?.username });
@@ -37,13 +30,17 @@ exports.getHomePage = async (req, res) => {
         res.render('home_page', {
             arr,
             login,
-            user: userRole
+            user: userRole,
+            city_option_home: loco || 'All'  
         });
     } catch (err) {
         console.error("Error in getHomePage:", err);
         res.status(500).send("Internal Server Error");
     }
 };
+
+
+
 
 exports.getRestReq=async (req,res)=>{
     res.render("restaurantRequest")
@@ -71,7 +68,6 @@ exports.putHomePage = async (req, res) => {
 
         if (user.role === "admin") return res.redirect('/admin/dashboard');
 
-        // For customer, render homepage with all restaurants
         const rest = await Restaurant.find();
         res.render('home_page', { arr: rest, login: true, user: user.role });
     } catch (err) {

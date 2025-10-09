@@ -72,7 +72,7 @@ app.get('/api/restaurants', async (req, res) => {
         let restaurants = await Restaurant.find(query);
 
         if (restaurants.length === 0) {
-            restaurants = await Restaurant.find(); // fallback
+            restaurants = await Restaurant.find();
         }
 
         res.json(restaurants);
