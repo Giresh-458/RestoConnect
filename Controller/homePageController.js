@@ -27,6 +27,7 @@ exports.getHomePage = async (req, res) => {
         let userRole = await User.findOne({ username: req.session?.username });
         userRole = userRole?.role || null;
         const uniqueLocations = await Restaurant.distinct("location");
+      
         res.render('home_page', {
             arr,
             login,
