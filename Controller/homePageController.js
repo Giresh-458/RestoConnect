@@ -26,12 +26,13 @@ exports.getHomePage = async (req, res) => {
 
         let userRole = await User.findOne({ username: req.session?.username });
         userRole = userRole?.role || null;
-
+        const uniqueLocations = await Restaurant.distinct("location");
         res.render('home_page', {
             arr,
             login,
             user: userRole,
-            city_option_home: loco || 'All'  
+            city_option_home: loco || 'All'  ,
+            uniqueLocations
         });
     } catch (err) {
         console.error("Error in getHomePage:", err);
@@ -70,13 +71,14 @@ exports.putHomePage = async (req, res) => {
 
         // For customer, render homepage with all restaurants
         const rest = await Restaurant.find();
-
+        const uniqueLocations = await Restaurant.distinct("location");
         res.render('home_page', { 
             arr: rest, 
             login: true, 
             user: user.role, 
             city_option_home: 'All',  
-            name_resaurent: ''         
+            name_resaurent: '' ,
+            uniqueLocations        
         });
     } catch (err) {
         console.error("Error in putHomePage:", err);
