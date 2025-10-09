@@ -12,6 +12,7 @@
     <div class="sidebar">
       <ul>
         <li><a href="/">Home</a></li>
+        <li><a href="#home">Profile</a></li>
         <li><a href="#prev_order">Orders</a></li>
         <li class="logout"><a href="/logout">Logout</a></li>
       </ul>
@@ -22,11 +23,9 @@
         <div class="profile box">
           <span></span>
           <div>
-            <img src="<%= img_url %>" alt="Profile Image" width="40px">
             <h3><%= name %></h3>
             <h4>Email: <%= email %></h4>
             <h4>Phone: <%= phone %></h4>
-            <h4>Address: <%= address %></h4>
           <button id="editProfileBtn">Edit Profile</button>
           </div>
         </div>
@@ -45,9 +44,6 @@
             <br>
             <label for="phone">Phone</label>
             <input type="text" id="phone" name="phone" value="<%= phone %>">
-            <br>
-            <label for="img_url">Profile Image URL</label>
-            <input type="text" id="img_url" name="img_url" value="<%= img_url %>">
             <br>
             <button type="submit">Save Changes</button>
           </form>
