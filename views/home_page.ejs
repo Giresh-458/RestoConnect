@@ -69,9 +69,14 @@
       <form action="/" method="get">
           <select name="city_option_home" onchange="this.form.submit()">
             <option value="All" <%= city_option_home === 'All' ? 'selected' : '' %>>All</option>
-            <option value="Tirupati" <%= city_option_home === 'Tirupati' ? 'selected' : '' %>>Tirupati</option>
-            <option value="Chennai" <%= city_option_home === 'Chennai' ? 'selected' : '' %>>Chennai</option>
-            <option value="Hyderabad" <%= city_option_home === 'Hyderabad' ? 'selected' : '' %>>Hyderabad</option>
+          
+
+            <% uniqueLocations.forEach((city)=>{%>
+               <option value="<%= city %>" <%= city_option_home === city ? 'selected' : '' %>>
+                <%= city %>
+              </option>
+            <% }) %>
+
           </select>
 
         <input type="text" placeholder="Search for restaurant, cuisine, or dish"
