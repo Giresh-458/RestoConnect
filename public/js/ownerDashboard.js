@@ -21,7 +21,7 @@ const dailyRevenueCtx = document
 
 // Weekly Revenue Chart
 const weeklyRevenueChart = new Chart(weeklyRevenueCtx, {
-  type: "line",
+  type: "bar",
   data: {
     labels: weeklyRevenueLabels,
     datasets: [
