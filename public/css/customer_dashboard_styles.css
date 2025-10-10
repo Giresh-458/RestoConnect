@@ -260,3 +260,51 @@ body {
     align-items: center;
   }
 }
+
+
+
+
+/* Feedback Section at bottom */
+.cus-feedback-bottom {
+    width: auto;
+    margin-top: 50px;
+    margin-left: 250px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Table inside feedback section */
+.cus-feedback-bottom table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cus-feedback-bottom th, .cus-feedback-bottom td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.cus-feedback-bottom th {
+    background-color: #4CAF50;
+    color: white;
+    position: sticky;
+    top: 0;
+}
+
+.cus-feedback-bottom tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.cus-feedback-bottom tr:hover {
+    background-color: #e8f5e9;
+}
+
+.cus-feedback-bottom h2 {
+    margin-bottom: 20px;
+    color: #333;
+    border-bottom: 2px solid #4CAF50;
+    padding-bottom: 5px;
+}
