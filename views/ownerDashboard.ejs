@@ -39,6 +39,46 @@
           <canvas id="dailyRevenueChart"></canvas>
         </div>
       </div>
+
+
+
+
+
+
+<div>
+   <h3>Customer Feedbacks</h3>
+<% if (feedbackList && feedbackList.length > 0) { %>
+<table>
+  <thead>
+    <tr>
+      <th>Customer</th>
+      <th>Dining Rating</th>
+      <th>Loved Items</th>
+      <th>Order Rating</th>
+      <th>Additional Feedback</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% feedbackList.forEach(fb => { %>
+    <tr>
+      <td><%= fb.customerName %></td>
+      <td><%= fb.diningRating %></td>
+      <td><%= fb.lovedItems %></td>
+      <td><%= fb.orderRating %></td>
+      <td><%= fb.additionalFeedback %></td>
+      <td><%= fb.createdAt.toLocaleString() %></td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>
+<% } else { %>
+<p>No feedback received yet.</p>
+<% } %>
+</div>
+
+
+
     </main>
     <script>
          const weeklyRevenueLabels = <%- JSON.stringify(weeklyRevenueLabels) %>;
@@ -49,6 +89,8 @@
       const totalCustomers = <%= totalCustomers %>;
       const totalRevenue = <%= totalRevenue.toFixed(2) %>;
     </script>
-    <script src="/js/ownerDashboard.js"></script>
+    <script src="/js/ownerDashboard.js ">
+    </script>
+     <script src="/js/customer_dashboard_script.js"></script>
   </body>
 </html>
