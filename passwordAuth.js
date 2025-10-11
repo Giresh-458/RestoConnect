@@ -9,7 +9,12 @@ let validate = async (req, res, next) => {
         let chk = await User.findOne({ $or: [ { username: username }, { email: email } ] });
         console.log(chk)
         if (chk != null) {
-            res.send('error');
+             res.render('login', {
+        title: 'Log In',
+        buttonText: 'Log In',
+        toggleText: 'New user? Sign Up',
+        errorMessage: "User or email already exists"
+    });
             return;
         }
 
@@ -34,15 +39,18 @@ let validate = async (req, res, next) => {
             rest_id: null
         });
         await newUser.save();
-        console.log('Encrypted password stored in DB:', newUser.password);
         res.redirect('/loginPage');
         return;
     }
 
     let user = await User.findOne({ $or: [ { username: username }, { email: username } ] });
     if (!user) {
-        console.log("User not found");
-        return res.redirect('/loginPage?error=UserNotFound');
+        return res.render('login', {
+        title: 'Log In',
+        buttonText: 'Log In',
+        toggleText: 'New user? Sign Up',
+        errorMessage: "User Not Found"
+    });
     }
     
     let passwordMatch = await bcrypt.compare(password.trim(), user.password);
@@ -50,7 +58,12 @@ let validate = async (req, res, next) => {
         req.session.username = user.username;
         next();
     } else {
-        return res.redirect('/loginPage?error=InvalidPassword');
+        return res.render('login', {
+        title: 'Log In',
+        buttonText: 'Log In',
+        toggleText: 'New user? Sign Up',
+        errorMessage: "Invalid Password"
+    });;
     }
 }
 

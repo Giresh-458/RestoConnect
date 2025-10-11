@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title> 
+    <title><%= locals.title %></title> 
     <link rel="stylesheet" href="/css/login.css">
 </head> 
 <body>
@@ -12,13 +12,13 @@
     </div>
     
     <div class="login_container">
-        <% if (errorMessage) { %>
+        <% if (locals.errorMessage) { %>
             <div class="error-popup" style="color: red; margin-bottom: 10px; font-weight: bold;">
                 <%= errorMessage %>
             </div>
         <% } %>
         <form id="loginForm" action="/" method="POST" onsubmit="return handleSubmit(event)">
-            <h2 class="sign-in"><%= title %></h2> 
+            <h2 class="sign-in"><%= locals.title %></h2> 
             
             <div class="username">
                 <input class="log_input" type="text" id="username" placeholder="User name" name="username" required>
@@ -30,10 +30,10 @@
                 <input class="log_input" type="password" id="password" placeholder="Password" name="password" required>
             </div>
 
-            <button class="log_button" type="submit" id="submitBtn"><%= buttonText %></button> 
+            <button class="log_button" type="submit" id="submitBtn"><%= locals.buttonText %></button> 
 
             <p id="toggleLink">
-                <a class="toggle_color" href="#" onclick="toggleForm(); return false;"><%= toggleText %></a> 
+                <a class="toggle_color" href="#" onclick="toggleForm(); return false;"><%= locals.toggleText %></a> 
             </p>
         </form> <br>
         <a href="/req_res" class="log_button" style="text-decoration: none;">Own a Restaurant? Add It Here!</a>
