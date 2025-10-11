@@ -67,6 +67,52 @@ body {
   padding: 20px;
   margin: 50px;
   border-radius: 8px;
+
+
+}
+
+.restaurant-list input {
+  margin-left: 500px;
+}
+
+.rest_head {
+  margin-left: 600px;
+}
+
+.user-list{
+background-color: #ddd;
+}
+
+.user_head{
+    padding: 10px;
+    margin-left: 700px;
+}
+.user-list input{
+  margin-left: 580px;
+}
+
+#seerest  {
+    background-color: #e50914;
+  color: white;
+  border: none;
+  padding:  5px 18px;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: -150px;
+}
+
+#see-user{
+      background-color: #e50914;
+  color: white;
+  border: none;
+  padding:  5px 18px;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: -150px;
 }
 
 .restaurant-card {
