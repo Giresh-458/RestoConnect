@@ -11,18 +11,22 @@ exports.getMenu = async (req,res)=>{
     // Set rest_id in session
     req.session.rest_id = id;
 
-    let dishes = [];
-    for(let i=0 ;i<rest.dishes.length;i++){    
-    let tm_dishes = await Dish.find_by_id(rest.dishes[i]);
-    dishes.push(tm_dishes);
+    let dishes1 = [];
+    for(let i=0 ;i<rest.dishes.length;i++){
+        let dsh = await Dish.find_by_id(rest.dishes[i])
+        if(dsh){
+            dishes1.push(dsh)
+        }
+   
     }
 
     // Get cart from Person model for logged-in user
     const user = req.user;
     let person = await Person.findOne({ email: user.email });
     let cart = person ? person.cart : [];
+    console.log(dishes1)
 
-    res.render('menu',{ restaurant: {name:rest.name,location:rest.location,rest_id:id}, dishes: dishes, cart: cart })
+    res.render('menu',{ restaurant: {name:rest.name,location:rest.location,rest_id:id}, dishes: dishes1, cart: cart })
 }
 
 // Add dish to cart
