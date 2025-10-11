@@ -107,10 +107,16 @@
 </footer>
 
 <script>
-  // Menu toggle
-  document.querySelector(".menu-toggle").addEventListener("click", function () {
-    document.querySelector(".nav-links").classList.toggle("active");
-  });
+ // Menu toggle
+document.addEventListener("DOMContentLoaded", () => {
+  const menuToggle = document.querySelector(".menu-toggle");
+  const navLinks = document.querySelector(".nav-links");
+
+  if (menuToggle) {
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+  }
 
   const container = document.getElementById("restaurants-container");
   const searchInput = document.getElementById("search-input");
@@ -122,7 +128,7 @@
   // Load restaurants from server with optional city filter
   function loadRestaurants(city = "All") {
     const xhr = new XMLHttpRequest();
-    xhr.open("GET", /api/restaurants?city=${encodeURIComponent(city)}, true);
+    xhr.open("GET", `/api/restaurants?city=${encodeURIComponent(city)}`, true);
 
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4) {
@@ -146,11 +152,14 @@
 
   // Render restaurants based on current city and search input
   function renderRestaurants() {
-    const query = searchInput.value.toLowerCase().trim();
-    const selectedCity = citySelect.value;
+    if (!container) return;
+
+    const query = searchInput ? searchInput.value.toLowerCase().trim() : "";
+    const selectedCity = citySelect ? citySelect.value : "All";
 
     const filtered = allRestaurants.filter(r => {
-      const matchesCity = selectedCity === "All" || (r.location && r.location.toLowerCase() === selectedCity.toLowerCase());
+      const matchesCity =
+        selectedCity === "All" || (r.location && r.location.toLowerCase() === selectedCity.toLowerCase());
       const matchesSearch = r.name.toLowerCase().includes(query);
       return matchesCity && matchesSearch;
     });
@@ -164,7 +173,7 @@
 
     filtered.forEach(r => {
       const link = document.createElement("a");
-      link.href = /menu/${r._id};
+      link.href = `/menu/${r._id}`;
       link.classList.add("restaurant-link");
       link.setAttribute("data-city", r.location || '');
       link.innerHTML = `
@@ -179,21 +188,29 @@
   }
 
   // Search input listener
-  searchInput.addEventListener("input", renderRestaurants);
+  if (searchInput) {
+    searchInput.addEventListener("input", renderRestaurants);
+  }
 
   // Clear search button
-  clearButton.addEventListener("click", () => {
-    searchInput.value = "";
-    renderRestaurants();
-  });
+  if (clearButton) {
+    clearButton.addEventListener("click", () => {
+      if (searchInput) searchInput.value = "";
+      renderRestaurants();
+    });
+  }
 
   // City dropdown listener
-  citySelect.addEventListener("change", () => {
-    loadRestaurants(citySelect.value); // Fetch restaurants for selected city
-  });
+  if (citySelect) {
+    citySelect.addEventListener("change", () => {
+      loadRestaurants(citySelect.value);
+    });
+  }
 
   // Load all restaurants on page load
-  window.addEventListener("DOMContentLoaded", () => loadRestaurants("All"));
+  loadRestaurants("All");
+});
+
 </script>
 
 </body>
