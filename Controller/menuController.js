@@ -17,7 +17,6 @@ exports.getMenu = async (req,res)=>{
         if(dsh){
             dishes1.push(dsh)
         }
-   
     }
 
     // Get cart from Person model for logged-in user
