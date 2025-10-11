@@ -62,25 +62,23 @@ app.post('/req_res', homepageController.postRestReq);
 
 
 app.get('/api/restaurants', async (req, res) => {
-    try {
-        const { city_option_home: loco, name_resaurent: name2 } = req.query;
+  try {
+    const { city } = req.query; // match your AJAX query param
+    let query = {};
 
-        let query = {};
-        if (loco) query.location = { $regex: new RegExp(loco.trim(), 'i') };
-        if (name2) query.name = { $regex: new RegExp(name2.trim(), 'i') };
-
-        let restaurants = await Restaurant.find(query);
-
-        if (restaurants.length === 0) {
-            restaurants = await Restaurant.find();
-        }
-
-        res.json(restaurants);
-    } catch (err) {
-        console.error("Error fetching restaurants:", err);
-        res.status(500).json({ error: "Failed to fetch restaurants" });
+    if (city && city !== 'All') {
+      query.location = { $regex: new RegExp(city.trim(), 'i') };
     }
+
+    const restaurants = await Restaurant.find(query);
+
+    res.json(restaurants);
+  } catch (err) {
+    console.error("Error fetching restaurants:", err);
+    res.status(500).json({ error: "Failed to fetch restaurants" });
+  }
 });
+
 
 app.listen(3000, () => {
     console.log('Server running at http://localhost:3000');
