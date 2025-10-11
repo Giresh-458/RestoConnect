@@ -119,7 +119,7 @@ exports.orderCart = async (req, res) => {
         const user = req.user;
         let person = await Person.findOne({ email: user.email });
         if (!person) {
-            return res.status(404).send('User not found');
+            return res.redirect('/login');
         }
         // Get current cart before clearing
         const cart = person.cart || [];
