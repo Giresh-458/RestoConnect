@@ -242,7 +242,8 @@ exports.getaceptreq = async (req, res) => {
             password: request.owner_password,
             role: "owner",
             restaurantName: request.name,
-            rest_id: newRestaurant._id
+            rest_id: newRestaurant._id,
+            email:request.email
         });
         await newOwner.save();
 
