@@ -22,6 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const index = target.dataset.index;
         
         if (!index) return;
+         if (target.classList.contains('increase') || target.classList.contains('decrease')) {
+        event.preventDefault(); // prevent page reload
+    }
 
         const cartButton = document.querySelector(`.cart_button[data-index="${index}"]`);
         const counter = document.querySelector(`.counter[data-index="${index}"]`);
@@ -36,6 +39,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (target.classList.contains('increase')) {
             itemCount.textContent = parseInt(itemCount.textContent) + 1;
+            
+    fetch('/customer/cart/increase', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ dish })
+    });
         }
 
         if (target.classList.contains('decrease')) {
@@ -46,6 +55,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 cartButton.style.display = 'inline-block';
                 counter.style.display = 'none';
             }
+             fetch('/customer/cart/decrease', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ dish })
+    });
         }
     });
 
