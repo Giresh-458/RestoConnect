@@ -3,7 +3,9 @@ const { User } = require('../Model/userRoleModel');
 const Person = require('../Model/customer_model');
 const { Order } = require('../Model/Order_model');
 const { Restaurant } = require('../Model/Restaurents_model');
-const { Dish } = require('../Model/Dishes_model_test'); // Import Dish model
+const { Dish } = require('../Model/Dishes_model_test'); 
+const Feedback = require('../Model/feedback.js'); 
+
 
 async function seed() {
   try {
@@ -14,10 +16,40 @@ async function seed() {
     await Person.deleteMany({});
     await Order.deleteMany({});
     await Restaurant.deleteMany({});
-    await Dish.deleteMany({}); // Clear existing dishes
+    await Dish.deleteMany({}); 
+    await Feedback.deleteMany({});
+
 
     // Seed Users
     const bcrypt = require('bcrypt');
+
+    // Seed Feedback
+const feedbacks = [
+  {
+    customerName: 'customer1',
+    diningRating: 5,
+    lovedItems: 'Paneer Tikka, Veg Biryani',
+    orderRating: 4,
+    additionalFeedback: 'Loved the ambiance and timely service!'
+  },
+  {
+    customerName: 'customer1',
+    diningRating: 4,
+    lovedItems: 'Chicken Curry',
+    orderRating: 5,
+    additionalFeedback: 'Delicious food but a bit spicy for me.'
+  },
+  {
+    customerName: 'customer1',
+    diningRating: 5,
+    lovedItems: 'Masala Dosa',
+    orderRating: 5,
+    additionalFeedback: 'Perfect breakfast option!'
+  }
+];
+
+await Feedback.insertMany(feedbacks);
+
 
     // Create example dishes
     const dishes = [
