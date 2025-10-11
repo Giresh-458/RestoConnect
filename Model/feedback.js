@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
 const feedbackSchema = new mongoose.Schema({
-    customerName: { type: String, required: true }, // optional, use session
-    diningRating: { type: Number, required: true },
-    lovedItems: { type: String, required: true },
-    orderRating: { type: Number, required: true },
+    customerName: { type: String, required: true }, 
+    diningRating: { type: Number },
+    lovedItems: { type: String },
+    orderRating: { type: Number },
     additionalFeedback: { type: String },
     createdAt: { type: Date, default: Date.now }
 });
