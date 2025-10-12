@@ -48,14 +48,50 @@ exports.getRestReq=async (req,res)=>{
     res.render("restaurantRequest")
 }
 
-exports.postRestReq=async (req,res)=>{
+exports.postRestReq = async (req, res) => {
+  try {
+    const { name, location, amount, owner_username, owner_password, date_joined, email } = req.body;
 
- const { name, location, amount, owner_username, owner_password, date_joined,email } = req.body;
- let restreq = new restaurantReq({name, location, amount, owner_username, owner_password, date_joined,email});
- await restreq.save();
+    const existingRestaurantName = await Restaurant.findOne({ name });
+    const existingRestaurantUsername = await Restaurant.findOne({ owner_username });
+    const existingRestaurantEmail = await Restaurant.findOne({ email });
 
-res.redirect("/loginPage");
+    const existingReqName = await restaurantReq.findOne({ name });
+    const existingReqUsername = await restaurantReq.findOne({ owner_username });
+    const existingReqEmail = await restaurantReq.findOne({ email });
+
+    if (existingRestaurantName || existingReqName) {
+      return res.send("<script>alert('❌ Restaurant name already exists!'); window.history.back();</script>");
+    }
+
+    if (existingRestaurantUsername || existingReqUsername) {
+      return res.send("<script>alert('❌ Owner username already exists!'); window.history.back();</script>");
+    }
+
+    if (existingRestaurantEmail || existingReqEmail) {
+      return res.send("<script>alert('❌ Email already exists!'); window.history.back();</script>");
+    }
+
+    const restreq = new restaurantReq({
+      name,
+      location,
+      amount,
+      owner_username,
+      owner_password,
+      date_joined,
+      email,
+    });
+
+    await restreq.save();
+
+    res.send("<script>alert('✅ Restaurant request submitted successfully!'); window.location.href='/loginPage';</script>");
+
+  } catch (error) {
+    console.error("Error submitting restaurant request:", error);
+    res.status(500).send("<script>alert('⚠️ Server error. Please try again later.'); window.history.back();</script>");
+  }
 };
+
 
 exports.putHomePage = async (req, res) => {
     try {

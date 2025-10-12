@@ -14,7 +14,8 @@ let validate = async (req, res, next) => {
         buttonText: 'Log In',
         toggleText: 'New user? Sign Up',
         errorMessage: "User or email already exists"
-    });
+    }); 
+    
             return;
         }
 

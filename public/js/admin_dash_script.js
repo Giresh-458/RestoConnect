@@ -44,6 +44,8 @@ for(let i=0;i<users.length;i++){
   document.getElementById("users").appendChild(opt);
 }
 
+
+document.getElementById("totalUsersCount").innerText=users.length;
 }
 }
 
@@ -75,12 +77,12 @@ if (!user) {
         <p><b>Email:</b> <input id="edit-email" value="${user.email}"></p>
         <p><b>Role:</b> <input id="edit-role" value="${user.role}"></p>
         <p><b>Restaurant Name:</b> <input id="edit-restaurantName" value="${user.restaurantName ?? ''}"></p>
-        <button id="save">Save</button>
-        <button id="remove">Remove</button>
+        <button id="save1">Save</button>
+        <button id="remove1">Remove</button>
       `;
 
 
-      document.getElementById("save").addEventListener("click",function(){
+      document.getElementById("save1").addEventListener("click",function(){
 
          let updatedUser = {
           _id: user._id, 
@@ -92,7 +94,7 @@ if (!user) {
         };
 
         let xhr = new XMLHttpRequest();
-        xhr.open("post","http://localhost:3000/admin/edit_user"+user._id,true);
+        xhr.open("post","http://localhost:3000/admin/edit_user/"+user._id,true);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(JSON.stringify(updatedUser));
 
@@ -102,14 +104,19 @@ if (!user) {
 
 
 
-      document.getElementById("remove").addEventListener("click",function(){
+      document.getElementById("remove1").addEventListener("click",function(){
 
 
 
         let xhr = new XMLHttpRequest();
-        xhr.open("post", "http://localhost:3000/admin/users/" + user._id, true);
+        xhr.open("post", "http://localhost:3000/admin/delete_user/" + user._id, true);
+        
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send();
+        
+let dispaly = document.getElementById("diplay");
+dispaly.innerHTML="";
+          callAll();
 
 
       });

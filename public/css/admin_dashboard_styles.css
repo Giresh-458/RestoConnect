@@ -1,3 +1,4 @@
+/* Reset & Base */
 * {
   margin: 0;
   padding: 0;
@@ -6,16 +7,17 @@
 }
 
 body {
-  background-color: #f9f9f9;
+  background-color: #f5f5f5;
   color: #333;
 }
 
+/* Dashboard Layout */
 .dashboard {
   display: flex;
   min-height: 100vh;
 }
 
-/* Sidebar Styles */
+/* Sidebar */
 .sidebar {
   background-color: #111;
   width: 230px;
@@ -23,10 +25,10 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
+  height: 100vh;
 }
 
 .sidebar .logo {
@@ -37,6 +39,10 @@ body {
   text-align: center;
 }
 
+.sidebar .orange-text {
+  color: orange;
+}
+
 .sidebar ul {
   list-style: none;
   width: 100%;
@@ -44,7 +50,7 @@ body {
 }
 
 .sidebar li {
-  margin: 20px 0;
+  margin: 15px 0;
 }
 
 .sidebar a {
@@ -69,7 +75,7 @@ body {
   background-color: #c82333;
 }
 
-/* Main Content Styles */
+/* Main Content */
 .content {
   margin-left: 230px;
   width: calc(100% - 230px);
@@ -90,10 +96,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-}
-
-.profile-info {
-  flex-grow: 1;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
 .profile-info p {
@@ -101,67 +105,65 @@ body {
   font-size: 16px;
 }
 
-.edit-btn1 {
+.edit-btn {
   background-color: #e50914;
-  color: white;
+  color: #fff;
   border: none;
   padding: 10px 20px;
   border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
-.edit-btn1:hover {
+.edit-btn:hover {
   background-color: #c82333;
 }
 
-#profileEditForm {
-  display: flex;
+/* Profile Edit Form */
+.profile-form {
+  display: none;
   flex-direction: column;
   gap: 15px;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
-#profileEditForm label {
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-#profileEditForm input {
+.profile-form input {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 6px;
-  font-size: 14px;
 }
 
-#profileEditForm button {
-  padding: 10px 15px;
+.save-btn {
+  background-color: #28a745;
+  color: #fff;
   border: none;
+  padding: 10px;
   border-radius: 6px;
   cursor: pointer;
-  margin-right: 10px;
 }
 
-#profileEditForm button[type="submit"] {
-  background-color: #e50914;
-  color: white;
+.save-btn:hover {
+  background-color: #218838;
 }
 
-#profileEditForm button[type="submit"]:hover {
+.cancel-btn {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.cancel-btn:hover {
   background-color: #c82333;
 }
 
-#cancelEditBtn {
-  background-color: #6c757d;
-  color: white;
-}
-
-#cancelEditBtn:hover {
-  background-color: #545b62;
-}
-
 /* Statistics Section */
-.statistics {
+.statistics,
+.revenue,
+.restaurant-list,
+.user-list,
+.requests-list {
   background-color: #fff;
   padding: 25px;
   border-radius: 12px;
@@ -169,7 +171,11 @@ body {
   margin-bottom: 30px;
 }
 
-.statistics h2 {
+.statistics h2,
+.revenue h2,
+.restaurant-list h2,
+.user-list h2,
+.requests-list h2 {
   margin-bottom: 20px;
   color: #222;
   text-align: center;
@@ -178,18 +184,18 @@ body {
 .stats-container {
   display: flex;
   justify-content: space-around;
-  gap: 20px;
+  gap: 15px;
+  flex-wrap: wrap;
 }
 
 .stat-box {
   background-color: #e50914;
-  color: white;
+  color: #fff;
   padding: 25px;
   border-radius: 12px;
   text-align: center;
   flex: 1;
-  max-width: 300px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  min-width: 150px;
 }
 
 .stat-box p {
@@ -204,109 +210,110 @@ body {
 }
 
 /* Revenue Section */
-.revenue {
-  background-color: #fff;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
-  margin-bottom: 30px;
-}
-
-.revenue h2 {
-  margin-bottom: 20px;
-  color: #222;
-  text-align: center;
-}
-
-.revenue-container {
-  display: flex;
-  justify-content: center;
-}
-
 .revenue-card {
   background-color: #f8f9fa;
-  padding: 25px;
+  padding: 20px;
   border-radius: 12px;
   text-align: center;
-  border: 2px solid #e9ecef;
+  border: 1px solid #ddd;
   max-width: 400px;
-  width: 100%;
-}
-
-.revenue-card h3 {
-  color: #555;
-  margin-bottom: 15px;
-  font-size: 18px;
+  margin: auto;
 }
 
 .revenue-value {
-  font-size: 32px;
+  font-size: 28px;
   font-weight: bold;
   color: #28a745;
 }
 
 .trend-up {
-  color: #28a745;
   margin-right: 10px;
 }
 
-/* Restaurant and User List Sections */
-.restaurant-list,
-.user-list {
-  background-color: #fff;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
-  margin-bottom: 30px;
-}
-
-.restaurant-list h2,
-.user-list h2 {
-  margin-bottom: 20px;
-  color: #222;
-  text-align: center;
-}
-
+/* Search Boxes */
 .search-container {
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
   justify-content: center;
-  align-items: center;
+  flex-wrap: wrap;
 }
 
 .search-container input {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 6px;
-  font-size: 14px;
-  min-width: 250px;
+  min-width: 200px;
 }
 
-.search-container button {
+.search-btn {
   background-color: #e50914;
-  color: white;
+  color: #fff;
   border: none;
   padding: 10px 20px;
   border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
-.search-container button:hover {
+.search-btn:hover {
   background-color: #c82333;
 }
 
-/* Requests Section */
-.requests-list {
-  background-color: #fff;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
-  margin-bottom: 30px;
+/* List Containers */
+.list-container {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  min-height: 80px;
 }
 
-/* Scrollbar Styling */
+/* Requests Section */
+.requests-container div {
+  background-color: #fff8f0;
+  border: 1px solid #ffd1a9;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.requests-container p {
+  margin: 5px 0;
+}
+
+.requests-container button {
+  padding: 8px 16px;
+  margin-right: 5px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #fff;
+  transition: opacity 0.2s;
+}
+
+.requests-container button:hover {
+  opacity: 0.9;
+}
+
+.requests-container .accept-btn {
+  background-color: #28a745;
+}
+
+.requests-container .reject-btn {
+  background-color: #dc3545;
+}
+
+/* Clickable Items */
+.clickable {
+  color: #007bff;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.clickable:hover {
+  color: #0056b3;
+}
+
+/* Scrollbar */
 .content::-webkit-scrollbar {
   width: 8px;
 }
@@ -322,34 +329,10 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .dashboard {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100%;
-    height: auto;
-    flex-direction: row;
-    justify-content: space-around;
-    position: relative;
-  }
-
-  .sidebar .logo {
-    margin-bottom: 0;
-  }
-
-  .sidebar ul {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .sidebar li {
-    margin: 10px;
-  }
-
   .content {
     margin-left: 0;
     width: 100%;
+    padding: 15px;
   }
 
   .stats-container {
@@ -358,20 +341,103 @@ body {
   }
 
   .stat-box {
-    max-width: 100%;
     width: 100%;
-  }
-
-  .profile-card {
-    flex-direction: column;
-    gap: 15px;
   }
 
   .search-container {
     flex-direction: column;
   }
 
-  .search-container input {
-    min-width: 100%;
+  .profile-card {
+    flex-direction: column;
+  }
+}
+/* Profile & Restaurant Display Cards */
+.list-container > div,
+#diplay-rest > div {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  margin-bottom: 15px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.list-container > div:hover,
+#diplay-rest > div:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+/* Headings inside display cards */
+.list-container h3,
+#diplay-rest h3 {
+  margin-bottom: 15px;
+  color: #e50914;
+  font-size: 22px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+}
+
+/* Labels & Inputs inside display cards */
+.list-container p,
+#diplay-rest p {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.list-container input,
+#diplay-rest input {
+  width: 100%;
+  padding: 8px 10px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+/* Action Buttons for each profile card */
+.list-container button,
+#diplay-rest button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
+  margin-right: 8px;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.list-container button#save1,
+#diplay-rest button#save-restaurant {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.list-container button#remove1,
+#diplay-rest button#remove-restaurant {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.list-container button:hover,
+#diplay-rest button:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .list-container input,
+  #diplay-rest input {
+    font-size: 14px;
+  }
+
+  .list-container button,
+  #diplay-rest button {
+    width: 100%;
+    margin-right: 0;
+    margin-top: 8px;
   }
 }

@@ -65,7 +65,7 @@ exports.getAdminDashboard = async (req, res) => {
     }
 };
 
-// Get all users
+
 exports.getAllUsers = async (req, res) => {
     try {
         const currentAdminUsername = req.user ? req.user.username : null;
@@ -100,6 +100,7 @@ exports.getStatistics = async (req, res) => {
 exports.deleteUser = async (req, res) => {
     try {
         const userId = req.params.id;
+        console.log("jj")
         await User.deleteOne({ _id: userId });
         res.redirect('/admin/dashboard');
     } catch (error) {

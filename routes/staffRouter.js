@@ -19,7 +19,6 @@ router.delete(
 
 router.post("/update-inventory", staffController.postUpdateInventory);
 
-// New POST routes for deletion without method-override
 router.post("/HomePage/tasks/delete/:id", staffController.deleteHomePageTasks);
 router.post(
   "/Dashboard/remove-reservation/delete/:id",
