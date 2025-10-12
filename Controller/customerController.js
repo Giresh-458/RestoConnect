@@ -325,32 +325,57 @@ exports.getEditProfile = async (req, res) => {
 };
 
 exports.postEditProfile = async (req, res) => {
+
+  function sendAlert(msg){
+    res.send(`
+  <script>
+    alert(${msg});
+    window.history.back();
+  </script>
+`)
+  }
+
   try {
     const currentUsername = req.session.username;
     const { name, email, phone, img_url, newPassword, confirmPassword } = req.body;
    
     const userRole = await User.findOne({ username: currentUsername });
-    if (!userRole) return res.status(404).send("User role not found");
+    const adding = await User.findOne({username:name});
+   /* if(adding!=null){
+      return res.send(`
+  <script>
+    alert('user already exists');
+    window.history.back();
+  </script>
+`);
+
+    }*/   
+    if (!userRole) return sendAlert("user not found");
 
     if (newPassword || confirmPassword) {
       if (!newPassword || !confirmPassword)
-        return res.status(400).send("Both new password and confirm password are required");
+        return sendAlert("bot password are required");
       if (newPassword !== confirmPassword)
-        return res.status(400).send("New password and confirm password do not match");
+        return sendAlert("both passwords must be equal")
 
-      const hashedPassword = await bcrypt.hash(newPassword, 10);
-      userRole.password = hashedPassword;
+      /*const hashedPassword = await bcrypt.hash(newPassword, 10);*/
+      userRole.password = newPassword;
     }
 
     userRole.username = name || userRole.username;
     userRole.email = email || userRole.email;
     await userRole.save();
 
-    if (name && name !== currentUsername) req.session.username = name;
+
+    
 
     const personUsername = name && name !== currentUsername ? name : currentUsername;
-    const user = await Person.findOne({ name: personUsername });
-    if (!user) return res.status(404).send("User not found");
+    const user = await Person.findOne({ name: req.session.username });
+    
+    /*if (!user) return res.status(404).send("User not found");*/
+
+    if (name && name !== currentUsername) req.session.username = name;
+   
 
     user.name = name || user.name;
     user.email = email || user.email;
