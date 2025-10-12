@@ -47,7 +47,15 @@
           <input type="date" name="date" id="date" required />
 
           <label for="time">Time:</label>
-          <input type="time" name="time" id="time" required />
+
+          <input
+            type="time"
+            name="time"
+            id="time"
+            required
+            min="08:00"
+            max="22:30"
+          />
 
           <label for="guests">Number of Guests:</label>
           <input type="number" name="guests" id="guests" min="1" required />
