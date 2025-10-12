@@ -50,6 +50,38 @@
             </ul>
         </section>
         
+
+        <section class="inventory_details">
+    <h2>Manage Inventory</h2>
+    <table class="inventory-table">
+        <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Action</th>
+        </tr>
+        <% if (inventoryDataForTable && inventoryDataForTable.labels) { %>
+            <% for (let i = 0; i < inventoryDataForTable.labels.length; i++) { %>
+                <tr>
+                    <td><%= inventoryDataForTable.labels[i] %></td>
+                    <td><%= inventoryDataForTable.values[i] %></td>
+                    <td>
+                        <form action="/staff/update-inventory" method="POST" style="display:inline;">
+                            <input type="hidden" name="rest_id" value="<%= restaurant._id %>">
+                            <input type="hidden" name="item" value="<%= inventoryDataForTable.labels[i] %>">
+                            <button type="submit" name="action" value="increase" class="btn-inc">+</button>
+                            <button type="submit" name="action" value="decrease" class="btn-dec">−</button>
+                        </form>
+                    </td>
+                </tr>
+            <% } %>
+        <% } else { %>
+            <tr>
+                <td colspan="3">No inventory data available</td>
+            </tr>
+        <% } %>
+    </table>
+</section>
+
         <section class="charts">
             <h2>Performance Analytics</h2>
             <div class="charts-container">

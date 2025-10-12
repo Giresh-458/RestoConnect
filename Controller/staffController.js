@@ -22,9 +22,11 @@ exports.getDashBoard = async (req, res) => {
       ([label, value]) => ({ label, value })
     );
 
-    //  Process inventory data from inventoryData.labels & values
+    // Process inventory data - FIXED: Use the correct structure
     let inventoryItems = [];
-    let inventoryData = [];
+    let inventoryDataForTable = { labels: [], values: [] }; // For the table
+    let inventoryDataForChart = []; // For the chart
+
     if (
       rest.inventoryData &&
       rest.inventoryData.labels &&
@@ -37,10 +39,17 @@ exports.getDashBoard = async (req, res) => {
         };
       });
 
-      inventoryData = inventoryItems.map((item) => ({
+      // Data for the chart
+      inventoryDataForChart = inventoryItems.map((item) => ({
         label: item.name,
         value: item.quantity,
       }));
+
+      // Data for the table - use the same structure as restaurant.inventoryData
+      inventoryDataForTable = {
+        labels: rest.inventoryData.labels,
+        values: rest.inventoryData.values,
+      };
     }
 
     // Get recent reservations (last 10)
@@ -51,7 +60,9 @@ exports.getDashBoard = async (req, res) => {
       reservations: recentReservations,
       inventory: inventoryItems.filter((item) => item.quantity < 10), // Show only low stock items
       ordersData,
-      inventoryData,
+      inventoryData: inventoryDataForChart, // For the chart
+      inventoryDataForTable: inventoryDataForTable, // For the table
+      restaurant: rest, // Pass the restaurant object for the form
     });
   } catch (error) {
     console.error("Error in getDashBoard:", error);
@@ -263,6 +274,33 @@ exports.postRemoveReservation = async (req, res) => {
 
   await rest.save();
   res.redirect("/staff/HomePage");
+};
+
+exports.postUpdateInventory = async (req, res) => {
+  try {
+    const { item, action } = req.body;
+
+    const restaurant = await Restaurant.findById(req.session.rest_id);
+    if (!restaurant || !restaurant.inventoryData)
+      return res.status(404).send("Restaurant not found");
+
+    const index = restaurant.inventoryData.labels.indexOf(item);
+    if (index === -1) return res.status(404).send("Item not found");
+
+    // Safe quantity update
+    if (action === "increase") restaurant.inventoryData.values[index] += 1;
+    else if (
+      action === "decrease" &&
+      restaurant.inventoryData.values[index] > 0
+    )
+      restaurant.inventoryData.values[index] -= 1;
+
+    await restaurant.save();
+    res.redirect("/staff/Dashboard");
+  } catch (err) {
+    console.error("Error updating inventory:", err);
+    res.status(500).send("Error updating inventory");
+  }
 };
 
 exports.postAutoAllocateTable = async (req, res) => {

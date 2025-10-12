@@ -100,6 +100,66 @@ form button:hover {
   background-color: #f1f1f1;
 }
 
+.inventory-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.inventory-table th,
+.inventory-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.inventory-table th {
+  background-color: #e50914;
+  color: white;
+}
+
+.btn-inc,
+.btn-dec {
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin: 0 3px;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+}
+
+.btn-inc {
+  background-color: #e50914;
+}
+
+.btn-dec {
+  background-color: #333;
+}
+
+.btn-inc:hover {
+  background-color: #ff4d4d;
+}
+
+.btn-dec:hover {
+  background-color: #555;
+}
+
+/* 🔴 Red navigation links */
+.nav-red {
+  color: white;
+  background-color: #e50914;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.nav-red:hover {
+  background-color: #ff3030;
+}
+
 canvas {
   max-width: 100%;
   height: auto;
