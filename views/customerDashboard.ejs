@@ -9,6 +9,7 @@
 </head>
 <body>
   <div class="dashboard">
+    <!-- Sidebar -->
     <div class="sidebar">
       <ul>
         <li><a href="/">Home</a></li>
@@ -18,11 +19,11 @@
       </ul>
     </div>
 
+    <!-- Main Content -->
     <div class="content">
       <!-- Profile Section -->
       <div class="nadcuscontainer1" id="home">
         <div class="profile box">
-          <span></span>
           <div>
             <h3><%= name %></h3>
             <h4>Email: <%= email %></h4>
@@ -47,23 +48,29 @@
             <label for="phone">Phone</label>
             <input type="text" id="phone" name="phone" value="<%= phone %>">
             <br>
+            <label for="newPassword">New Password</label>
+            <input type="password" id="newPassword" name="newPassword">
+            <br>
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword">
+            <br>
             <button type="submit">Save Changes</button>
           </form>
         </div>
 
-        <!-- Previous Orders Section -->
+        <!-- Previous Orders -->
         <div class="ncuspastorder box" id="prev_order">
           <div class="ncusprevdiv">
-            <% prev_order.forEach(rest => { %>
+            <% prev_order.forEach(order => { %>
               <div>
-                <h1><%= rest.name %></h1>
+                <h1><%= order.name %></h1>
                 <ul>
-                  <% rest.items.forEach(item => { %>
+                  <% order.items.forEach(item => { %>
                     <li><%= item %></li>
-                  <% }); %>
+                  <% }) %>
                 </ul>
               </div>
-            <% }); %>
+            <% }) %>
           </div>
         </div>
 
@@ -72,25 +79,25 @@
           <div class="chart-container">
             <canvas id="pichart1" width="200" height="200"></canvas>
             <ul>
-              <% item_list.forEach(product => { %>
-                <li><%= product %></li>
-              <% }); %>
+              <% item_list.forEach((item, i) => { %>
+                <li><%= item %> - <%= item_counts[i] %></li>
+              <% }) %>
             </ul>
           </div>
           <div class="chart-container">
             <canvas id="pichart2" width="200" height="200"></canvas>
             <ul>
-              <% restaurent_list.forEach((product, index) => { %>
-                <li><%= product %> - <%= restaurent_counts[index] %></li>
-              <% }); %>
+              <% restaurent_list.forEach((rest, i) => { %>
+                <li><%= rest %> - <%= restaurent_counts[i] %></li>
+              <% }) %>
             </ul>
           </div>
         </div>
       </div>
     </div>
-  </div> <!-- End of dashboard -->
+  </div>
 
-  <!-- Feedback Section at the bottom -->
+  <!-- Feedback Section -->
   <div class="cus-feedback-bottom">
     <h2>Your Feedbacks</h2>
     <% if (feedbackList && feedbackList.length > 0) { %>
@@ -121,7 +128,7 @@
     <% } %>
   </div>
 
-  <script> 
+  <script>
     const item_list = <%- JSON.stringify(item_list) %>;
     const item_counts = <%- JSON.stringify(item_counts) %>;
     const restaurent_list = <%- JSON.stringify(restaurent_list) %>;
@@ -130,4 +137,3 @@
   <script src="/js/customer_dashboard_script.js"></script>
 </body>
 </html>
-

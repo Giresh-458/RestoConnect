@@ -3,7 +3,6 @@ const { User } = require("../Model/userRoleModel");
 let Restaurant = require("../Model/Restaurents_model").Restaurant;
 let Dish = require("../Model/Dishes_model_test").Dish;
 
-// OWNER HOMEPAGE
 exports.getOwnerHomepage = async (req, res) => {
   try {
     let username = req.session.username;
@@ -14,10 +13,8 @@ exports.getOwnerHomepage = async (req, res) => {
 
     let restaurant = user.restaurantName;
 
-    // Fetch staff list for this restaurant
     const staffList = await User.find({ rest_id: user.rest_id, role: "staff" });
 
-    // Fetch restaurant tables
     const restPopulated = await Restaurant.findById(user.rest_id)
       .populate("dishes")
       .populate("orders");
@@ -36,7 +33,6 @@ exports.getOwnerHomepage = async (req, res) => {
   }
 };
 
-// TABLE MANAGEMENT
 exports.getTables = async (req, res) => {
   try {
     const user = await User.findOne({ username: req.session.username });
@@ -104,7 +100,7 @@ exports.getDashboard = async (req, res) => {
   try {
     let username = req.session.username;
     let user = await User.findOne({ username });
-    const Feedback = require("../Model/feedback"); // Feedback model
+    const Feedback = require("../Model/feedback"); 
     if (!user) return res.status(404).send("User not found");
 
     let restaurant = user.restaurantName;
@@ -122,7 +118,6 @@ exports.getDashboard = async (req, res) => {
       totalRevenue += payment.amount || 0;
     });
 
-    // Revenue Maps
     let dailyRevenueMap = {};
     let weeklyRevenueMap = {};
 
@@ -163,7 +158,7 @@ exports.getDashboard = async (req, res) => {
       weeklyRevenueValues: weeklyValues,
       dailyRevenueLabels: dailyLabels,
       dailyRevenueValues: dailyValues,
-      feedbackList, // ✅ pass to EJS
+      feedbackList, 
     });
   } catch (error) {
     console.error("Error in getDashboard:", error);
@@ -182,7 +177,6 @@ function getWeekNumber(date) {
   return `${d.getUTCFullYear()}-W${weekNo.toString().padStart(2, "0")}`;
 }
 
-// --- MENU, PRODUCTS, STAFF, TASKS remain unchanged ---
 
 exports.getMenuManagement = async (req, res) => {
   try {
@@ -201,8 +195,8 @@ exports.getMenuManagement = async (req, res) => {
 
 exports.addProduct = async (req, res) => {
   try {
-    const { name, category, price, status, imageUrl } = req.body;
-    let dish = new Dish({ name, price, description: "good one", image: imageUrl });
+    const { name, price, description } = req.body;
+    let dish = new Dish({ name, price, description:description });
     await dish.addDish(req.session.rest_id);
     res.redirect("/owner");
   } catch (error) {
@@ -211,14 +205,13 @@ exports.addProduct = async (req, res) => {
   }
 };
 
-// Other product, staff, task, delete functions remain unchanged
 
 
 
 exports.editProduct = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, category, price, status, imageUrl } = req.body;
+    const { name, description, price,imageUrl } = req.body;
 
     let dish = await Dish.find_by_id(id);
     if (!dish) {
@@ -226,8 +219,7 @@ exports.editProduct = async (req, res) => {
     }
     dish.name = name;
     dish.price = price;
-    dish.description = "good one";
-    dish.image = imageUrl;
+    dish.description = description;
     await dish.updateDish();
     res.redirect("/owner");
   } catch (error) {
@@ -247,21 +239,12 @@ exports.deleteProduct = async (req, res) => {
   }
 };
 
-// Staff CRUD operations for owner
 
 exports.getStaffList = async (req, res) => {
   try {
     const rest_id = req.session.rest_id;
     const staffList = await User.find({ rest_id: rest_id, role: "staff" });
-    // Also fetch restaurant name to pass to view
-    /*  const user = await User.findByname(req.session.username);
-        const restaurant = user ? user.restaurantName : null;
-        const rest = await Restaurant.find_by_id(rest_id);
-        const tables = rest ? rest.tables : [];
-        const tasks = rest ? rest.tasks || [] : [];
-        const restPopulated = await Restaurant.findById(rest_id).populate('dishes').populate('orders');
-        res.render('ownerHomepage', { staffList, restaurant, tables, tasks, orders: restPopulated.orders, dishes: restPopulated.dishes });*/
-    res.json(staffList);
+   res.json(staffList);
   } catch (error) {
     console.error("Error in getStaffList:", error);
     res.status(500).send("Internal Server Error");
@@ -349,14 +332,12 @@ exports.deleteTask = async (req, res) => {
 exports.deleteRestaurant = async (req, res) => {
   try {
     const restaurantId = req.params.id;
-    // Delete the restaurant
     const restaurant = await Restaurant.findByIdAndDelete(restaurantId);
     if (!restaurant) {
       return res.status(404).send("Restaurant not found");
     }
-    // Delete all users related to this restaurant (staff and owner)
     await User.deleteMany({ rest_id: restaurantId });
-    res.redirect("/owner"); // Redirect to owner homepage or appropriate page
+    res.redirect("/owner"); 
   } catch (error) {
     console.error("Error deleting restaurant and related users:", error);
     res.status(500).send("Internal Server Error");

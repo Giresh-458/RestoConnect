@@ -328,7 +328,7 @@ exports.postEditProfile = async (req, res) => {
   try {
     const currentUsername = req.session.username;
     const { name, email, phone, img_url, newPassword, confirmPassword } = req.body;
-
+   
     const userRole = await User.findOne({ username: currentUsername });
     if (!userRole) return res.status(404).send("User role not found");
 

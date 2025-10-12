@@ -31,12 +31,7 @@ const restaurantSchema = new mongoose.Schema({
   },
   date_joined: {
     type: Date,
-    required: true,
-    validate:{
-      validator: function(value){
-        return value>=new Date().setHours(0,0,0,0);
-      }
-    }
+    required: true
   },
   created_at: {
     type: Date,

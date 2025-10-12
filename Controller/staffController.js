@@ -4,6 +4,7 @@ const user_model = require("../Model/userRoleModel");
 // Dashboard Methods
 exports.getDashBoard = async (req, res) => {
   try {
+    let r_name=await Restaurant.findById(req.session.rest_id)
     let rest = await Restaurant.findById(req.session.rest_id).populate(
       "orders"
     );
@@ -62,7 +63,8 @@ exports.getDashBoard = async (req, res) => {
       ordersData,
       inventoryData: inventoryDataForChart, // For the chart
       inventoryDataForTable: inventoryDataForTable, // For the table
-      restaurant: rest, // Pass the restaurant object for the form
+      restaurant: rest,
+      rest_name:r_name.name
     });
   } catch (error) {
     console.error("Error in getDashBoard:", error);
@@ -189,12 +191,12 @@ exports.getHomePage = async (req, res) => {
       }
     }
   }
-
+  let rest_name = rest.name
   res.render("staffHomepage", {
     tasks: rest.tasks || [],
     allocatedTables,
     reservationsNeedingAllocation,
-    availableTables,
+    availableTables
   });
 };
 

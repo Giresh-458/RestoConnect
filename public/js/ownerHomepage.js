@@ -118,9 +118,9 @@ document.getElementById("addStaffForm").addEventListener("submit", function (e) 
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
          callAllStaff()
-          document.getElementById("addStaffForm").reset(); // clear form
+          document.getElementById("addStaffForm").reset();
         } else {
-          alert("Error adding staff: " + xhr.responseText);
+          alert("Error adding staff: username or email already exists" );
         }
       }
     };

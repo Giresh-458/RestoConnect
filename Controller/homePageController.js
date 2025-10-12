@@ -5,6 +5,7 @@ const { User } = require('../Model/userRoleModel');
 const restaurantReq = require("../Model/restaurent_request_model")
 
 
+
 exports.getHomePage = async (req, res) => {
     try {
         let login = req.session?.username ? true : false;
@@ -53,7 +54,7 @@ exports.postRestReq = async (req, res) => {
     const { name, location, amount, owner_username, owner_password, date_joined, email } = req.body;
 
     const existingRestaurantName = await Restaurant.findOne({ name });
-    const existingRestaurantUsername = await Restaurant.findOne({ owner_username });
+    const existingRestaurantUsername = await User.findOne({ username:owner_username });
     const existingRestaurantEmail = await Restaurant.findOne({ email });
 
     const existingReqName = await restaurantReq.findOne({ name });

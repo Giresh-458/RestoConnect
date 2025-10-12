@@ -5,6 +5,7 @@ const { Order } = require('../Model/Order_model');
 const { Restaurant } = require('../Model/Restaurents_model');
 const { Dish } = require('../Model/Dishes_model_test'); 
 const Feedback = require('../Model/feedback.js'); 
+const rest_req=require("../Model/restaurent_request_model.js")
 
 
 async function seed() {
@@ -18,6 +19,7 @@ async function seed() {
     await Restaurant.deleteMany({});
     await Dish.deleteMany({}); 
     await Feedback.deleteMany({});
+    await rest_req.deleteMany({});
 
 
     // Seed Users
