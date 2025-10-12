@@ -151,7 +151,9 @@ exports.submitFeedback = async (req, res) => {
 // Orders and reservations
 exports.postOrderAndReservation = async (req, res) => {
   try {
+    
     let restaurantName, cart, rest_id;
+    console.log(req.session.cart);
     if (req.body.restaurant) {
       restaurantName = req.body.restaurant;
       rest_id = req.body.rest_id;
@@ -235,6 +237,7 @@ exports.postOrderAndReservationCombined = async (req, res) => {
       guests,
     };
     req.session.reservation = newReservation;
+
 
     const user = await Person.findOne({ name: req.session.username });
     if (user) {

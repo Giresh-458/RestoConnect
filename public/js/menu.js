@@ -17,51 +17,63 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    document.getElementById('menu').addEventListener('click', function(event) {
-        const target = event.target;
-        const index = target.dataset.index;
-        
-        if (!index) return;
-         if (target.classList.contains('increase') || target.classList.contains('decrease')) {
-        event.preventDefault(); // prevent page reload
+    
+
+document.getElementById('menu').addEventListener('click', function(event) {
+    
+    const target = event.target;
+    const index = target.dataset.index;
+    if (!index) return;
+
+    const counter = document.querySelector(`.counter[data-index="${index}"]`);
+    const cartButton = document.querySelector(`.cart_button[data-index="${index}"]`);
+    const itemCount = counter.querySelector('.item_count');
+    const dish = counter.getAttribute('data-dish');
+
+    if (target.classList.contains('cart_button')) {
+        event.preventDefault();
+        console.log('Add to Cart:', dish);
+        cartButton.style.display = 'none';
+        counter.style.display = 'flex';
+        itemCount.textContent = 1;
+        counter.classList.add('active');
+        fetch('/customer/cart/add', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ dish })
+        });
     }
 
-        const cartButton = document.querySelector(`.cart_button[data-index="${index}"]`);
-        const counter = document.querySelector(`.counter[data-index="${index}"]`);
-        const itemCount = counter.querySelector('.item_count');
+    if (target.classList.contains('increase')) {
+        event.preventDefault();
+        console.log('Increase:', dish);
+        itemCount.textContent = Number(itemCount.textContent) + 1;
+        fetch('/customer/cart/increase', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ dish })
+        });
+    }
 
-        if (target.classList.contains('cart_button')) {
-            cartButton.style.display = 'none';
-            counter.style.display = 'flex';
-            itemCount.textContent = 1;
-            counter.classList.add('active');
-        } 
-
-        if (target.classList.contains('increase')) {
-            itemCount.textContent = parseInt(itemCount.textContent) + 1;
-            
-    fetch('/customer/cart/increase', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ dish })
-    });
+    if (target.classList.contains('decrease')) {
+        event.preventDefault();
+        console.log('Decrease:', dish);
+        let count = Number(itemCount.textContent) - 1;
+        itemCount.textContent = count;
+        if (count === 0) {
+            cartButton.style.display = 'inline-block';
+            counter.style.display = 'none';
         }
+        fetch('/customer/cart/decrease', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ dish })
+        });
+    }
+});
 
-        if (target.classList.contains('decrease')) {
-            let count = parseInt(itemCount.textContent) - 1;
-            itemCount.textContent = count;
-            
-            if (count === 0) {
-                cartButton.style.display = 'inline-block';
-                counter.style.display = 'none';
-            }
-             fetch('/customer/cart/decrease', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ dish })
-    });
-        }
-    });
+
+
 
     // The order button submits the hidden form to /customer/cart/order
 });

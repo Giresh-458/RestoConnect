@@ -62,20 +62,29 @@ exports.addDishToCart = async (req, res) => {
 // Increase dish quantity in cart
 exports.increaseDishQuantity = async (req, res) => {
     try {
-        const user = req.user;
+        
+        const user = req.session.username;
+       
         const dishName = req.body.dish;
+       
         if (!dishName) {
             return res.status(400).send('Dish name is required');
         }
-        let person = await Person.findOne({ email: user.email });
+        let person = await Person.findOne({ name: user });
+      
         if (!person) {
             return res.status(404).send('User not found');
         }
+     
         let cart = person.cart || [];
         let itemIndex = cart.findIndex(item => item.dish === dishName);
+      
         if (itemIndex > -1) {
+             
             cart[itemIndex].quantity += 1;
+            
             person.cart = cart;
+            person.markModified('cart');
             await person.save();
         }
         res.redirect('back');
@@ -88,12 +97,13 @@ exports.increaseDishQuantity = async (req, res) => {
 // Decrease dish quantity in cart
 exports.decreaseDishQuantity = async (req, res) => {
     try {
-        const user = req.user;
+        const user = req.session.username;
+        
         const dishName = req.body.dish;
         if (!dishName) {
             return res.status(400).send('Dish name is required');
         }
-        let person = await Person.findOne({ email: user.email });
+        let person = await Person.findOne({ name: user });
         if (!person) {
             return res.status(404).send('User not found');
         }
@@ -107,6 +117,7 @@ exports.decreaseDishQuantity = async (req, res) => {
                 cart.splice(itemIndex, 1);
             }
             person.cart = cart;
+            person.markModified('cart');
             await person.save();
         }
         res.redirect('back');
@@ -124,14 +135,12 @@ exports.orderCart = async (req, res) => {
         if (!person) {
             return res.redirect('/login');
         }
-        // Get current cart before clearing
+       
         const cart = person.cart || [];
         const restaurantName = req.body.restaurant || req.session.rest_name || '';
         const rest_id = req.body.rest_id || req.session.rest_id || '';
 
-        // Do NOT clear the cart here as per user request
-        // Cart will be cleared only on combined order and reservation submission
-
+      
         // Store cart and restaurant info in session for orderReservation page
         req.session.temp_cart = cart;
         req.session.rest_name = restaurantName;
