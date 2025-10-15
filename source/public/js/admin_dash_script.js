@@ -236,7 +236,6 @@ let xhr = new XMLHttpRequest();
         <p><strong>Amount:</strong> ${doc.amount}</p>
         <p><strong>Owner Username:</strong> ${doc.owner_username}</p>
         <p><strong>Owner Password:</strong> ${doc.owner_password}</p>
-        <p><strong>Date Joined:</strong> ${new Date(doc.date_joined).toLocaleDateString()}</p>
         <p><strong>Created At:</strong> ${new Date(doc.created_at).toLocaleString()}</p>
 
           <button onclick="acceptRequest('${doc.owner_username}')">Accept</button>

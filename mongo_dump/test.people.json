@@ -1,0 +1,76 @@
+[{
+  "_id": {
+    "$oid": "68ebdbf90addbff80e638079"
+  },
+  "name": "customer1",
+  "img_url": "customer1.jpg",
+  "email": "customer1@example.com",
+  "phone": "1234567890",
+  "prev_orders": [
+    {
+      "name": "Tasty Bites",
+      "items": [
+        "Paneer Tikka",
+        "Veg Biryani"
+      ]
+    },
+    {
+      "name": "Tasty Bites",
+      "items": [
+        "Veg Biryani"
+      ]
+    },
+    {
+      "name": "Tasty Bites",
+      "items": [
+        "Paneer Tikka"
+      ]
+    }
+  ],
+  "top_dishes": {},
+  "top_restaurent": {},
+  "cart": [],
+  "__v": 1
+},
+{
+  "_id": {
+    "$oid": "68ebdbf90addbff80e63807a"
+  },
+  "name": "customer2",
+  "img_url": "customer2.jpg",
+  "email": "customer2@example.com",
+  "phone": "1234562890",
+  "prev_orders": [
+    {
+      "name": "Tasty Bites",
+      "items": [
+        "Paneer Tikka"
+      ]
+    },
+    {
+      "name": "Tasty Bites",
+      "items": [
+        "Paneer Tikka",
+        "Veg Biryani"
+      ]
+    }
+  ],
+  "top_dishes": {},
+  "top_restaurent": {},
+  "cart": [],
+  "__v": 1
+},
+{
+  "_id": {
+    "$oid": "68ebdbf90addbff80e63807b"
+  },
+  "name": "customer3",
+  "img_url": "customer3.jpg",
+  "email": "customer3@example.com",
+  "phone": "1224567890",
+  "prev_orders": [],
+  "top_dishes": {},
+  "top_restaurent": {},
+  "cart": [],
+  "__v": 0
+}]

@@ -1,0 +1,312 @@
+[{
+  "_id": {
+    "$oid": "68ebdbf90addbff80e63805e"
+  },
+  "username": "admin1",
+  "email": "admin1@example.com",
+  "role": "admin",
+  "restaurantName": null,
+  "rest_id": null,
+  "password": "$2b$10$dcz0ZHixT7y6yFo8VfDjSeAD/dXU.wd3Wm4.FLG6DT0GGv.J9DbYu",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ebdbf90addbff80e63805f"
+  },
+  "username": "owner1",
+  "email": "owner1@example.com",
+  "role": "owner",
+  "restaurantName": "Tasty Bites",
+  "rest_id": "Qf-wte5Yf0",
+  "password": "$2b$10$UAAXbtAAKDBHIhoR28wiR.9QkfAV.TxAbtWEmbNFBN5UOlvSFmpWW",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ebdbf90addbff80e638060"
+  },
+  "username": "staff1",
+  "email": "staff1@example.com",
+  "role": "staff",
+  "restaurantName": "Tasty Bites",
+  "rest_id": "Qf-wte5Yf0",
+  "password": "$2b$10$R.XUHmhB.9wleqgR/F1DLOc1LbAH7XEohG/ZTIQjeDaqFWqrKGgmu",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ebdbf90addbff80e638061"
+  },
+  "username": "owner2",
+  "email": "owner2@example.com",
+  "role": "owner",
+  "restaurantName": "Spice Hub",
+  "rest_id": "9F1qGJlMLp",
+  "password": "$2b$10$LMuFEY04KC7irQ4ujS8Ire5Do6wtFXo74A3O9GhzFA0V7n1FHpk5q",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ebdbf90addbff80e638062"
+  },
+  "username": "staff2",
+  "email": "staff2@example.com",
+  "role": "staff",
+  "restaurantName": "Spice Hub",
+  "rest_id": "9F1qGJlMLp",
+  "password": "$2b$10$lU2SOmjk4vTnsL3bcisIC.uPuuAeI2NiBzKtCL7N.OZdUK1iqiQFm",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ebdbf90addbff80e638063"
+  },
+  "username": "owner3",
+  "email": "owner3@example.com",
+  "role": "owner",
+  "restaurantName": "South Delight",
+  "rest_id": "_EVhZUMgRM",
+  "password": "$2b$10$Qvb8Smd8uwNbMVcoKCAZJuhb6KpDvngsAzKJoUxcSqMSjtCIz2x52",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ebdbf90addbff80e638064"
+  },
+  "username": "staff3",
+  "email": "staff3@example.com",
+  "role": "staff",
+  "restaurantName": "South Delight",
+  "rest_id": "_EVhZUMgRM",
+  "password": "$2b$10$YQFPoiJWvaXr7nNXpSZD8.zdfAioPzR.mMHDjq9r9g2MNOvZgpIEe",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ebdbf90addbff80e638065"
+  },
+  "username": "owner4",
+  "email": "owner4@example.com",
+  "role": "owner",
+  "restaurantName": "Green Garden",
+  "rest_id": "kiJWSOU9sK",
+  "password": "$2b$10$aeTZR8OVckw7NislWDqwz.AC30.7S6/KCQ5RvIoEzsqzet9vEIiBq",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ebdbf90addbff80e638066"
+  },
+  "username": "staff4",
+  "email": "staff4@example.com",
+  "role": "staff",
+  "restaurantName": "Green Garden",
+  "rest_id": "kiJWSOU9sK",
+  "password": "$2b$10$strE/nF3.S6kX3Cv.t8e.eU/62vM0uuthl/GhOTeTIcM4nhrt1f42",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ebdbf90addbff80e638067"
+  },
+  "username": "owner5",
+  "email": "owner5@example.com",
+  "role": "owner",
+  "restaurantName": "Ocean Breeze",
+  "rest_id": "wbOyCtMRyr",
+  "password": "$2b$10$V0cfPkdy28GswM4PR9xnMOk4WqViZTkxVj.6Gv6/BxiPKmC1fRhM2",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ebdbf90addbff80e638068"
+  },
+  "username": "staff5",
+  "email": "staff5@example.com",
+  "role": "staff",
+  "restaurantName": "Ocean Breeze",
+  "rest_id": "wbOyCtMRyr",
+  "password": "$2b$10$iXGYius7XtFrafDIDyIeoOrXuH4CjqozIvh/QQxOtsRgGjudt0sgm",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ebdbf90addbff80e638069"
+  },
+  "username": "owner6",
+  "email": "owner6@example.com",
+  "role": "owner",
+  "restaurantName": "Spicy Fiesta",
+  "rest_id": "2jLH5Zjgrq",
+  "password": "$2b$10$DGDO8WQm2f/QRla0348B7um.R2DfGvpjQpqAFdHi0JlCIusK1P9y6",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ebdbf90addbff80e63806a"
+  },
+  "username": "staff6",
+  "email": "staff6@example.com",
+  "role": "staff",
+  "restaurantName": "Spicy Fiesta",
+  "rest_id": "2jLH5Zjgrq",
+  "password": "$2b$10$w5lqwiwZT3OtC2GhIq/YcOMI1toiCg5r0xWI5.nuaPE349o8R1NmO",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ebdbf90addbff80e63806b"
+  },
+  "username": "owner7",
+  "email": "owner7@example.com",
+  "role": "owner",
+  "restaurantName": "Urban Eats",
+  "rest_id": "ifq6vo5GLo",
+  "password": "$2b$10$SwsGeOMkgxAh34uRLvHzKOW0Wv4haiB5JkeBnlZ0TyjWB6p9Khmrm",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ebdbf90addbff80e63806c"
+  },
+  "username": "staff7",
+  "email": "staff7@example.com",
+  "role": "staff",
+  "restaurantName": "Urban Eats",
+  "rest_id": "ifq6vo5GLo",
+  "password": "$2b$10$.iffjNFuvPewCFtBY3XaweXmawuo5lRcD5MzTyizs4vfuHC.hmSW2",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ebdbf90addbff80e63806d"
+  },
+  "username": "owner8",
+  "email": "owner8@example.com",
+  "role": "owner",
+  "restaurantName": "Cozy Corner",
+  "rest_id": "R1blgVurRo",
+  "password": "$2b$10$HxRr1uiSxPY02L7F03cah.QIXK0JwHC9j4abrYnna9jBu3Ag6gMJ6",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ebdbf90addbff80e63806e"
+  },
+  "username": "staff8",
+  "email": "staff8@example.com",
+  "role": "staff",
+  "restaurantName": "Cozy Corner",
+  "rest_id": "R1blgVurRo",
+  "password": "$2b$10$zcNDufnpDLOpZzIh8lDRNu.OL2nKId1NCT4vnR9tUE6j4E02crw12",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ebdbf90addbff80e63806f"
+  },
+  "username": "owner9",
+  "email": "owner9@example.com",
+  "role": "owner",
+  "restaurantName": "The Spice Route",
+  "rest_id": "izwfjmpwQy",
+  "password": "$2b$10$ELnYjXMv6Ud/J2FEMtALL.fllZsU28Ao9big.ztjp5wxvZ4LXK5/.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ebdbf90addbff80e638070"
+  },
+  "username": "staff9",
+  "email": "staff9@example.com",
+  "role": "staff",
+  "restaurantName": "The Spice Route",
+  "rest_id": "izwfjmpwQy",
+  "password": "$2b$10$M3zfNKwlFlyk2xz4tzPSZenHXd2s5Onq4JX8j6fsLZnexPeQ4g9r6",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ebdbf90addbff80e638071"
+  },
+  "username": "owner10",
+  "email": "owner10@example.com",
+  "role": "owner",
+  "restaurantName": "Garden Fresh",
+  "rest_id": "Bf7REgAN1Q",
+  "password": "$2b$10$Q3hHPVPioUitygoDv28CvuUPWGAqJ1bLVlNyLwqWCFAKSyZRcstvG",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ebdbf90addbff80e638072"
+  },
+  "username": "staff10",
+  "email": "staff10@example.com",
+  "role": "staff",
+  "restaurantName": "Garden Fresh",
+  "rest_id": "Bf7REgAN1Q",
+  "password": "$2b$10$lFMp8zYUreHToJVP8gG.TudFCWKmBbDQYm5FLFexAFcX9UtJ1nCKy",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ebdbf90addbff80e638073"
+  },
+  "username": "owner11",
+  "email": "owner11@example.com",
+  "role": "owner",
+  "restaurantName": "Sunset Grill",
+  "rest_id": "UjG-wWiLk4N",
+  "password": "$2b$10$Cd0ubA9L9LVl3mylw5v/X.c/x7rXZ6DqQvfk3d3a0BFqhlqbEXxci",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ebdbf90addbff80e638074"
+  },
+  "username": "staff11",
+  "email": "staff11@example.com",
+  "role": "staff",
+  "restaurantName": "Sunset Grill",
+  "rest_id": "UjG-wWiLk4N",
+  "password": "$2b$10$63MsPlNahWobw8xkN0OfOe.WCWtOAjXyipxElZTqT/XaKarVp7X8y",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ebdbf90addbff80e638075"
+  },
+  "username": "customer1",
+  "email": "customer1@example.com",
+  "role": "customer",
+  "restaurantName": null,
+  "rest_id": null,
+  "password": "$2b$10$duD391CX095Odhx.X6brb.qKCjdZag.wtfHfgGRcZ1epSbr.qh1Qu",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ebdbf90addbff80e638076"
+  },
+  "username": "customer2",
+  "email": "customer2@example.com",
+  "role": "customer",
+  "restaurantName": null,
+  "rest_id": null,
+  "password": "$2b$10$adS86Hv38wh/wTaoeaamQeNzXMXY4IfcjRWa0be4LWy5EUmmGCBnW",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ebdbf90addbff80e638077"
+  },
+  "username": "customer3",
+  "email": "customer3@example.com",
+  "role": "customer",
+  "restaurantName": null,
+  "rest_id": null,
+  "password": "$2b$10$.h2Ojkevp5orMp8v/U6qYeAPo6QVRvtf/WKSVHZvDNwWUJcIpOtcm",
+  "__v": 0
+}]

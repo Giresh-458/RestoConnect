@@ -1,0 +1,838 @@
+[{
+  "_id": "Qf-wte5Yf0",
+  "name": "Tasty Bites",
+  "image": "/images/Tasty_Bites.png",
+  "rating": 4.5,
+  "location": "Chennai",
+  "amount": 100,
+  "dishes": [
+    "pVTjGvdmN",
+    "tPL9DtLZ6Y",
+    "LN2UVMQuj6"
+  ],
+  "orders": [],
+  "tables": [
+    {
+      "number": "1",
+      "status": "available",
+      "seats": 2,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e638026"
+      }
+    },
+    {
+      "number": "2",
+      "status": "available",
+      "seats": 3,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e638027"
+      }
+    },
+    {
+      "number": "3",
+      "status": "available",
+      "seats": 4,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e638028"
+      }
+    },
+    {
+      "number": "4",
+      "status": "available",
+      "seats": 5,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e638029"
+      }
+    },
+    {
+      "number": "5",
+      "status": "available",
+      "seats": 6,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e63802a"
+      }
+    }
+  ],
+  "totalTables": 5,
+  "inventory": [],
+  "orderData": {
+    "labels": [],
+    "values": []
+  },
+  "inventoryData": {
+    "labels": [],
+    "values": []
+  },
+  "payments": [
+    {
+      "amount": 550,
+      "date": {
+        "$date": "2025-09-23T16:48:57.989Z"
+      },
+      "_id": {
+        "$oid": "68ebdbfa0addbff80e638082"
+      }
+    },
+    {
+      "amount": 250,
+      "date": {
+        "$date": "2025-10-05T16:48:57.990Z"
+      },
+      "_id": {
+        "$oid": "68ebdbfa0addbff80e638084"
+      }
+    },
+    {
+      "amount": 300,
+      "date": {
+        "$date": "2025-10-07T16:48:57.990Z"
+      },
+      "_id": {
+        "$oid": "68ebdbfa0addbff80e638086"
+      }
+    },
+    {
+      "amount": 550,
+      "date": {
+        "$date": "2025-10-06T16:48:57.990Z"
+      },
+      "_id": {
+        "$oid": "68ebdbfa0addbff80e638088"
+      }
+    },
+    {
+      "amount": 250,
+      "date": {
+        "$date": "2025-10-11T16:48:57.990Z"
+      },
+      "_id": {
+        "$oid": "68ebdbfa0addbff80e63808a"
+      }
+    }
+  ],
+  "date": {
+    "$date": "2025-10-12T16:48:56.484Z"
+  },
+  "reservations": [],
+  "tasks": [],
+  "__v": 1
+},
+{
+  "_id": "9F1qGJlMLp",
+  "name": "Spice Hub",
+  "image": "/images/SpiceHub.png",
+  "rating": 4.7,
+  "location": "Tirupati",
+  "amount": 120,
+  "dishes": [
+    "S0R2Cexosy",
+    "mJQ3oJygy0"
+  ],
+  "orders": [],
+  "tables": [
+    {
+      "number": "1",
+      "status": "available",
+      "seats": 2,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e63802b"
+      }
+    },
+    {
+      "number": "2",
+      "status": "available",
+      "seats": 3,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e63802c"
+      }
+    },
+    {
+      "number": "3",
+      "status": "available",
+      "seats": 4,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e63802d"
+      }
+    },
+    {
+      "number": "4",
+      "status": "available",
+      "seats": 5,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e63802e"
+      }
+    },
+    {
+      "number": "5",
+      "status": "available",
+      "seats": 6,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e63802f"
+      }
+    }
+  ],
+  "totalTables": 5,
+  "inventory": [],
+  "orderData": {
+    "labels": [],
+    "values": []
+  },
+  "inventoryData": {
+    "labels": [],
+    "values": []
+  },
+  "payments": [],
+  "date": {
+    "$date": "2025-10-12T16:48:56.486Z"
+  },
+  "reservations": [],
+  "tasks": [],
+  "__v": 0
+},
+{
+  "_id": "_EVhZUMgRM",
+  "name": "South Delight",
+  "image": "/images/SouthDelight.jpeg",
+  "rating": 4.3,
+  "location": "Hyderabad",
+  "amount": 90,
+  "dishes": [
+    "wcls1qtzQf"
+  ],
+  "orders": [],
+  "tables": [
+    {
+      "number": "1",
+      "status": "available",
+      "seats": 2,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e638030"
+      }
+    },
+    {
+      "number": "2",
+      "status": "available",
+      "seats": 3,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e638031"
+      }
+    },
+    {
+      "number": "3",
+      "status": "available",
+      "seats": 4,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e638032"
+      }
+    },
+    {
+      "number": "4",
+      "status": "available",
+      "seats": 5,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e638033"
+      }
+    },
+    {
+      "number": "5",
+      "status": "available",
+      "seats": 6,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e638034"
+      }
+    }
+  ],
+  "totalTables": 5,
+  "inventory": [],
+  "orderData": {
+    "labels": [],
+    "values": []
+  },
+  "inventoryData": {
+    "labels": [],
+    "values": []
+  },
+  "payments": [],
+  "date": {
+    "$date": "2025-10-12T16:48:56.487Z"
+  },
+  "reservations": [],
+  "tasks": [],
+  "__v": 0
+},
+{
+  "_id": "kiJWSOU9sK",
+  "name": "Green Garden",
+  "image": "/images/Green Garden.jpeg",
+  "rating": 4.6,
+  "location": "Chennai",
+  "amount": 110,
+  "dishes": [
+    "pVTjGvdmN",
+    "LN2UVMQuj6"
+  ],
+  "orders": [],
+  "tables": [
+    {
+      "number": "1",
+      "status": "available",
+      "seats": 2,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e638035"
+      }
+    },
+    {
+      "number": "2",
+      "status": "available",
+      "seats": 3,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e638036"
+      }
+    },
+    {
+      "number": "3",
+      "status": "available",
+      "seats": 4,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e638037"
+      }
+    },
+    {
+      "number": "4",
+      "status": "available",
+      "seats": 5,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e638038"
+      }
+    },
+    {
+      "number": "5",
+      "status": "available",
+      "seats": 6,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e638039"
+      }
+    }
+  ],
+  "totalTables": 5,
+  "inventory": [],
+  "orderData": {
+    "labels": [],
+    "values": []
+  },
+  "inventoryData": {
+    "labels": [],
+    "values": []
+  },
+  "payments": [],
+  "date": {
+    "$date": "2025-10-12T16:48:56.488Z"
+  },
+  "reservations": [],
+  "tasks": [],
+  "__v": 0
+},
+{
+  "_id": "wbOyCtMRyr",
+  "name": "Ocean Breeze",
+  "image": "/images/Ocean Breeze.jpeg",
+  "rating": 4.8,
+  "location": "Tirupati",
+  "amount": 130,
+  "dishes": [
+    "S0R2Cexosy",
+    "mJQ3oJygy0"
+  ],
+  "orders": [],
+  "tables": [
+    {
+      "number": "1",
+      "status": "available",
+      "seats": 2,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e63803a"
+      }
+    },
+    {
+      "number": "2",
+      "status": "available",
+      "seats": 3,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e63803b"
+      }
+    },
+    {
+      "number": "3",
+      "status": "available",
+      "seats": 4,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e63803c"
+      }
+    },
+    {
+      "number": "4",
+      "status": "available",
+      "seats": 5,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e63803d"
+      }
+    },
+    {
+      "number": "5",
+      "status": "available",
+      "seats": 6,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e63803e"
+      }
+    }
+  ],
+  "totalTables": 5,
+  "inventory": [],
+  "orderData": {
+    "labels": [],
+    "values": []
+  },
+  "inventoryData": {
+    "labels": [],
+    "values": []
+  },
+  "payments": [],
+  "date": {
+    "$date": "2025-10-12T16:48:56.488Z"
+  },
+  "reservations": [],
+  "tasks": [],
+  "__v": 0
+},
+{
+  "_id": "2jLH5Zjgrq",
+  "name": "Spicy Fiesta",
+  "image": "/images/Spicy Fiesta.jpeg",
+  "rating": 4.4,
+  "location": "Hyderabad",
+  "amount": 95,
+  "dishes": [
+    "tPL9DtLZ6Y",
+    "wcls1qtzQf"
+  ],
+  "orders": [],
+  "tables": [
+    {
+      "number": "1",
+      "status": "available",
+      "seats": 2,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e63803f"
+      }
+    },
+    {
+      "number": "2",
+      "status": "available",
+      "seats": 3,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e638040"
+      }
+    },
+    {
+      "number": "3",
+      "status": "available",
+      "seats": 4,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e638041"
+      }
+    },
+    {
+      "number": "4",
+      "status": "available",
+      "seats": 5,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e638042"
+      }
+    },
+    {
+      "number": "5",
+      "status": "available",
+      "seats": 6,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e638043"
+      }
+    }
+  ],
+  "totalTables": 5,
+  "inventory": [],
+  "orderData": {
+    "labels": [],
+    "values": []
+  },
+  "inventoryData": {
+    "labels": [],
+    "values": []
+  },
+  "payments": [],
+  "date": {
+    "$date": "2025-10-12T16:48:56.489Z"
+  },
+  "reservations": [],
+  "tasks": [],
+  "__v": 0
+},
+{
+  "_id": "ifq6vo5GLo",
+  "name": "Urban Eats",
+  "image": "/images/Urban Eats.jpeg",
+  "rating": 4.2,
+  "location": "Chennai",
+  "amount": 105,
+  "dishes": [
+    "pVTjGvdmN",
+    "tPL9DtLZ6Y"
+  ],
+  "orders": [],
+  "tables": [
+    {
+      "number": "1",
+      "status": "available",
+      "seats": 2,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e638044"
+      }
+    },
+    {
+      "number": "2",
+      "status": "available",
+      "seats": 3,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e638045"
+      }
+    },
+    {
+      "number": "3",
+      "status": "available",
+      "seats": 4,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e638046"
+      }
+    },
+    {
+      "number": "4",
+      "status": "available",
+      "seats": 5,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e638047"
+      }
+    },
+    {
+      "number": "5",
+      "status": "available",
+      "seats": 6,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e638048"
+      }
+    }
+  ],
+  "totalTables": 5,
+  "inventory": [],
+  "orderData": {
+    "labels": [],
+    "values": []
+  },
+  "inventoryData": {
+    "labels": [],
+    "values": []
+  },
+  "payments": [],
+  "date": {
+    "$date": "2025-10-12T16:48:56.489Z"
+  },
+  "reservations": [],
+  "tasks": [],
+  "__v": 0
+},
+{
+  "_id": "R1blgVurRo",
+  "name": "Cozy Corner",
+  "image": "/images/Cozy Corner.jpeg",
+  "rating": 4,
+  "location": "Tirupati",
+  "amount": 85,
+  "dishes": [
+    "LN2UVMQuj6",
+    "wcls1qtzQf"
+  ],
+  "orders": [],
+  "tables": [
+    {
+      "number": "1",
+      "status": "available",
+      "seats": 2,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e638049"
+      }
+    },
+    {
+      "number": "2",
+      "status": "available",
+      "seats": 3,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e63804a"
+      }
+    },
+    {
+      "number": "3",
+      "status": "available",
+      "seats": 4,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e63804b"
+      }
+    },
+    {
+      "number": "4",
+      "status": "available",
+      "seats": 5,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e63804c"
+      }
+    },
+    {
+      "number": "5",
+      "status": "available",
+      "seats": 6,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e63804d"
+      }
+    }
+  ],
+  "totalTables": 5,
+  "inventory": [],
+  "orderData": {
+    "labels": [],
+    "values": []
+  },
+  "inventoryData": {
+    "labels": [],
+    "values": []
+  },
+  "payments": [],
+  "date": {
+    "$date": "2025-10-12T16:48:56.490Z"
+  },
+  "reservations": [],
+  "tasks": [],
+  "__v": 0
+},
+{
+  "_id": "izwfjmpwQy",
+  "name": "The Spice Route",
+  "image": "/images/Spicy Route.jpeg",
+  "rating": 4.5,
+  "location": "Hyderabad",
+  "amount": 115,
+  "dishes": [
+    "tPL9DtLZ6Y",
+    "S0R2Cexosy"
+  ],
+  "orders": [],
+  "tables": [
+    {
+      "number": "1",
+      "status": "available",
+      "seats": 2,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e63804e"
+      }
+    },
+    {
+      "number": "2",
+      "status": "available",
+      "seats": 3,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e63804f"
+      }
+    },
+    {
+      "number": "3",
+      "status": "available",
+      "seats": 4,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e638050"
+      }
+    },
+    {
+      "number": "4",
+      "status": "available",
+      "seats": 5,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e638051"
+      }
+    },
+    {
+      "number": "5",
+      "status": "available",
+      "seats": 6,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e638052"
+      }
+    }
+  ],
+  "totalTables": 5,
+  "inventory": [],
+  "orderData": {
+    "labels": [],
+    "values": []
+  },
+  "inventoryData": {
+    "labels": [],
+    "values": []
+  },
+  "payments": [],
+  "date": {
+    "$date": "2025-10-12T16:48:56.490Z"
+  },
+  "reservations": [],
+  "tasks": [],
+  "__v": 0
+},
+{
+  "_id": "Bf7REgAN1Q",
+  "name": "Garden Fresh",
+  "image": "/images/Garden Fresh.jpeg",
+  "rating": 4.3,
+  "location": "Chennai",
+  "amount": 100,
+  "dishes": [
+    "pVTjGvdmN",
+    "LN2UVMQuj6"
+  ],
+  "orders": [],
+  "tables": [
+    {
+      "number": "1",
+      "status": "available",
+      "seats": 2,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e638053"
+      }
+    },
+    {
+      "number": "2",
+      "status": "available",
+      "seats": 3,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e638054"
+      }
+    },
+    {
+      "number": "3",
+      "status": "available",
+      "seats": 4,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e638055"
+      }
+    },
+    {
+      "number": "4",
+      "status": "available",
+      "seats": 5,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e638056"
+      }
+    },
+    {
+      "number": "5",
+      "status": "available",
+      "seats": 6,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e638057"
+      }
+    }
+  ],
+  "totalTables": 5,
+  "inventory": [],
+  "orderData": {
+    "labels": [],
+    "values": []
+  },
+  "inventoryData": {
+    "labels": [],
+    "values": []
+  },
+  "payments": [],
+  "date": {
+    "$date": "2025-10-12T16:48:56.491Z"
+  },
+  "reservations": [],
+  "tasks": [],
+  "__v": 0
+},
+{
+  "_id": "UjG-wWiLk4N",
+  "name": "Sunset Grill",
+  "image": "/images/Sunset Grill.avif",
+  "rating": 4.6,
+  "location": "Tirupati",
+  "amount": 125,
+  "dishes": [
+    "S0R2Cexosy",
+    "mJQ3oJygy0"
+  ],
+  "orders": [],
+  "tables": [
+    {
+      "number": "1",
+      "status": "available",
+      "seats": 2,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e638058"
+      }
+    },
+    {
+      "number": "2",
+      "status": "available",
+      "seats": 3,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e638059"
+      }
+    },
+    {
+      "number": "3",
+      "status": "available",
+      "seats": 4,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e63805a"
+      }
+    },
+    {
+      "number": "4",
+      "status": "available",
+      "seats": 5,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e63805b"
+      }
+    },
+    {
+      "number": "5",
+      "status": "available",
+      "seats": 6,
+      "_id": {
+        "$oid": "68ebdbf80addbff80e63805c"
+      }
+    }
+  ],
+  "totalTables": 5,
+  "inventory": [],
+  "orderData": {
+    "labels": [],
+    "values": []
+  },
+  "inventoryData": {
+    "labels": [],
+    "values": []
+  },
+  "payments": [],
+  "date": {
+    "$date": "2025-10-12T16:48:56.491Z"
+  },
+  "reservations": [],
+  "tasks": [],
+  "__v": 0
+}]

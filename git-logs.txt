@@ -1,0 +1,118 @@
+-------------------------------
+Git Logs - RestoConnect Project
+Date Range: 2025-08-01 to 2025-10-11
+
+👥 Project Commit Authors:
+Giresh-458
+nagu575
+nitin833
+Mandapati Deekshith Kumar
+Sofiyatentu
+-------------------------------
+
+👤 Author: nitin833
+--------------------------------
+b908684 - nitin833, 2025-10-12 : fixed menu bug
+9f9c3b9 - nitin833, 2025-10-11 : fixed restaurant request bug
+4eaa0e8 - nitin833, 2025-10-09 : controller update
+db2d689 - nitin833, 2025-10-09 : added dynamic drop down for locations
+2283cea - nitin833, 2025-10-09 : sending uniqu location to frontend
+fd06c58 - nitin833, 2025-09-15 : added cors
+5a0054d - nitin833, 2025-09-13 : bug fixes in ownerHomepage
+09d43b3 - nitin833, 2025-09-13 : ajax added
+3acead3 - nitin833, 2025-09-13 : added ajax functionality to ownerhomapage
+615d76c - nitin833, 2025-09-09 : bugs fixed
+7e6d1c2 - nitin833, 2025-09-09 : new files added ejs
+168f496 - nitin833, 2025-09-09 : admin ejs page and script
+
+👤 Author: Sofiyatentu
+--------------------------------
+86f4e18 - Sofiyatentu, 2025-10-12 : Added Inventory management in staffDashboard
+7cb4707 - Sofiyatentu, 2025-10-12 : Validation for reservation time
+43d055f - Sofiyatentu, 2025-10-11 : Updated Admin dashboard css
+c578ca8 - Sofiyatentu, 2025-10-10 : Made customer dashboard responsive
+b76b957 - Sofiyatentu, 2025-10-09 : added consistent spacing for buttons
+6638715 - Sofiyatentu, 2025-10-09 : added additional styles for chart visibility
+45e5a6b - Sofiyatentu, 2025-10-09 : Update ownerDashboard.js
+002012f - Sofiyatentu, 2025-10-09 : Changed yearly revenue to weekly,monthly to daily
+5396d4d - Sofiyatentu, 2025-09-13 : Made staff dashboard as dynamic and added validation to orderReservation
+
+👤 Author: Giresh-458
+--------------------------------
+32cd030 - Giresh-458, 2025-10-12 : fixed major bugs like making admin dashbaord correctly
+9cfb1dd - Giresh-458, 2025-10-12 : changed manager to owner
+d2d93ef - Giresh-458, 2025-10-12 : updated admin dashboard css,ejs and bacjend bugs
+65765b7 - Giresh-458, 2025-10-11 : fixed ajax in home_page.ejs
+36e5871 - Giresh-458, 2025-10-11 : menu management updated by nagu
+116e3e6 - Giresh-458, 2025-10-11 : Merge branch 'main' of https://github.com/Giresh-458/RestoConnect
+307b074 - Giresh-458, 2025-10-11 : seeds updated
+a2aa683 - Giresh-458, 2025-10-11 : seeds updated
+cdd89f7 - Giresh-458, 2025-10-11 : updated dishes by giresh and nitin
+3c786d0 - Giresh-458, 2025-10-11 : Merge branch 'main' of https://github.com/Giresh-458/RestoConnect
+6ae1bc5 - Giresh-458, 2025-10-11 : chnaged return statement
+1a7a016 - Giresh-458, 2025-10-09 : fixed customer dropdown
+9cc63f3 - Giresh-458, 2025-10-09 : updated customer dropdown
+7d4e2ce - Giresh-458, 2025-10-09 : updated customer dashboard css
+b16adf8 - Giresh-458, 2025-10-08 : fixed bugs=> homepage(css,js and server)
+a5bf233 - Giresh-458, 2025-10-08 : added email in res_req
+4e79a6d - Giresh-458, 2025-10-08 : package.json updated
+e987832 - Giresh-458, 2025-10-08 : package-lock.json updated
+b65fe1c - Giresh-458, 2025-10-08 : changes in restaurant-req
+a29fe12 - Giresh-458, 2025-10-08 : changes in restaurant-req
+3b4d15e - Giresh-458, 2025-09-12 : updated restaurant form
+3ce0069 - Giresh-458, 2025-09-12 : 'changes'
+394675d - Giresh-458, 2025-09-12 : added new rest btn in loginPage
+4c74f04 - Giresh-458, 2025-09-12 : add new rest btn in login page
+99049e2 - Giresh-458, 2025-09-09 : fixed signUp
+3b3e282 - Giresh-458, 2025-09-09 : bugs fixed
+7dcb3c5 - Giresh-458, 2025-09-09 : updated seed
+066d9af - Giresh-458, 2025-09-05 : added pics in seed
+6eee3d9 - Giresh-458, 2025-09-05 : new commit added pics
+d6b4ad7 - Giresh-458, 2025-09-05 : final commit
+
+👤 Author: Mandapati Deekshith Kumar
+--------------------------------
+b610017 - Mandapati Deekshith Kumar, 2025-10-11 : error fixed in ajax for restaurants
+f75dfb3 - Mandapati Deekshith Kumar, 2025-10-11 : Update server.js for ajax in homepage problem resolved
+682be77 - Mandapati Deekshith Kumar, 2025-10-10 : updated for feedback dynamic
+4233c93 - Mandapati Deekshith Kumar, 2025-10-10 : updated for feedback dynamic
+97504aa - Mandapati Deekshith Kumar, 2025-10-10 : updated for feedback dynamic
+c61a1ba - Mandapati Deekshith Kumar, 2025-10-10 : updates route for feedback dynamic
+b397c14 - Mandapati Deekshith Kumar, 2025-10-10 : added css for feedback block
+06c4b59 - Mandapati Deekshith Kumar, 2025-10-10 : added css foe feedback block
+3f17dd3 - Mandapati Deekshith Kumar, 2025-10-10 : added feedbacks display dynamic
+e5a9591 - Mandapati Deekshith Kumar, 2025-10-10 : added feedbacks display dynamic
+8019c5d - Mandapati Deekshith Kumar, 2025-10-10 : added feedback dynamic
+dfbf774 - Mandapati Deekshith Kumar, 2025-10-10 : created feedback model for dynamic
+8952ad0 - Mandapati Deekshith Kumar, 2025-10-10 : Delete Model/feedback.js
+cef4b2f - Mandapati Deekshith Kumar, 2025-10-10 : Add files via upload
+7664c02 - Mandapati Deekshith Kumar, 2025-09-12 : Create owner_dashboard.css
+292c93f - Mandapati Deekshith Kumar, 2025-09-12 : added path for new css file
+f2d430f - Mandapati Deekshith Kumar, 2025-09-12 : resturants fetching problem fixed
+f73876c - Mandapati Deekshith Kumar, 2025-09-12 : updated owner homepage css
+b6c0db6 - Mandapati Deekshith Kumar, 2025-09-12 : updated for css
+fa613ce - Mandapati Deekshith Kumar, 2025-09-12 : added ajax for restaurants
+6edee9c - Mandapati Deekshith Kumar, 2025-09-12 : added ajax for restaurants
+49f3cec - Mandapati Deekshith Kumar, 2025-09-12 : added ajax for restaurants
+e25f6f7 - Mandapati Deekshith Kumar, 2025-09-12 : added ajax for restaurants
+fe59f04 - Mandapati Deekshith Kumar, 2025-09-12 : added ajax for restaurants
+0a49c6e - Mandapati Deekshith Kumar, 2025-09-12 : added ajax for restaurants
+2a4f01b - Mandapati Deekshith Kumar, 2025-09-12 : added ajax for restaurants
+5e75937 - Mandapati Deekshith Kumar, 2025-09-12 : added ajax for restaurants in homepage
+4637c6c - Mandapati Deekshith Kumar, 2025-09-07 : Updated css for restaurants blocks
+4d18b3e - Mandapati Deekshith Kumar, 2025-09-07 : live search added and clear search added
+
+
+👤 Author: nagu575
+--------------------------------
+c9ea248 - nagu575, 2025-10-11 : changed owner menu management edit bug
+5ecb3cb - nagu575, 2025-10-11 : Merge branch 'main' of https://github.com/Giresh-458/RestoConnect
+d89c697 - nagu575, 2025-10-11 : changed styling for admin dashboard
+36327b4 - nagu575, 2025-10-11 : updated css
+be98f95 - nagu575, 2025-10-11 : Merge branch 'main' of https://github.com/Giresh-458/RestoConnect
+d6cbd73 - nagu575, 2025-10-11 : updated css
+687debd - nagu575, 2025-10-11 : Update menu.ejs
+fde6f60 - nagu575, 2025-10-11 : Update menuController.js
+d86138d - nagu575, 2025-10-11 : Update menu.js
+bb06c79 - nagu575, 2025-10-11 : Update feedback.js to accept if any fields are not found
+a9f8de9 - nagu575, 2025-10-11 : admin dashboard css updated

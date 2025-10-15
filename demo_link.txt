@@ -1,0 +1,20 @@
+Project: RestoConnect – Seamless Dining, Effortless Management
+Group ID: 42
+
+Demo Video Link:
+https://youtu.be/TwauAgzmyv4?feature=shared
+
+Presentation Timeline
+
+00:00–00:46 – Title slide & project idea
+00:46–02:33 – Form validation demo + code
+02:33–04:04 – Dynamic HTML demo + code
+04:04–05:33 – Async calls demo (3 flows)
+05:33–06:22 – Individual contributions (10–20 sec each)
+06:22–07:39 – Wrap-up & location of artifacts
+
+Video Duration: 7–8 minutes  
+Resolution: Minimum 720p (Recommended: 1080p)  
+Format: MP4  
+
+Hosted On: YouTube (Unlisted)

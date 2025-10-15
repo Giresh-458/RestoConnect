@@ -1,0 +1,77 @@
+[{
+  "_id": "B2rhZ2VAr",
+  "dishes": [
+    "Paneer Tikka",
+    "Veg Biryani"
+  ],
+  "customerName": "customer1",
+  "restaurant": "Tasty Bites",
+  "rest_id": "Qf-wte5Yf0",
+  "status": "completed",
+  "totalAmount": 550,
+  "date": {
+    "$date": "2025-09-23T16:48:57.989Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "8BO_xqGYeM",
+  "dishes": [
+    "Paneer Tikka"
+  ],
+  "customerName": "customer2",
+  "restaurant": "Tasty Bites",
+  "rest_id": "Qf-wte5Yf0",
+  "status": "completed",
+  "totalAmount": 250,
+  "date": {
+    "$date": "2025-10-05T16:48:57.990Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "JSiWPY879U",
+  "dishes": [
+    "Veg Biryani"
+  ],
+  "customerName": "customer1",
+  "restaurant": "Tasty Bites",
+  "rest_id": "Qf-wte5Yf0",
+  "status": "completed",
+  "totalAmount": 300,
+  "date": {
+    "$date": "2025-10-07T16:48:57.990Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "vewMd_0iuA",
+  "dishes": [
+    "Paneer Tikka",
+    "Veg Biryani"
+  ],
+  "customerName": "customer2",
+  "restaurant": "Tasty Bites",
+  "rest_id": "Qf-wte5Yf0",
+  "status": "completed",
+  "totalAmount": 550,
+  "date": {
+    "$date": "2025-10-06T16:48:57.990Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "4_YXPyr6qP",
+  "dishes": [
+    "Paneer Tikka"
+  ],
+  "customerName": "customer1",
+  "restaurant": "Tasty Bites",
+  "rest_id": "Qf-wte5Yf0",
+  "status": "completed",
+  "totalAmount": 250,
+  "date": {
+    "$date": "2025-10-11T16:48:57.990Z"
+  },
+  "__v": 0
+}]

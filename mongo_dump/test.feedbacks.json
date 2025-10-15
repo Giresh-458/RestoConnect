@@ -1,0 +1,42 @@
+[{
+  "_id": {
+    "$oid": "68ebdbfa0addbff80e63808d"
+  },
+  "customerName": "customer1",
+  "diningRating": 5,
+  "lovedItems": "Paneer Tikka, Veg Biryani",
+  "orderRating": 4,
+  "additionalFeedback": "Loved the ambiance!",
+  "createdAt": {
+    "$date": "2025-10-12T16:48:58.010Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ebdbfa0addbff80e63808e"
+  },
+  "customerName": "customer2",
+  "diningRating": 4,
+  "lovedItems": "Fish Fry",
+  "orderRating": 5,
+  "additionalFeedback": "Tasty food!",
+  "createdAt": {
+    "$date": "2025-10-12T16:48:58.010Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ebdbfa0addbff80e63808f"
+  },
+  "customerName": "customer3",
+  "diningRating": 5,
+  "lovedItems": "Masala Dosa",
+  "orderRating": 5,
+  "additionalFeedback": "Perfect breakfast!",
+  "createdAt": {
+    "$date": "2025-10-12T16:48:58.010Z"
+  },
+  "__v": 0
+}]

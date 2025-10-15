@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    
 
 document.getElementById('menu').addEventListener('click', function(event) {
     
@@ -32,7 +31,6 @@ document.getElementById('menu').addEventListener('click', function(event) {
 
     if (target.classList.contains('cart_button')) {
         event.preventDefault();
-        console.log('Add to Cart:', dish);
         cartButton.style.display = 'none';
         counter.style.display = 'flex';
         itemCount.textContent = 1;
@@ -46,7 +44,6 @@ document.getElementById('menu').addEventListener('click', function(event) {
 
     if (target.classList.contains('increase')) {
         event.preventDefault();
-        console.log('Increase:', dish);
         itemCount.textContent = Number(itemCount.textContent) + 1;
         fetch('/customer/cart/increase', {
             method: 'POST',
@@ -57,7 +54,6 @@ document.getElementById('menu').addEventListener('click', function(event) {
 
     if (target.classList.contains('decrease')) {
         event.preventDefault();
-        console.log('Decrease:', dish);
         let count = Number(itemCount.textContent) - 1;
         itemCount.textContent = count;
         if (count === 0) {
