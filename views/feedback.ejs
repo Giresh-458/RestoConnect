@@ -27,13 +27,6 @@
             <div class="feedback-container">
                 <p>What did you love? 😍</p>
                 <input type="text" id="feedbackInput" name="lovedItems" placeholder="Enter your feedback..." />
-                <div class="tags">
-                    <span class="tag">Cappuccino</span>
-                    <span class="tag">Iced Peach Tea</span>
-                    <span class="tag">Soft Music</span>
-                    <span class="tag">Polite Staff</span>
-                    <span class="tag">Iced Latte</span>
-                </div>
             </div>
 
             <div class="order-rating-container">
@@ -67,13 +60,11 @@
     <script>
         // Dining star rating
         const diningStars = document.querySelectorAll("#starRating .star");
-        const diningInputName = "diningRating"; // name for form submission
+        const diningInputName = "diningRating"; 
         diningStars.forEach(star => {
             star.addEventListener("click", () => {
-                // Remove previous selection
                 diningStars.forEach(s => s.classList.remove("selected"));
                 star.classList.add("selected");
-                // Add/update hidden input dynamically for submission
                 let existingInput = document.querySelector(`input[name="${diningInputName}"]`);
                 if(!existingInput){
                     existingInput = document.createElement("input");

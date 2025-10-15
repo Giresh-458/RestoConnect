@@ -29,10 +29,6 @@ const restaurantSchema = new mongoose.Schema({
     type:String,
     required:true
   },
-  date_joined: {
-    type: Date,
-    required: true
-  },
   created_at: {
     type: Date,
     default: Date.now,

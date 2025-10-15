@@ -233,7 +233,6 @@ exports.getaceptreq = async (req, res) => {
             name: request.name,
             location: request.location,
             amount: request.amount,
-            date: request.date_joined,
             created_at: new Date()
         });
         await newRestaurant.save();

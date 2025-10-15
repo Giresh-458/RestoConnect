@@ -93,12 +93,9 @@
             </ul>
           </div>
         </div>
+        
       </div>
-    </div>
-  </div>
-
-  <!-- Feedback Section -->
-  <div class="cus-feedback-bottom">
+        <div class="cus-feedback-bottom">
     <h2>Your Feedbacks</h2>
     <% if (feedbackList && feedbackList.length > 0) { %>
       <table>
@@ -127,6 +124,11 @@
       <p>No feedback submitted yet.</p>
     <% } %>
   </div>
+    </div>
+  </div>
+
+  <!-- Feedback Section -->
+
 
   <script>
     const item_list = <%- JSON.stringify(item_list) %>;
